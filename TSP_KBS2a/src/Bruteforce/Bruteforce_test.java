@@ -13,5 +13,6 @@ public class Bruteforce_test {
 
     public static void main(String[] args) {
         System.out.println("Hoi bram!!!");
+        System.out.println("Hoi Jelle!!! Piemelhoofd >:D");
     }
 }
