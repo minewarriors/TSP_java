@@ -38,7 +38,7 @@ public class TSPWindow extends JFrame implements ActionListener {
         this.add(jlUploadXML);
         jbUploadXML = new JButton("Upload File");
         this.add(jbUploadXML);
-
+        jbUploadXML.addActionListener(this);
         System.out.println("Window has been build");
     }
 
@@ -51,7 +51,7 @@ public class TSPWindow extends JFrame implements ActionListener {
         if (e.getSource() == jbUploadXML) {
             System.out.println("actionlistener bf4 try{}");
             try {
-                File xmlFile = new File("C:\\Users\\Bram ten Brinke\\Documents\\Nieuwe map\\TSP_KBS2a\\src\\TestXML");
+                File xmlFile = new File("C:\\Users\\Bram ten Brinke\\Documents\\Nieuwe map\\TSP_KBS2a\\src\\TestXML\\Test.xml");
                 DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
                 DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
                 Document doc = dBuilder.parse(xmlFile);
@@ -76,10 +76,10 @@ public class TSPWindow extends JFrame implements ActionListener {
 
                         Element eElement = (Element) nNode;
 
-                        System.out.println("Staff id : " + eElement.getAttribute("id"));
-                        System.out.println("First Name : " + eElement.getElementsByTagName("size").item(0).getTextContent());
-                        System.out.println("Last Name : " + eElement.getElementsByTagName("colour").item(0).getTextContent());
-                        System.out.println("Nick Name : " + eElement.getElementsByTagName("number").item(0).getTextContent());
+                        System.out.println("package id : " + eElement.getAttribute("id"));
+                        System.out.println("Size : " + eElement.getElementsByTagName("size").item(0).getTextContent());
+                        System.out.println("Colour : " + eElement.getElementsByTagName("colour").item(0).getTextContent());
+                        System.out.println("Number : " + eElement.getElementsByTagName("number").item(0).getTextContent());
 
                     }
                 }
