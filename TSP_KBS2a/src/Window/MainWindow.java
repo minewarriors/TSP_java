@@ -6,13 +6,14 @@
 package Window;
 
 import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
 
 /**
  *
  * @author jelle
  */
-public class MainWindow extends JFrame {
+public class MainWindow extends JFrame implements ActionListener {
 
     private JLabel JLTitle;
     private JButton JBTSP;
@@ -61,9 +62,16 @@ public class MainWindow extends JFrame {
         setVisible(true);
     }
 
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+        if (ae.getSource() == JBTSP) {
+
+        }
+    }
+
     public static void main(String[] args) {
         MainWindow Menu = new MainWindow();
-        TSPWindow tsp = new TSPWindow();
-    }   
+        TSPWindow TSP = new TSPWindow();
+    }
 
 }
