@@ -3,15 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Bellman;
+package Algoritmes;
 
 /**
  *
  * @author jelle
  */
-public class Bellman_test {
+public class EigenMethode {
 
-    public static void main(String[] args) {
-        System.out.println("Motherfucker dit werkt.");
-    }
 }
