@@ -38,7 +38,7 @@ public class TSPWindow extends JFrame implements ActionListener {
         this.add(jlUploadXML);
         jbUploadXML = new JButton("Upload File");
         this.add(jbUploadXML);
-        
+
         System.out.println("Window has been build");
     }
 
@@ -56,13 +56,10 @@ public class TSPWindow extends JFrame implements ActionListener {
                 DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
                 Document doc = dBuilder.parse(xmlFile);
 
-<<<<<<< HEAD
                 //optional, but recommended
                 //read this - http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-how-does-it-work
                 doc.getDocumentElement().normalize();
 
-=======
->>>>>>> bb5907383bf9ff01940fe9b4ecaddcf5c30fd0ff
                 System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
 
                 NodeList nList = doc.getElementsByTagName("package");
