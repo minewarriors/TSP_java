@@ -26,7 +26,12 @@ public class MainWindow extends JFrame {
         setLayout(new FlowLayout());
 
         //Declaring Labels
-        JLTitle = new JLabel("Storage and Retrieval System MENU");
+        JLTitle = new JLabel("Storage and Retrieval System");
+        JLTitle.setFont(new Font("Serif", Font.PLAIN, 70));
+        JLTitle.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+        JLTitle.setPreferredSize(new Dimension(1000, 80));
+        JLTitle.setHorizontalAlignment(SwingConstants.CENTER);
+        JLTitle.setVerticalAlignment(SwingConstants.CENTER);
 
         //Declaring buttons
         JBTSP = new JButton("TSP Menu");
