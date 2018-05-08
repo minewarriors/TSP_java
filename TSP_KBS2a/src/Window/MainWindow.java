@@ -5,6 +5,7 @@
  */
 package Window;
 
+import com.sun.java.accessibility.util.AWTEventMonitor;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -19,14 +20,17 @@ public class MainWindow extends JFrame implements ActionListener {
     private JButton JBTSP;
     private JButton JBBPP;
     private JButton JBStorage;
+    private TSPWindow tsp;
 
-    public MainWindow() {
+    public MainWindow(TSPWindow tsp) {
         //Window settings
         setSize(1080, 720);
         setTitle("Retrieval & Storage System");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new FlowLayout());
 
+        this.tsp = tsp;
+        
         //Declaring Labels
         JLTitle = new JLabel("Storage and Retrieval System");
 
@@ -59,19 +63,25 @@ public class MainWindow extends JFrame implements ActionListener {
         add(JBTSP);
         add(JBStorage);
 
+        // add to actionListener
+        JBBPP.addActionListener(this);
+        JBTSP.addActionListener(this);
+        JBStorage.addActionListener(this);
         setVisible(true);
     }
 
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == JBTSP) {
-
+            System.out.println("BEN DR");
+            tsp.setVisible(true);
         }
     }
 
     public static void main(String[] args) {
-        MainWindow Menu = new MainWindow();
         TSPWindow TSP = new TSPWindow();
+        MainWindow Menu = new MainWindow(TSP);
+        
     }
 
 }
