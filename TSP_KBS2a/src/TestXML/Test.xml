@@ -6,22 +6,20 @@ and open the template in the editor.
 -->
 
 
-<root>
-    <order>
-        <package id="1">
-            <size>Large</size>
-            <colour>Blue</colour>
-            <number>1</number>
-        </package>
-        <package id="2">
-            <size>Medium</size>
-            <colour>Red</colour>
-            <number>2</number>
-        </package>
-        <package id="3">
-            <size>Small</size>
-            <colour>Green</colour>
-            <number>1</number>
-        </package>
-    </order>
-</root>
+<order>
+    <package id="1">
+        <size>Large</size>
+        <colour>Blue</colour>
+        <number>1</number>
+    </package>
+    <package id="2">
+        <size>Medium</size>
+        <colour>Red</colour>
+        <number>2</number>
+    </package>
+    <package id="3">
+        <size>Small</size>
+        <colour>Green</colour>
+        <number>1</number>
+    </package>
+</order>

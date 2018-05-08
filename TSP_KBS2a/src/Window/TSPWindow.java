@@ -38,20 +38,26 @@ public class TSPWindow extends JFrame implements ActionListener {
         this.add(jlUploadXML);
         jbUploadXML = new JButton("Upload File");
         this.add(jbUploadXML);
-
+        
+        System.out.println("Window has been build");
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == jbUploadXML) {
+            System.out.println("actionlistener bf4 try{}");
             try {
                 File xmlFile = new File("C:\\Users\\Bram ten Brinke\\Documents\\Nieuwe map\\TSP_KBS2a\\src\\TestXML");
                 DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
                 DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
                 Document doc = dBuilder.parse(xmlFile);
-                
+
+                //optional, but recommended
+                //read this - http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-how-does-it-work
+                doc.getDocumentElement().normalize();
+
                 System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
-                
+
                 NodeList nList = doc.getElementsByTagName("package");
 
                 System.out.println("----------------------------");
@@ -66,10 +72,10 @@ public class TSPWindow extends JFrame implements ActionListener {
 
                         Element eElement = (Element) nNode;
 
-                        System.out.println("Package id : " + eElement.getAttribute("id"));
-                        System.out.println("Size : " + eElement.getElementsByTagName("Size").item(0).getTextContent());
-                        System.out.println("Colour : " + eElement.getElementsByTagName("Colour").item(0).getTextContent());
-                        System.out.println("Number : " + eElement.getElementsByTagName("Number").item(0).getTextContent());
+                        System.out.println("Staff id : " + eElement.getAttribute("id"));
+                        System.out.println("First Name : " + eElement.getElementsByTagName("size").item(0).getTextContent());
+                        System.out.println("Last Name : " + eElement.getElementsByTagName("colour").item(0).getTextContent());
+                        System.out.println("Nick Name : " + eElement.getElementsByTagName("number").item(0).getTextContent());
 
                     }
                 }
