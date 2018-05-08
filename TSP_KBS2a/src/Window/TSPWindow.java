@@ -31,7 +31,7 @@ public class TSPWindow extends JFrame implements ActionListener {
         setLayout(new FlowLayout());
 
         // testing purposes
-        this.setVisible(true);
+        this.setVisible(false);
 
         //XML uploaden
         jlUploadXML = new JLabel("Upload XML File:");
@@ -39,6 +39,10 @@ public class TSPWindow extends JFrame implements ActionListener {
         jbUploadXML = new JButton("Upload File");
         this.add(jbUploadXML);
 
+    }
+
+    public void setVisile(TSPWindow TSPwindow) {
+        TSPwindow.setVisible(true);
     }
 
     @Override
@@ -49,9 +53,9 @@ public class TSPWindow extends JFrame implements ActionListener {
                 DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
                 DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
                 Document doc = dBuilder.parse(xmlFile);
-                
+
                 System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
-                
+
                 NodeList nList = doc.getElementsByTagName("package");
 
                 System.out.println("----------------------------");
