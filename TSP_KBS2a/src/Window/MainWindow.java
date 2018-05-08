@@ -29,8 +29,9 @@ public class MainWindow extends JFrame implements ActionListener {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new FlowLayout());
 
+        //declairing other windows
         this.tsp = tsp;
-        
+
         //Declaring Labels
         JLTitle = new JLabel("Storage and Retrieval System");
 
@@ -73,7 +74,6 @@ public class MainWindow extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == JBTSP) {
-            System.out.println("BEN DR");
             tsp.setVisible(true);
         }
     }
@@ -81,7 +81,7 @@ public class MainWindow extends JFrame implements ActionListener {
     public static void main(String[] args) {
         TSPWindow TSP = new TSPWindow();
         MainWindow Menu = new MainWindow(TSP);
-        
+
     }
 
 }
