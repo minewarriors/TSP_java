@@ -28,6 +28,7 @@ public class MainWindow extends JFrame implements ActionListener {
         setTitle("Retrieval & Storage System");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new FlowLayout());
+        setResizable(false);
 
         //declairing other windows
         this.tsp = tsp;
@@ -53,10 +54,16 @@ public class MainWindow extends JFrame implements ActionListener {
 
         //Designing Buttons
         JBTSP.setForeground(Color.BLACK);
+        JBTSP.setFont(new Font("Serif", Font.PLAIN, 30));
+        JBTSP.setOpaque(true);
 
         JBBPP.setForeground(Color.BLACK);
+        JBBPP.setFont(new Font("Serif", Font.PLAIN, 30));
+        JBBPP.setOpaque(true);
 
         JBStorage.setForeground(Color.BLACK);
+        JBStorage.setFont(new Font("Serif", Font.PLAIN, 30));
+        JBStorage.setOpaque(true);
 
         //Add buttons and labels
         add(JLTitle);
