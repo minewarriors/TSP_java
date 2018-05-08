@@ -51,7 +51,7 @@ public class TSPWindow extends JFrame implements ActionListener {
         if (e.getSource() == jbUploadXML) {
             System.out.println("actionlistener bf4 try{}");
             try {
-                File xmlFile = new File("C:\\Users\\Bram ten Brinke\\Documents\\Nieuwe map\\TSP_KBS2a\\src\\TestXML\\Test.xml");
+                File xmlFile = new File("\\TSP_java\\TSP_KBS2a\\src\\Core\\XLMOrders");
                 DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
                 DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
                 Document doc = dBuilder.parse(xmlFile);
