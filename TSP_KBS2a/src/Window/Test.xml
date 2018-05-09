@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<order>
+    <package id="1">
+        <size>Large</size>
+        <colour>Blue</colour>
+        <number>1</number>
+    </package>
+    <package id="2">
+        <size>Medium</size>
+        <colour>Red</colour>
+        <number>2</number>
+    </package>
+    <package id="3">
+        <size>Small</size>
+        <colour>Green</colour>
+        <number>1</number>
+    </package>
+</order>
