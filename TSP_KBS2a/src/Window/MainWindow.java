@@ -5,7 +5,6 @@
  */
 package Window;
 
-import com.sun.java.accessibility.util.AWTEventMonitor;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -30,7 +29,7 @@ public class MainWindow extends JFrame implements ActionListener {
         setLayout(new FlowLayout());
         setResizable(false);
 
-        //declairing other windows
+        //declairing other windows and pictures
         this.tsp = tsp;
 
         //Declaring Labels
@@ -54,14 +53,17 @@ public class MainWindow extends JFrame implements ActionListener {
 
         //Designing Buttons
         JBTSP.setForeground(Color.BLACK);
+        JBTSP.setPreferredSize(new Dimension(400, 40));
         JBTSP.setFont(new Font("Serif", Font.PLAIN, 30));
         JBTSP.setOpaque(true);
 
         JBBPP.setForeground(Color.BLACK);
+        JBBPP.setPreferredSize(new Dimension(400, 40));
         JBBPP.setFont(new Font("Serif", Font.PLAIN, 30));
         JBBPP.setOpaque(true);
 
         JBStorage.setForeground(Color.BLACK);
+        JBStorage.setPreferredSize(new Dimension(805, 40));
         JBStorage.setFont(new Font("Serif", Font.PLAIN, 30));
         JBStorage.setOpaque(true);
 
