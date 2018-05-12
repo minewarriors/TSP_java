@@ -23,6 +23,7 @@ public class TSPWindow extends JFrame implements ActionListener {
     //private JCombobox algoritm;
     private JTextField x, y, name, numberOfTimes;
     private JLabel jlAlgoritm, jlAdd, jlNumberOfTimes, jlUploadXML;
+    private JFileChooser jFileChooser;
 
     public TSPWindow() {
         //Window settings
@@ -36,9 +37,17 @@ public class TSPWindow extends JFrame implements ActionListener {
         //XML uploaden
         jlUploadXML = new JLabel("Upload XML File:");
         this.add(jlUploadXML);
+
+        jFileChooser = new JFileChooser();
+        this.add(jFileChooser);
+        jFileChooser.addActionListener(this);
+        jFileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+
+        /*
         jbUploadXML = new JButton("Upload File");
         this.add(jbUploadXML);
         jbUploadXML.addActionListener(this);
+        */
         System.out.println("Window has been build");
     }
 
@@ -48,39 +57,45 @@ public class TSPWindow extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == jbUploadXML) {
+        if (e.getSource() == jFileChooser) {
             System.out.println("actionlistener bf4 try{}");
             try {
-                File xmlFile = new File("\\TSP_java\\TSP_KBS2a\\src\\Core\\XLMOrders");
-                DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-                DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-                Document doc = dBuilder.parse(xmlFile);
+                File xmlFile;
+                int result = jFileChooser.showOpenDialog(this);
+                if (result == JFileChooser.APPROVE_OPTION) {
+                    File selectedFile = jFileChooser.getSelectedFile();
+                    xmlFile = new File(selectedFile.getAbsolutePath());
 
-                //optional, but recommended
-                //read this - http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-how-does-it-work
-                doc.getDocumentElement().normalize();
+                    DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+                    DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+                    Document doc = dBuilder.parse(xmlFile);
 
-                System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
+                    //optional, but recommended
+                    //read this - http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-how-does-it-work
+                    doc.getDocumentElement().normalize();
 
-                NodeList nList = doc.getElementsByTagName("package");
+                    System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
 
-                System.out.println("----------------------------");
+                    NodeList nList = doc.getElementsByTagName("package");
 
-                for (int temp = 0; temp < nList.getLength(); temp++) {
+                    System.out.println("----------------------------");
 
-                    Node nNode = nList.item(temp);
+                    for (int temp = 0; temp < nList.getLength(); temp++) {
 
-                    System.out.println("\nCurrent Element :" + nNode.getNodeName());
+                        Node nNode = nList.item(temp);
 
-                    if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                        System.out.println("\nCurrent Element :" + nNode.getNodeName());
 
-                        Element eElement = (Element) nNode;
+                        if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
-                        System.out.println("package id : " + eElement.getAttribute("id"));
-                        System.out.println("Size : " + eElement.getElementsByTagName("size").item(0).getTextContent());
-                        System.out.println("Colour : " + eElement.getElementsByTagName("colour").item(0).getTextContent());
-                        System.out.println("Number : " + eElement.getElementsByTagName("number").item(0).getTextContent());
+                            Element eElement = (Element) nNode;
 
+                            System.out.println("package id : " + eElement.getAttribute("id"));
+                            System.out.println("Size : " + eElement.getElementsByTagName("size").item(0).getTextContent());
+                            System.out.println("Colour : " + eElement.getElementsByTagName("colour").item(0).getTextContent());
+                            System.out.println("Number : " + eElement.getElementsByTagName("number").item(0).getTextContent());
+
+                        }
                     }
                 }
             } catch (Exception ex) {
