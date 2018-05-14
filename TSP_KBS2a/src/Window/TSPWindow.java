@@ -5,6 +5,7 @@
  */
 package Window;
 
+import Core.Order;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,31 +24,26 @@ public class TSPWindow extends JFrame implements ActionListener {
     //private JCombobox algoritm;
     private JTextField x, y, name, numberOfTimes;
     private JLabel jlAlgoritm, jlAdd, jlNumberOfTimes, jlUploadXML;
-    private JFileChooser jFileChooser;
+    private final JFileChooser fc;
 
     public TSPWindow() {
         //Window settings
+        setTitle("TSP simulator");
         setSize(1080, 720);
-        setTitle("Retrieval & Storage System");
         setLayout(new FlowLayout());
 
-        // testing purposes
-        this.setVisible(false);
+        fc = new JFileChooser();
 
-        //XML uploaden
+        //XML upload knop & label
         jlUploadXML = new JLabel("Upload XML File:");
         this.add(jlUploadXML);
 
-        jFileChooser = new JFileChooser();
-        this.add(jFileChooser);
-        jFileChooser.addActionListener(this);
-        jFileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
-
-        /*
         jbUploadXML = new JButton("Upload File");
         this.add(jbUploadXML);
+
+        //add actionListeners
         jbUploadXML.addActionListener(this);
-        */
+
         System.out.println("Window has been build");
     }
 
@@ -57,24 +53,20 @@ public class TSPWindow extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == jFileChooser) {
-            System.out.println("actionlistener bf4 try{}");
+
+        if (e.getSource() == jbUploadXML) {
             try {
                 File xmlFile;
-                int result = jFileChooser.showOpenDialog(this);
-                if (result == JFileChooser.APPROVE_OPTION) {
-                    File selectedFile = jFileChooser.getSelectedFile();
-                    xmlFile = new File(selectedFile.getAbsolutePath());
+                int returnVal = fc.showOpenDialog(TSPWindow.this);
 
+                if (returnVal == JFileChooser.APPROVE_OPTION) {
+                    File file = fc.getSelectedFile();
+                    xmlFile = new File(file.getAbsolutePath());
+                    Order order = new Order();
+                    
                     DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
                     DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
                     Document doc = dBuilder.parse(xmlFile);
-
-                    //optional, but recommended
-                    //read this - http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-how-does-it-work
-                    doc.getDocumentElement().normalize();
-
-                    System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
 
                     NodeList nList = doc.getElementsByTagName("package");
 
@@ -94,13 +86,19 @@ public class TSPWindow extends JFrame implements ActionListener {
                             System.out.println("Size : " + eElement.getElementsByTagName("size").item(0).getTextContent());
                             System.out.println("Colour : " + eElement.getElementsByTagName("colour").item(0).getTextContent());
                             System.out.println("Number : " + eElement.getElementsByTagName("number").item(0).getTextContent());
-
+                            
+                            order.addToOrder(eElement.getAttribute("id"));
                         }
                     }
+                    System.out.println(order);
+                } else {
+                    System.out.println("Open command cancelled by user." + "\n");
                 }
+
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
         }
     }
+
 }
