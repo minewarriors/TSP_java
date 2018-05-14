@@ -56,28 +56,32 @@ public class TSPWindow extends JFrame implements ActionListener {
 
         if (e.getSource() == jbUploadXML) {
             try {
+                //initialize variables
                 File xmlFile;
                 int returnVal = fc.showOpenDialog(TSPWindow.this);
-
+                
+                //on click filechooser APPROVE
                 if (returnVal == JFileChooser.APPROVE_OPTION) {
                     File file = fc.getSelectedFile();
                     xmlFile = new File(file.getAbsolutePath());
                     Order order = new Order();
                     
+                    // loading XML file
                     DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
                     DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
                     Document doc = dBuilder.parse(xmlFile);
-
+                    
+                    // List elements with "package" tag || Remember a Node is an element
                     NodeList nList = doc.getElementsByTagName("package");
 
                     System.out.println("----------------------------");
-
+                    // go through NodeList
                     for (int temp = 0; temp < nList.getLength(); temp++) {
 
                         Node nNode = nList.item(temp);
 
                         System.out.println("\nCurrent Element :" + nNode.getNodeName());
-
+                        // if NodeType is the same as ElementNode
                         if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
                             Element eElement = (Element) nNode;
