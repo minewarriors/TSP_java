@@ -5,12 +5,10 @@
  */
 package Algoritmes;
 
-import Core.*;
-
 /**
  *
  * @author jelle
  */
-public class BruteForce {
+public class Driver {
 
 }

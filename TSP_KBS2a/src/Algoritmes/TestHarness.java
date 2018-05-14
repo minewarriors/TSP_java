@@ -5,12 +5,13 @@
  */
 package Algoritmes;
 
-import Core.*;
-
 /**
  *
  * @author jelle
  */
-public class BruteForce {
+public class TestHarness {
 
+    public static void main(String[] args) {
+
+    }
 }
