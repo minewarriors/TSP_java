@@ -51,6 +51,20 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" + "productId=" + productId + ", x=" + x + ", y=" + y + ", color=" + color + ", size=" + size + '}';
+        return "product" + productId;
+    }
+
+    //afstand berekenen tussen producten
+    public double measureDistance(Product product) {
+        //delta coördinaten berekenen
+        double deltaX = (product.getX() - this.getX());
+        double deltaY = (product.getY() - this.getY());
+
+        //tot de macht
+        double powerOfX = Math.pow(deltaX, 2);
+        double powerOfY = Math.pow(deltaY, 2);
+
+        //wortel trekken voor afstand tussen coördinaten
+        return Math.sqrt((powerOfX + powerOfY));
     }
 }

@@ -5,6 +5,8 @@
  */
 package Algoritmes;
 
+import Core.Product;
+
 /**
  *
  * @author jelle
@@ -12,6 +14,19 @@ package Algoritmes;
 public class TestHarness {
 
     public static void main(String[] args) {
+        //producten aan maken
+        Product product1 = new Product(1, 2, 5, "blue", 1);
+        Product product2 = new Product(2, 10, 100, "red", 5);
+        Product product3 = new Product(3, 1, 1, "blue", 1);
 
+        //afstanden bepalen
+        double distance1to2 = product1.measureDistance(product2);
+        double distance2to3 = product2.measureDistance(product3);
+        double distance1to3 = product1.measureDistance(product3);
+
+        //resultaten uitprinten
+        System.out.println("Distance van " + product1 + " naar " + product2 + " = " + String.format("%.2f", distance1to2) + " <--");
+        System.out.println("Distance van " + product2 + " naar " + product3 + " = " + String.format("%.2f", distance2to3) + " <--");
+        System.out.println("Distance van " + product1 + " naar " + product3 + " = " + String.format("%.2f", distance1to3) + " <--");
     }
 }
