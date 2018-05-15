@@ -16,14 +16,14 @@ public class Product {
     private int productId;
     private int x;
     private int y;
-    private Color color;
+    private String color;
     private int size;
 
-    public Product(Color color, int size) {
+    public Product(String color, int size) {
         this(0, 0, 0, color, size);
     }
 
-    public Product(int productId, int x, int y, Color color, int size) {
+    public Product(int productId, int x, int y, String color, int size) {
         this.productId = productId;
         this.x = x;
         this.y = y;
@@ -43,7 +43,7 @@ public class Product {
         return y;
     }
 
-    public Color getColor() {
+    public String getColor() {
         return color;
     }
 
@@ -53,7 +53,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return "product" + productId;
+        return "Product{" + "productId=" + productId + ", x=" + x + ", y=" + y + ", color=" + color + ", size=" + size + '}';
     }
 
     //afstand berekenen tussen producten

@@ -6,7 +6,6 @@
 package Algoritmes;
 
 import Core.Product;
-import java.awt.Color;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -21,14 +20,14 @@ public class Driver {
     final static boolean VERBOSE_FLAG = false;
 
     private static ArrayList<Product> intialRoute = new ArrayList<Product>(Arrays.asList(
-            new Product(1, 1, 2, Color.RED, 1),
-            new Product(2, 5, 5, Color.RED, 1),
-            new Product(3, 3, 2, Color.RED, 1),
-            new Product(4, 4, 4, Color.RED, 1),
-            new Product(5, 1, 3, Color.RED, 1),
-            new Product(6, 3, 5, Color.RED, 1),
-            new Product(7, 1, 2, Color.RED, 1),
-            new Product(8, 5, 5, Color.RED, 1)
+            new Product(1, 1, 2, "Red", 1),
+            new Product(2, 5, 5, "Red", 1),
+            new Product(3, 3, 2, "Red", 1),
+            new Product(4, 4, 4, "Red", 1),
+            new Product(5, 1, 3, "Red", 1),
+            new Product(6, 3, 5, "Red", 1),
+            new Product(7, 1, 2, "Red", 1),
+            new Product(8, 5, 5, "Red", 1)
     ));
 
     public static void main(String[] args) {
