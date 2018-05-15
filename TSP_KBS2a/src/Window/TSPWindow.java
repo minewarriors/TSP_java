@@ -7,9 +7,11 @@ package Window;
 
 import Core.Order;
 import Core.Product;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import static java.awt.Color.*;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -20,6 +22,9 @@ import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 import java.io.File;
+import static java.lang.Integer.parseInt;
+import java.lang.reflect.Field;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class TSPWindow extends JFrame implements ActionListener {
 
@@ -27,6 +32,9 @@ public class TSPWindow extends JFrame implements ActionListener {
     private JTextField x, y, name, numberOfTimes;
     private JLabel jlAlgoritm, jlAdd, jlNumberOfTimes, jlUploadXML;
     private final JFileChooser fc;
+    private DrawPanel dp;
+    private String[] jComboboxOptions = {"Bruteforce","Bellman","Willikeurig Beperkt", "Eigen Algoritme"};
+    
 
     public TSPWindow() {
         //Window settings
@@ -35,28 +43,26 @@ public class TSPWindow extends JFrame implements ActionListener {
         setLayout(new FlowLayout());
         setResizable(false);
 
-        //TESTCODE ||| TO BE REMOVED LATER
-        System.out.println("rip");
-
-        Product p1 = new Product(1, 1, 1, BLUE, 20);
-        Product p2 = new Product(2, 2, 2, GREEN, 30);
-        Product p3 = new Product(3, 3, 3, BLUE, 40);
-        Product p4 = new Product(4, 4, 4, RED, 30);
-        Product p5 = new Product(4, 4, 5, PINK, 20);
-
-        Order o1 = new Order();
-        o1.addToOrder(p1);
-        o1.addToOrder(p2);
-        o1.addToOrder(p3);
-        o1.addToOrder(p4);
-        o1.addToOrder(p5);
-        // EINDE TESTCODE ||| TO BE REMOVED LATER
-
+        System.out.println("monkaS");
         // contruct and add drawPanel
-        DrawPanel dp = new DrawPanel(o1);
+        dp = new DrawPanel();
         add(dp);
 
+        // combobox
+        JComboBox algoritmList = new JComboBox(jComboboxOptions);
+        algoritmList.addActionListener(this);
+        
+        //Set up the picture.
+        jlAlgoritm = new JLabel();
+        jlAlgoritm.setFont(jlAlgoritm.getFont().deriveFont(Font.ITALIC));
+        add(algoritmList, BorderLayout.PAGE_START);
+        add(jlAlgoritm, BorderLayout.PAGE_END);
+        
+        // set up FileChooser + create FileFilter
         fc = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(".xml files only", "xml");
+        fc.setFileFilter(filter);
+        fc.setAcceptAllFileFilterUsed(false);
 
         //XML upload knop & label
         jlUploadXML = new JLabel("Upload XML File:");
@@ -93,25 +99,37 @@ public class TSPWindow extends JFrame implements ActionListener {
                     // List elements with "package" tag || Remember a Node is an element
                     NodeList nList = doc.getElementsByTagName("package");
 
-                    System.out.println("----------------------------");
                     // go through NodeList
                     for (int temp = 0; temp < nList.getLength(); temp++) {
 
                         Node nNode = nList.item(temp);
 
-                        System.out.println("\nCurrent Element :" + nNode.getNodeName());
                         // if NodeType is the same as ElementNode
                         if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
                             Element eElement = (Element) nNode;
-
-                            System.out.println("package id : " + eElement.getAttribute("id"));
-                            System.out.println("Size : " + eElement.getElementsByTagName("size").item(0).getTextContent());
-                            System.out.println("Colour : " + eElement.getElementsByTagName("colour").item(0).getTextContent());
-                            System.out.println("Number : " + eElement.getElementsByTagName("number").item(0).getTextContent());
+                            // converting String types
+                            int id = parseInt(eElement.getAttribute("id"));
+                            int x = parseInt(eElement.getElementsByTagName("x").item(0).getTextContent());
+                            int y = parseInt(eElement.getElementsByTagName("y").item(0).getTextContent());
+                            int size = parseInt(eElement.getElementsByTagName("size").item(0).getTextContent());
+                            
+                            // Use reflection to access the static member of the Color class
+                            Color color;
+                            String tempColor = (eElement.getElementsByTagName("color").item(0).getTextContent()).toLowerCase();
+                            try {
+                                Field field = Class.forName("java.awt.Color").getField(tempColor);
+                                color = (Color) field.get(null);
+                            } catch (Exception ex) {
+                                color = BLACK;
+                            }
+                            
+                            // create new Products and add them to an ArrayList
+                            Product a = new Product(id, x, y, color, size);
+                            order.addToOrder(a);
+                            dp.setOrder(order);
                         }
                     }
-                    System.out.println(order);
                 } else {
                     System.out.println("Open command cancelled by user." + "\n");
                 }

@@ -10,11 +10,15 @@ public class DrawPanel extends JPanel {
 
     private Order order;
 
-    public DrawPanel(Order order) {
-        this.order = order;
-
+    public DrawPanel() {
+        this.order = null;
         this.setPreferredSize(new Dimension(1080, 600));
         setBackground(Color.WHITE);
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+        repaint();
     }
 
     public void drawBigProduct(Graphics g, int x, int y) {
@@ -29,8 +33,8 @@ public class DrawPanel extends JPanel {
             } else {
                 y = 100;
             }
-            x = x-90;
-            y = y-40;
+            x = x - 90;
+            y = y - 40;
             g.fillRect(x, y, 180, 80);
         }
     }
@@ -47,12 +51,13 @@ public class DrawPanel extends JPanel {
             } else {
                 y = 100;
             }
-            x = x-60;
-            y = y-26;
-            
+            x = x - 60;
+            y = y - 26;
+
             g.fillRect(x, y, 120, 52);
         }
     }
+
     public void drawSmallProduct(Graphics g, int x, int y) {
         if (x > 0 && y > 0) {
             if (x != 1) {
@@ -65,18 +70,34 @@ public class DrawPanel extends JPanel {
             } else {
                 y = 100;
             }
-            x = x-30;
-            y= y-13;
-            
-            g.fillRect(x, y, 60, 26);
+            x = x - 40;
+            y = y - 20;
+
+            g.fillRect(x, y, 80, 40);
         }
     }
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        
-        ArrayList<Product> orderList = order.getOrderPackages();
+        if (order != null) {
+            ArrayList<Product> orderList = order.getOrderPackages();
 
+            for (Product i : orderList) {
+                int x = i.getX();
+                int y = i.getY();
+
+                g.setColor(i.getColor());
+                if (i.getSize() > 35) {
+                    drawBigProduct(g, x, y);
+                }
+                if (i.getSize() > 25 && i.getSize() < 36) {
+                    drawMediumProduct(g, x, y);
+                }
+                if (i.getSize() == 20) {
+                    drawSmallProduct(g, x, y);
+                }
+            }
+        }
         g.setColor(Color.BLACK);
         // outlines
         g.drawLine(40, 50, 1040, 50);
@@ -95,22 +116,6 @@ public class DrawPanel extends JPanel {
         g.drawLine(440, 50, 440, 550);
         g.drawLine(640, 50, 640, 550);
         g.drawLine(840, 50, 840, 550);
-
-        for (Product i : orderList) {
-            int x = i.getX();
-            int y = i.getY();
-
-            g.setColor(i.getColor());
-            if (i.getSize() > 35) {
-                drawBigProduct(g, x, y);
-            }
-            if (i.getSize() > 25 && i.getSize() < 36) {
-                drawMediumProduct(g, x, y);
-            }
-            if (i.getSize() == 20) {
-                drawSmallProduct(g, x, y);
-            }
-        }
 
     }
 }
