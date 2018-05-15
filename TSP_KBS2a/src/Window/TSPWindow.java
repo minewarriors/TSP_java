@@ -7,6 +7,7 @@ package Window;
 
 import Core.Order;
 import Core.Product;
+import java.awt.Color;
 import static java.awt.Color.*;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -35,13 +36,13 @@ public class TSPWindow extends JFrame implements ActionListener {
         setResizable(false);
 
         //TESTCODE ||| TO BE REMOVED LATER
-        System.out.println("cmmonbruh");
+        System.out.println("rip");
 
-        Product p1 = new Product(1, 1, 1, BLUE, 40);
-        Product p2 = new Product(2, 2, 2, RED, 40);
-        Product p3 = new Product(3, 3, 3, BLUE, 30);
+        Product p1 = new Product(1, 1, 1, BLUE, 20);
+        Product p2 = new Product(2, 2, 2, GREEN, 30);
+        Product p3 = new Product(3, 3, 3, BLUE, 40);
         Product p4 = new Product(4, 4, 4, RED, 30);
-        Product p5 = new Product(4, 5, 5, RED, 20);
+        Product p5 = new Product(4, 4, 5, PINK, 20);
 
         Order o1 = new Order();
         o1.addToOrder(p1);

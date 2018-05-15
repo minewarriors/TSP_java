@@ -28,7 +28,15 @@ public class Product {
         this.x = x;
         this.y = y;
         this.color = color;
-        this.size = size;
+        
+        // resize if out of limits
+        if (size>40) {
+            this.size = 40;
+        } else if (size<20) {
+            this.size = 20;
+        } else {
+            this.size = size;
+        }
     }
 
     public int getProductId() {
