@@ -6,6 +6,7 @@
 package Algoritmes;
 
 import Core.Product;
+import java.awt.Color;
 
 /**
  *
@@ -15,9 +16,9 @@ public class TestHarness {
 
     public static void main(String[] args) {
         //producten aan maken
-        Product product1 = new Product(1, 2, 5, "blue", 1);
-        Product product2 = new Product(2, 10, 100, "red", 5);
-        Product product3 = new Product(3, 1, 1, "blue", 1);
+        Product product1 = new Product(1, 2, 5, Color.RED, 1);
+        Product product2 = new Product(2, 10, 100, Color.RED, 5);
+        Product product3 = new Product(3, 1, 1, Color.RED, 1);
 
         //afstanden bepalen
         double distance1to2 = product1.measureDistance(product2);
