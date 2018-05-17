@@ -55,25 +55,14 @@ public class Driver {
     public void addToIntialRoute(Product product) {
         intialRoute.add(product);
     }
+    public void clearIntialRoute() {
+        intialRoute.clear();
+    }
 
     public static void main(String[] args) {
         Driver driver = new Driver();
         TSPWindow TSP = new TSPWindow(driver);
         MainWindow Menu = new MainWindow(TSP);
-
-        Instant startInstant = Instant.now();
-        BruteForce bruteforce = new BruteForce();
-        Route currentRoute = new Route(driver.getIntialRoute());
-
-        if (VERBOSE_FLAG) {
-            driver.printHeading("Route", "Distance | Shortest Distance | Permutation #");
-        } else {
-            System.out.println("Permutation in progress ...");
-        }
-
-        driver.printResults(bruteforce, bruteforce.permutateProducten(0, currentRoute, new Route(currentRoute)));
-
-        driver.printDuration(startInstant);
     }
 
     //print hoelang het process heeft geduurt

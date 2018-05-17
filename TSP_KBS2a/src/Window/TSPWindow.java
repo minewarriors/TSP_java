@@ -125,6 +125,9 @@ public class TSPWindow extends JFrame implements ActionListener {
                     xmlFile = new File(file.getAbsolutePath());
                     Order order = new Order();
 
+                    //Clear previous order
+                    driver.clearIntialRoute();
+                    
                     // loading XML file
                     DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
                     DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
