@@ -1,4 +1,3 @@
-
 package Window;
 
 import java.awt.*;
@@ -84,8 +83,8 @@ public class MainWindow extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-        TSPWindow TSP = new TSPWindow();
-        MainWindow Menu = new MainWindow(TSP);
+        //TSPWindow TSP = new TSPWindow();
+        //MainWindow Menu = new MainWindow(TSP);
 
     }
 

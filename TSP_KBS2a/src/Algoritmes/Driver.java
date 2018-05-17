@@ -6,6 +6,8 @@
 package Algoritmes;
 
 import Core.Product;
+import Window.MainWindow;
+import Window.TSPWindow;
 import java.awt.Color;
 import java.time.Duration;
 import java.time.Instant;
@@ -18,24 +20,50 @@ import java.util.Arrays;
  */
 public class Driver {
 
-    final static boolean VERBOSE_FLAG = false;
+    public final static boolean VERBOSE_FLAG = true;
 
-    private static ArrayList<Product> intialRoute = new ArrayList<Product>(Arrays.asList(
-            new Product(1, 1, 2, Color.RED, 1),
-            new Product(2, 5, 5, Color.RED, 1),
-            new Product(3, 3, 2, Color.RED, 1),
-            new Product(4, 4, 4, Color.RED, 1),
-            new Product(5, 1, 3, Color.RED, 1),
-            new Product(6, 3, 5, Color.RED, 1),
-            new Product(7, 1, 2, Color.RED, 1),
-            new Product(8, 5, 5, Color.RED, 1)
-    ));
+    private ArrayList<Product> intialRoute;
+    //intialRoute = new ArrayList<Product>(Arrays.asList(
+    //new Product(1, 1, 2, Color.RED, 1),
+    //new Product(2, 5, 5, Color.RED, 1),
+    //new Product(3, 3, 2, Color.RED, 1),
+//            new Product(4, 4, 4, Color.RED, 1),
+//            new Product(5, 1, 3, Color.RED, 1),
+//            new Product(6, 3, 5, Color.RED, 1),
+//            new Product(7, 1, 2, Color.RED, 1),
+//            new Product(8, 5, 5, Color.RED, 1)
+//    ));
+
+    public Driver() {
+        intialRoute = new ArrayList<Product>( //                Arrays.asList(
+                //                new Product(1, 1, 2, Color.RED, 1),
+                //                new Product(2, 5, 5, Color.RED, 1),
+                //                new Product(3, 3, 2, Color.RED, 1),
+                //                new Product(4, 4, 4, Color.RED, 1),
+                //                new Product(5, 1, 3, Color.RED, 1),
+                //                new Product(6, 3, 5, Color.RED, 1),
+                //                new Product(7, 1, 2, Color.RED, 1),
+                //                new Product(8, 5, 5, Color.RED, 1)
+                //        )
+                );
+    }
+
+    public ArrayList<Product> getIntialRoute() {
+        return intialRoute;
+    }
+
+    public void addToIntialRoute(Product product) {
+        intialRoute.add(product);
+    }
 
     public static void main(String[] args) {
         Driver driver = new Driver();
+        TSPWindow TSP = new TSPWindow(driver);
+        MainWindow Menu = new MainWindow(TSP);
+
         Instant startInstant = Instant.now();
         BruteForce bruteforce = new BruteForce();
-        Route currentRoute = new Route(intialRoute);
+        Route currentRoute = new Route(driver.getIntialRoute());
 
         if (VERBOSE_FLAG) {
             driver.printHeading("Route", "Distance | Shortest Distance | Permutation #");
