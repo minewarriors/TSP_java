@@ -12,6 +12,7 @@ import java.awt.Color;
  *
  * @author jelle
  */
+// Test Harnas voor BruteForce Algoritme
 public class TestHarness {
 
     public static void main(String[] args) {
