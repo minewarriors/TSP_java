@@ -28,9 +28,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class TSPWindow extends JFrame implements ActionListener {
 
-    private JButton start, stop, add, random, jbUploadXML;
-    private JTextField x, y, name, numberOfTimes;
-    private JLabel jlAlgoritm, jlAdd, jlNumberOfTimes, jlUploadXML;
+    private JButton start, stop, jbUploadXML;
+    private JLabel jlAlgoritm, jl, jlUploadXML;
     private final JFileChooser fc;
     private DrawPanel dp;
     private String[] jComboboxOptions = {"Bruteforce","Bellman","Willikeurig Beperkt", "Eigen Algoritme"};
@@ -46,17 +45,18 @@ public class TSPWindow extends JFrame implements ActionListener {
         System.out.println("monkaS");
         // contruct and add drawPanel
         dp = new DrawPanel();
-        add(dp);
+        this.add(dp);
 
+        
         // combobox
         JComboBox algoritmList = new JComboBox(jComboboxOptions);
         algoritmList.addActionListener(this);
         
         //Set up the picture.
-        jlAlgoritm = new JLabel();
-        jlAlgoritm.setFont(jlAlgoritm.getFont().deriveFont(Font.ITALIC));
-        add(algoritmList, BorderLayout.PAGE_START);
+        jlAlgoritm = new JLabel("Choose Algoritm");
         add(jlAlgoritm, BorderLayout.PAGE_END);
+        add(algoritmList, BorderLayout.PAGE_START);
+        
         
         // set up FileChooser + create FileFilter
         fc = new JFileChooser();
@@ -67,12 +67,19 @@ public class TSPWindow extends JFrame implements ActionListener {
         //XML upload knop & label
         jlUploadXML = new JLabel("Upload XML File:");
         this.add(jlUploadXML);
-
         jbUploadXML = new JButton("Upload File");
         this.add(jbUploadXML);
-
+        
+        //
+        
+        //start & stop buttons
+        start = new JButton("Start");
+        stop = new JButton("Stop");
+        
         //add actionListeners
         jbUploadXML.addActionListener(this);
+        start.addActionListener(this);
+        stop.addActionListener(this);
 
     }
 
