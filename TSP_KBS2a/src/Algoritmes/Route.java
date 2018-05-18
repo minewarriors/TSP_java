@@ -50,8 +50,17 @@ public class Route {
     //------------------------------------------------------------------------------------------
     // gebruik voor EigenMethode
     //------------------------------------------------------------------------------------------
+    //berekent de afstand van de
     public int calculateTotalDistance() {
-        return 0;
+        int productsSize = this.getProducts().size();
+        return (int) (this.getProducts().stream().mapToDouble(x -> {
+            int productIndex = this.getProducts().indexOf(x);
+            double returnValue = 0;
+            if (productIndex < productsSize - 1) {
+                returnValue = x.measureDistance(this.getProducts().get(productIndex + 1));
+            }
+            return returnValue;
+        }).sum() + this.getProducts().get(productsSize - 1).measureDistance(this.getProducts().get(0)));
     }
 
 }
