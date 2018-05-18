@@ -81,11 +81,5 @@ public class MainWindow extends JFrame implements ActionListener {
             tsp.setVisible(true);
         }
     }
-
-    public static void main(String[] args) {
-        //TSPWindow TSP = new TSPWindow();
-        //MainWindow Menu = new MainWindow(TSP);
-
-    }
-
 }
+

@@ -21,31 +21,10 @@ import java.util.Arrays;
 public class Driver {
 
     public final static boolean VERBOSE_FLAG = true;
-
     private ArrayList<Product> intialRoute;
-    //intialRoute = new ArrayList<Product>(Arrays.asList(
-    //new Product(1, 1, 2, Color.RED, 1),
-    //new Product(2, 5, 5, Color.RED, 1),
-    //new Product(3, 3, 2, Color.RED, 1),
-//            new Product(4, 4, 4, Color.RED, 1),
-//            new Product(5, 1, 3, Color.RED, 1),
-//            new Product(6, 3, 5, Color.RED, 1),
-//            new Product(7, 1, 2, Color.RED, 1),
-//            new Product(8, 5, 5, Color.RED, 1)
-//    ));
 
     public Driver() {
-        intialRoute = new ArrayList<Product>( //                Arrays.asList(
-                //                new Product(1, 1, 2, Color.RED, 1),
-                //                new Product(2, 5, 5, Color.RED, 1),
-                //                new Product(3, 3, 2, Color.RED, 1),
-                //                new Product(4, 4, 4, Color.RED, 1),
-                //                new Product(5, 1, 3, Color.RED, 1),
-                //                new Product(6, 3, 5, Color.RED, 1),
-                //                new Product(7, 1, 2, Color.RED, 1),
-                //                new Product(8, 5, 5, Color.RED, 1)
-                //        )
-                );
+        intialRoute = new ArrayList<Product>();
     }
 
     public ArrayList<Product> getIntialRoute() {
@@ -55,6 +34,7 @@ public class Driver {
     public void addToIntialRoute(Product product) {
         intialRoute.add(product);
     }
+
     public void clearIntialRoute() {
         intialRoute.clear();
     }
