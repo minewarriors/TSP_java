@@ -49,7 +49,7 @@ public class TSPWindow extends JFrame implements ActionListener {
         setResizable(false);
 
         this.driver = driver;
-        System.out.println("monkaS");
+        System.out.println("netjes");
         // contruct and add drawPanel
         dp = new DrawPanel();
         this.add(dp);
@@ -92,7 +92,9 @@ public class TSPWindow extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == jbStart) {
             String Algoritm = (String) algoritmList.getSelectedItem();
-
+            if (Algoritm == "Willikeurig Beperkt") {
+                RandomSearchDialog rsd = new RandomSearchDialog();
+            }
             if ("Bruteforce" == Algoritm) {
                 if (this.order != null) {
                     Instant startInstant = Instant.now();
