@@ -5,16 +5,12 @@
  */
 package Window;
 
-import Algoritmes.BruteForce;
-import Algoritmes.Driver;
-import Algoritmes.Route;
-import Core.Order;
-import Core.Product;
+import Algoritmes.*;
+import Core.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import static java.awt.Color.*;
 import java.awt.FlowLayout;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -39,7 +35,7 @@ public class TSPWindow extends JFrame implements ActionListener {
     private String[] jComboboxOptions = {"Bruteforce", "Bellman", "Willikeurig Beperkt", "Eigen Algoritme"};
     private Driver driver;
     private JComboBox algoritmList;
-    private Order order;
+    Order order;
 
     public TSPWindow(Driver driver) {
         //Window settings
@@ -49,7 +45,7 @@ public class TSPWindow extends JFrame implements ActionListener {
         setResizable(false);
 
         this.driver = driver;
-        System.out.println("netjes");
+        System.out.println("pepeHands");
         // contruct and add drawPanel
         dp = new DrawPanel();
         this.add(dp);
@@ -87,16 +83,20 @@ public class TSPWindow extends JFrame implements ActionListener {
         stop.addActionListener(this);
 
     }
+    public Driver getDriver() {
+        return this.driver;
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == jbStart) {
-            String Algoritm = (String) algoritmList.getSelectedItem();
-            if (Algoritm == "Willikeurig Beperkt") {
-                RandomSearchDialog rsd = new RandomSearchDialog();
-            }
-            if ("Bruteforce" == Algoritm) {
-                if (this.order != null) {
+            if (this.order != null) {
+                String Algoritm = (String) algoritmList.getSelectedItem();
+                if ("Willikeurig Beperkt".equals(Algoritm)) {
+                    RandomSearchDialog rsd = new RandomSearchDialog(this);
+                }
+                if ("Bruteforce".equals(Algoritm)) {
+
                     Instant startInstant = Instant.now();
                     BruteForce bruteforce = new BruteForce();
 
@@ -109,10 +109,11 @@ public class TSPWindow extends JFrame implements ActionListener {
                     }
                     driver.printResults(bruteforce, bruteforce.permutateProducten(0, currentRoute, new Route(currentRoute)));
                     driver.printDuration(startInstant);
-                } else {
-                    System.out.println("EERST XML INLADEN!");
                 }
+            } else {
+                System.out.println("EERST XML INLADEN!");
             }
+
         }
 
         if (e.getSource() == jbUploadXML) {
@@ -180,5 +181,9 @@ public class TSPWindow extends JFrame implements ActionListener {
             }
         }
     }
+
+    
+
+   
 
 }

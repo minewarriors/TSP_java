@@ -22,7 +22,9 @@ public class BruteForce {
         currentRoute.getProducts().stream().filter(y -> currentRoute.getProducts().indexOf(y) >= x).forEach(y -> {
             int indexofY = currentRoute.getProducts().indexOf(y);
             Collections.swap(currentRoute.getProducts(), indexofY, x);
+            
             permutateProducten(x + 1, currentRoute, shortestRoute);
+            
             Collections.swap(currentRoute.getProducts(), x, indexofY);
         });
         if (x == currentRoute.getProducts().size() - 1) {

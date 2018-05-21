@@ -8,11 +8,9 @@ package Algoritmes;
 import Core.Product;
 import Window.MainWindow;
 import Window.TSPWindow;
-import java.awt.Color;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  *
@@ -71,6 +69,13 @@ public class Driver {
         }
         printHeading("Shortest Route", "Distance");
         shortestRoute.stream().forEach(x -> System.out.println(x + " | " + bruteForce.getTotalDistance(x)));
+    }
+    public void printResults(WillekeurigBeperkt wlbp, ArrayList<Route> shortestRoute) {
+        if (VERBOSE_FLAG) {
+            System.out.println("");
+        }
+        printHeading("Shortest Route", "Distance");
+        shortestRoute.stream().forEach(x -> System.out.println(x + " | " + wlbp.getTotalDistance(x)));
     }
 
     //maakt de kolommen netjes als permutatie van aantal producten veranderd

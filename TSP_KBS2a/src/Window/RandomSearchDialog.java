@@ -5,10 +5,14 @@
  */
 package Window;
 
+import Algoritmes.Driver;
+import Algoritmes.Route;
+import Algoritmes.WillekeurigBeperkt;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.Instant;
 import javax.swing.*;
 
 /**
@@ -16,30 +20,34 @@ import javax.swing.*;
  * @author Bram ten Brinke
  */
 public class RandomSearchDialog extends JDialog implements ActionListener {
+
     private JLabel jlNumber, jlWarning;
-    private JButton  jbConfirm, jbCancel;
+    private JButton jbConfirm, jbCancel;
     private JTextArea jTextArea;
-    
-    public RandomSearchDialog() {
+    private TSPWindow tsp;
+
+    public RandomSearchDialog(TSPWindow tsp) {
         setTitle("Willekeurig zoeken instellen");
         setSize(300, 150);
         setLayout(new GridLayout(3, 2));
-        
+
+        this.tsp = tsp;
+
         jlNumber = new JLabel("Aantal simulaties:");
         jbConfirm = new JButton("Start Simulatie");
         jbCancel = new JButton("Annuleren");
         jTextArea = new JTextArea();
         jlWarning = new JLabel();
-        
+
         this.add(jlNumber);
         this.add(jTextArea);
         this.add(jbCancel);
         this.add(jbConfirm);
         this.add(jlWarning);
-        
+
         jbConfirm.addActionListener(this);
         jbCancel.addActionListener(this);
-        
+
         setVisible(true);
     }
 
@@ -49,11 +57,33 @@ public class RandomSearchDialog extends JDialog implements ActionListener {
             dispose();
         }
         if (e.getSource() == jbConfirm) {
-            jlWarning.setText("Vul ");
-            jlWarning.setForeground(Color.RED);
-            
+            try {
+                String contentsTextArea = jTextArea.getText().trim();
+                int intContent = Integer.parseInt(contentsTextArea);
+                System.out.println(intContent);
+
+                if (intContent > 0) {
+                    if (tsp.order != null) {
+                        Instant startInstant = Instant.now();
+                        WillekeurigBeperkt wlbp = new WillekeurigBeperkt();
+                        Driver d = tsp.getDriver();
+                        Route currentRoute = new Route(d.getIntialRoute());
+
+                        if (d.VERBOSE_FLAG) {
+                            d.printHeading("Route", "Distance | Shortest Distance | Permutation #");
+                        } else {
+                            System.out.println("Permutation in progress ...");
+                        }
+
+                        d.printResults(wlbp, wlbp.permutateProducts(intContent, currentRoute, new Route(currentRoute)));
+                        d.printDuration(startInstant);
+                    }
+                }
+            } catch (NumberFormatException ex) {
+                jlWarning.setText("Vul een aantal in");
+                jlWarning.setForeground(Color.RED);
+            }
         }
-        
     }
-    
+
 }
