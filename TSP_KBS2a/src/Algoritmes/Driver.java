@@ -103,4 +103,11 @@ public class Driver {
 //        }
         System.out.println("");
     }
+
+    public void printShortestRoute(Route shortestroute) {
+        System.out.println("------------------------------------------------------------------------------------------");
+        System.out.println("Shortest route found so far: " + shortestroute);
+        System.out.println("Total distance " + shortestroute.calculateTotalDistance());
+        System.out.println("------------------------------------------------------------------------------------------");
+    }
 }

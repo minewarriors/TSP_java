@@ -7,6 +7,12 @@ package Window;
 
 import Algoritmes.*;
 import Core.*;
+import Algoritmes.BruteForce;
+import Algoritmes.Driver;
+import Algoritmes.EigenMethode;
+import Algoritmes.Route;
+import Core.Order;
+import Core.Product;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import static java.awt.Color.*;
@@ -24,6 +30,7 @@ import java.io.File;
 import static java.lang.Integer.parseInt;
 import java.lang.reflect.Field;
 import java.time.Instant;
+import java.util.ArrayList;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class TSPWindow extends JFrame implements ActionListener {
@@ -114,6 +121,15 @@ public class TSPWindow extends JFrame implements ActionListener {
                 System.out.println("EERST XML INLADEN!");
             }
 
+            if ("Eigen Algoritme" == Algoritm) {
+                if (this.order != null) {
+                    ArrayList<Product> producten = new ArrayList<Product>();
+                    producten.addAll(driver.getIntialRoute());
+                    driver.printShortestRoute(new EigenMethode().FindShortestRoute(producten));
+                } else {
+                    System.out.println("EERST XML INLADEN!");
+                }
+            }
         }
 
         if (e.getSource() == jbUploadXML) {
