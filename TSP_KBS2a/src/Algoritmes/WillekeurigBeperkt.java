@@ -14,19 +14,24 @@ import java.util.Collections;
  * @author jelle
  */
 public class WillekeurigBeperkt {
+
     static int permutationNumber = 1;
     private ArrayList<Route> shortestRoutes = new ArrayList<>();
+
+    public ArrayList<Route> getShortestRoutes() {
+        return shortestRoutes;
+    }
 
     public ArrayList<Route> permutateProducts(int permutationMaximum, Route currentRoute, Route shortestRoute) {
         for (int temp = 0; temp < permutationMaximum; temp++) {
             ArrayList<Product> tempProductArray = currentRoute.getProducts();
             Collections.shuffle(tempProductArray);
             Route r = new Route(tempProductArray);
-            
+
             if (Driver.VERBOSE_FLAG) {
                 System.out.println(currentRoute + " |   " + getTotalDistance(currentRoute) + "   |   " + getTotalDistance(shortestRoute) + permutationNumber++);
             }
-            
+
             if ((int) calculateTotalDistance(r) <= (int) calculateTotalDistance(shortestRoute)) {
                 shortestRoute.getProducts().clear();
                 shortestRoute.getProducts().addAll(currentRoute.getProducts());

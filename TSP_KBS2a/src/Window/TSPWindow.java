@@ -42,7 +42,8 @@ public class TSPWindow extends JFrame implements ActionListener {
     private String[] jComboboxOptions = {"Bruteforce", "Bellman", "Willikeurig Beperkt", "Eigen Algoritme"};
     private Driver driver;
     private JComboBox algoritmList;
-    public ArrayList<Product> paintroute = new ArrayList<Product>();
+    private ArrayList<Product> paintroute = new ArrayList<Product>();
+    private EigenMethode eigenMethode = new EigenMethode();
     Order order;
 
     public TSPWindow(Driver driver) {
@@ -53,7 +54,7 @@ public class TSPWindow extends JFrame implements ActionListener {
         setResizable(false);
 
         this.driver = driver;
-        System.out.println("pepeHands");
+        System.out.println("StartUp");
         // contruct and add drawPanel
         dp = new DrawPanel();
         this.add(dp);
@@ -103,6 +104,7 @@ public class TSPWindow extends JFrame implements ActionListener {
                 String Algoritm = (String) algoritmList.getSelectedItem();
                 if ("Willikeurig Beperkt".equals(Algoritm)) {
                     RandomSearchDialog rsd = new RandomSearchDialog(this);
+
                 }
                 if ("Bruteforce".equals(Algoritm)) {
 
@@ -118,20 +120,32 @@ public class TSPWindow extends JFrame implements ActionListener {
                     }
                     driver.printResults(bruteforce, bruteforce.permutateProducten(0, currentRoute, new Route(currentRoute)));
                     driver.printDuration(startInstant);
+
+                    //Route voor simulator painting
                     paintroute.clear();
                     bruteforce.getShortestRoutes().get(0).getProducts().forEach(x -> {
                         paintroute.add(x);
                     });
+                    dp.setPaintingroute(paintroute);
                     System.out.println("Op je muil met  deze Array " + paintroute);
+                    repaint();
 
                 }
                 if ("Eigen Algoritme".equals(Algoritm)) {
                     ArrayList<Product> producten = new ArrayList<Product>();
                     producten.addAll(driver.getIntialRoute());
-                    driver.printShortestRoute(new EigenMethode().FindShortestRoute(producten));
+                    driver.printShortestRoute(eigenMethode.FindShortestRoute(producten));
+                    paintroute.clear();
+                    eigenMethode.getShortestRouteProducts().forEach(x -> {
+                        paintroute.add(x);
+                    });
+                    dp.setPaintingroute(paintroute);
+                    System.out.println("Op je muil met  deze Array " + paintroute);
+                    repaint();
                 }
             } else {
                 System.out.println("EERST XML INLADEN!");
+                repaint();
             }
 
         }

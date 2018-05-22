@@ -15,9 +15,15 @@ import java.util.Arrays;
  */
 public class EigenMethode {
 
+    private ArrayList<Product> shortestRouteProducts;
+
+    public ArrayList<Product> getShortestRouteProducts() {
+        return shortestRouteProducts;
+    }
+
     //Neemt oorspronkelijke hoeveelheid producten op in ArrayList
     public Route FindShortestRoute(ArrayList<Product> producten) {
-        ArrayList<Product> shortestRouteProducts = new ArrayList<Product>(producten.size());
+        shortestRouteProducts = new ArrayList<Product>(producten.size());
 
         //Print de oorsprongelijke route van de pakketjes met oorspronkelijke afstand
         System.out.println("------------------------------------------------------------------------------------------");
@@ -62,4 +68,5 @@ public class EigenMethode {
             return flag;
         }).get();
     }
+
 }
