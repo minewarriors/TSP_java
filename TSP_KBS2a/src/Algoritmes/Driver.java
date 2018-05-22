@@ -70,6 +70,7 @@ public class Driver {
         printHeading("Shortest Route", "Distance");
         shortestRoute.stream().forEach(x -> System.out.println(x + " | " + bruteForce.getTotalDistance(x)));
     }
+
     public void printResults(WillekeurigBeperkt wlbp, ArrayList<Route> shortestRoute) {
         if (VERBOSE_FLAG) {
             System.out.println("");

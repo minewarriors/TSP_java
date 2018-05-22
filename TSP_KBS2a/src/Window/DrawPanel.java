@@ -5,6 +5,7 @@ import Core.Product;
 import java.awt.*;
 import java.util.ArrayList;
 import javax.swing.JPanel;
+import Algoritmes.*;
 
 public class DrawPanel extends JPanel {
 

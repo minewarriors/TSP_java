@@ -42,6 +42,7 @@ public class TSPWindow extends JFrame implements ActionListener {
     private String[] jComboboxOptions = {"Bruteforce", "Bellman", "Willikeurig Beperkt", "Eigen Algoritme"};
     private Driver driver;
     private JComboBox algoritmList;
+    public ArrayList<Product> paintroute = new ArrayList<Product>();
     Order order;
 
     public TSPWindow(Driver driver) {
@@ -117,6 +118,12 @@ public class TSPWindow extends JFrame implements ActionListener {
                     }
                     driver.printResults(bruteforce, bruteforce.permutateProducten(0, currentRoute, new Route(currentRoute)));
                     driver.printDuration(startInstant);
+                    paintroute.clear();
+                    bruteforce.getShortestRoutes().get(0).getProducts().forEach(x -> {
+                        paintroute.add(x);
+                    });
+                    System.out.println("Op je muil met  deze Array " + paintroute);
+
                 }
                 if ("Eigen Algoritme".equals(Algoritm)) {
                     ArrayList<Product> producten = new ArrayList<Product>();
@@ -194,6 +201,10 @@ public class TSPWindow extends JFrame implements ActionListener {
                 ex.printStackTrace();
             }
         }
+    }
+
+    public ArrayList<Product> getPaintroute() {
+        return paintroute;
     }
 
 }
