@@ -8,11 +8,13 @@ package Window;
 import Algoritmes.Driver;
 import Algoritmes.Route;
 import Algoritmes.WillekeurigBeperkt;
+import Core.Product;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.Instant;
+import java.util.ArrayList;
 import javax.swing.*;
 
 /**
@@ -25,6 +27,7 @@ public class RandomSearchDialog extends JDialog implements ActionListener {
     private JButton jbConfirm, jbCancel;
     private JTextArea jTextArea;
     private TSPWindow tsp;
+    private ArrayList<Product> shortestRoute = new ArrayList<Product>();
 
     public RandomSearchDialog(TSPWindow tsp) {
         setTitle("Willekeurig zoeken instellen");
@@ -84,6 +87,10 @@ public class RandomSearchDialog extends JDialog implements ActionListener {
                 jlWarning.setForeground(Color.RED);
             }
         }
+    }
+
+    public ArrayList<Product> getShortestRoute() {
+        return shortestRoute;
     }
 
 }
