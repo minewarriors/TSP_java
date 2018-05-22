@@ -90,6 +90,7 @@ public class TSPWindow extends JFrame implements ActionListener {
         stop.addActionListener(this);
 
     }
+
     public Driver getDriver() {
         return this.driver;
     }
@@ -117,22 +118,19 @@ public class TSPWindow extends JFrame implements ActionListener {
                     driver.printResults(bruteforce, bruteforce.permutateProducten(0, currentRoute, new Route(currentRoute)));
                     driver.printDuration(startInstant);
                 }
+                if ("Eigen Algoritme".equals(Algoritm)) {
+                    ArrayList<Product> producten = new ArrayList<Product>();
+                    producten.addAll(driver.getIntialRoute());
+                    driver.printShortestRoute(new EigenMethode().FindShortestRoute(producten));
+                }
             } else {
                 System.out.println("EERST XML INLADEN!");
             }
 
-            if ("Eigen Algoritme" == Algoritm) {
-                if (this.order != null) {
-                    ArrayList<Product> producten = new ArrayList<Product>();
-                    producten.addAll(driver.getIntialRoute());
-                    driver.printShortestRoute(new EigenMethode().FindShortestRoute(producten));
-                } else {
-                    System.out.println("EERST XML INLADEN!");
-                }
-            }
         }
 
-        if (e.getSource() == jbUploadXML) {
+        if (e.getSource()
+                == jbUploadXML) {
             try {
                 // variables
                 File xmlFile;
@@ -197,9 +195,5 @@ public class TSPWindow extends JFrame implements ActionListener {
             }
         }
     }
-
-    
-
-   
 
 }
