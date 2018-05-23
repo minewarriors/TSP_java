@@ -3,12 +3,15 @@ package Window;
 import Algoritmes.BruteForce;
 import Algoritmes.Driver;
 import Algoritmes.EigenMethode;
+import Algoritmes.HillCliming;
 import Algoritmes.Route;
 import static BPPAlgorithms.Algorithms.BestFitDecreasing;
 import static BPPAlgorithms.Algorithms.firstFit;
 import static Core.BPPInterface.boxSize;
 import Core.Order;
 import Core.Product;
+import SerialController.RobotController;
+import SerialController.RobotControllerJpanel;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import static java.awt.Color.BLACK;
@@ -61,12 +64,18 @@ public class RobotWindow extends JFrame implements ActionListener {
 
     Driver driver = new Driver();
 
+    public Driver getDriver() {
+        return driver;
+    }
+
     JComboBox bppAlgorithmList = new JComboBox();
     JComboBox tspAlgorithmList = new JComboBox();
     Order order = new Order();
     Core.Box A = new Core.Box(boxSize);
     Core.Box B = new Core.Box(boxSize);
     Core.Box C = new Core.Box(boxSize);
+
+    RobotControllerJpanel rc = new RobotControllerJpanel();
 
     BPPDrawPanel bppDP = new BPPDrawPanel(A, B, C);
     DrawPanel tspDP = new DrawPanel();
@@ -86,6 +95,7 @@ public class RobotWindow extends JFrame implements ActionListener {
         JPanel panel = new JPanel();
         JPanel panel1 = new JPanel();
         JPanel panel2 = new JPanel();
+        JPanel panel3 = new JPanel();
         panel.setLayout(new BorderLayout());
 
         panel.add(tspDP, BorderLayout.WEST);
@@ -158,8 +168,11 @@ public class RobotWindow extends JFrame implements ActionListener {
         rightComplete.add(right3);
         panel2.add(rightComplete);
 
+        panel3.add(rc);
+
         add(panel1, BorderLayout.WEST);
         add(panel2, BorderLayout.EAST);
+        add(panel3, BorderLayout.CENTER);
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -169,6 +182,8 @@ public class RobotWindow extends JFrame implements ActionListener {
                 //haalt informatie op uit de combo box
                 String bppAlgorithm = (String) bppAlgorithmList.getSelectedItem();
                 String tspAlgorithm = (String) tspAlgorithmList.getSelectedItem();
+
+                Route currentRoute = new Route(driver.getIntialRoute());
 
                 //het First Fit algoritme wordt opgehaald
                 if ("First Fit".equals(bppAlgorithm)) {
@@ -197,12 +212,16 @@ public class RobotWindow extends JFrame implements ActionListener {
                 }
 
                 //TSP Algoritmes!!
+                if ("Hill Climbing".equals(tspAlgorithm)) {
+                    HillCliming hillClimbing = new HillCliming();
+
+                    System.out.println(currentRoute + " |     " + currentRoute.calculateTotalDistance());
+                    hillClimbing.findShortestRoute(currentRoute);
+                }
                 if ("Bruteforce".equals(tspAlgorithm)) {
 
                     Instant startInstant = Instant.now();
                     BruteForce bruteforce = new BruteForce();
-
-                    Route currentRoute = new Route(driver.getIntialRoute());
 
                     if (driver.VERBOSE_FLAG) {
                         driver.printHeading("Route", "Distance | Shortest Distance | Permutation #");
@@ -225,8 +244,8 @@ public class RobotWindow extends JFrame implements ActionListener {
                     });
                     tspDP.setPaintingroute(paintRoute);
                     System.out.println("Op je muil met  deze Array " + paintRoute);
-                }
 
+                }
                 if ("Eigen Algoritme".equals(tspAlgorithm)) {
                     ArrayList<Product> producten = new ArrayList<Product>();
                     producten.addAll(driver.getIntialRoute());
