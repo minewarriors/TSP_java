@@ -5,13 +5,10 @@ package SerialController;
 public class main {
 
     public static void main(String[] args) {
-     //   BestelGui gui = new BestelGui();
-      //  gui.setDefaultCloseOperation(
-      //          JFrame.EXIT_ON_CLOSE
-       // );
+
+        //SerialConnection frame = new SerialConnection();
         
-        SerialConnection frame = new SerialConnection();
+        RobotController NewJFrame = new RobotController();
         
-       // Scherm headscreen = new Scherm();
     }
 }

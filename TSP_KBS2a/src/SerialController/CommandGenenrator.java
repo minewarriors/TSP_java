@@ -16,26 +16,29 @@ public abstract class CommandGenenrator {
 
             for (Product product : A.getProductBoxArray()) {
                 if (product == x) {
-                    ProductFoundIn = "A";
+                    ProductFoundIn = "1";
                 }
             }
 
             for (Product product : B.getProductBoxArray()) {
                 if (product == x) {
-                    ProductFoundIn = "B";
+                    ProductFoundIn = "2";
                 }
             }
 
             for (Product product : C.getProductBoxArray()) {
                 if (product == x) {
-                    ProductFoundIn = "C";
+                    ProductFoundIn = "3";
                 }
             }
             if (ProductFoundIn != null) {
-                output = (x.getX() + "-" + x.getY() + "-" + ProductFoundIn);
+                output = (x.getX() + "-" + x.getY() + "-" + ProductFoundIn + "\r\n");
                 CommandArray.add(output);
             }
         }
         return CommandArray;
     }
+    
+    
+    
 }

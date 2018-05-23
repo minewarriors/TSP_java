@@ -55,7 +55,7 @@ public class BPPMainScreen extends JFrame implements ActionListener {
 
     public BPPMainScreen() {
         setTitle("BPP");
-        setSize(1080, 800);
+        setSize((int) (1080 * 0.75), (int) (850 * 0.75));
         setLayout(new BorderLayout());
         setResizable(false);
 
@@ -77,14 +77,14 @@ public class BPPMainScreen extends JFrame implements ActionListener {
 
         jlXML = new JLabel("Upload XML file:");
         left1.add(jlXML);
-        left1.add(Box.createHorizontalStrut(30));
+        left1.add(Box.createHorizontalStrut((int) (30 * 0.75)));
         jbUploadXML = new JButton("Choose file");
         jbUploadXML.addActionListener(this);
         left1.add(jbUploadXML);
 
         jlNumberTimes = new JLabel("Number of times:");
         right1.add(jlNumberTimes);
-        right1.add(Box.createHorizontalStrut(30));
+        right1.add(Box.createHorizontalStrut((int) (30 * 0.75)));
         jtfNumber = new JTextField(5);
         right1.add(jtfNumber);
 
@@ -92,10 +92,10 @@ public class BPPMainScreen extends JFrame implements ActionListener {
         jbStart.addActionListener(this);
         right2.add(jbStart);
 
-        left2.add(Box.createHorizontalStrut(30));
+        left2.add(Box.createHorizontalStrut((int) (30 * 0.75)));
         jlAlgorithm = new JLabel("BPP Algorithm:");
         left2.add(jlAlgorithm);
-        left2.add(Box.createHorizontalStrut(30));
+        left2.add(Box.createHorizontalStrut((int) (30 * 0.75)));
         algorithmList.addItem("First Fit");
         algorithmList.addItem("Best-fit Decreasing");
         algorithmList.addItem("Bin Completion");
@@ -107,34 +107,34 @@ public class BPPMainScreen extends JFrame implements ActionListener {
         jbStop.addActionListener(this);
         right3.add(jbStop);
 
-        left3.add(Box.createHorizontalStrut(30));
+        left3.add(Box.createHorizontalStrut((int) (30 * 0.75)));
         jlAddProduct = new JLabel("Add product:");
         left3.add(jlAddProduct);
-        left3.add(Box.createHorizontalStrut(30));
+        left3.add(Box.createHorizontalStrut((int) (30 * 0.75)));
         jtfSize = new JTextField(5);
         left3.add(jtfSize);
-        left3.add(Box.createHorizontalStrut(30));
+        left3.add(Box.createHorizontalStrut((int) (30 * 0.75)));
         jbAddProduct = new JButton("Add");
         jbAddProduct.addActionListener(this);
         left3.add(jbAddProduct);
-        left3.add(Box.createHorizontalStrut(30));
+        left3.add(Box.createHorizontalStrut((int) (30 * 0.75)));
         jbAddRandom = new JButton("Add random");
         jbAddRandom.addActionListener(this);
         left3.add(jbAddRandom);
 
         Box leftComplete = Box.createVerticalBox();
         leftComplete.add(left1);
-        leftComplete.add(Box.createVerticalStrut(30));
+        leftComplete.add(Box.createVerticalStrut((int) (30 * 0.75)));
         leftComplete.add(left2);
-        leftComplete.add(Box.createVerticalStrut(30));
+        leftComplete.add(Box.createVerticalStrut((int) (30 * 0.75)));
         leftComplete.add(left3);
         panel1.add(leftComplete);
 
         Box rightComplete = Box.createVerticalBox();
         rightComplete.add(right1);
-        rightComplete.add(Box.createVerticalStrut(30));
+        rightComplete.add(Box.createVerticalStrut((int) (30 * 0.75)));
         rightComplete.add(right2);
-        rightComplete.add(Box.createVerticalStrut(30));
+        rightComplete.add(Box.createVerticalStrut((int) (30 * 0.75)));
         rightComplete.add(right3);
         panel2.add(rightComplete);
 
@@ -239,7 +239,6 @@ public class BPPMainScreen extends JFrame implements ActionListener {
                         }
                     }
                     dp.setOrder(order);
-                    order.toString();
                 } else {
                     System.out.println("Open command cancelled by user." + "\n");
                 }

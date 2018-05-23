@@ -1,7 +1,6 @@
 package Window;
 
 import Core.Box;
-import static Core.BPPInterface.boxSize;
 import Core.Order;
 import Core.Product;
 import java.awt.BasicStroke;
@@ -21,13 +20,14 @@ public class BPPDrawPanel extends JPanel {
     private int y;
     private ArrayList<Product> orderList;
     private boolean check = true;
+    private double grootte = 0.75;
 
     public BPPDrawPanel(Box boxA, Box boxB, Box boxC) {
         this.a = boxA;
         this.b = boxB;
         this.c = boxC;
         this.order = null;
-        this.setPreferredSize(new Dimension(980, 600));
+        this.setPreferredSize(new Dimension((int) (1120 * grootte), (int) (600 * grootte)));
         setBackground(Color.WHITE);
 
     }
@@ -57,7 +57,7 @@ public class BPPDrawPanel extends JPanel {
             if (id == 5) {
                 x = 860;
             }
-            g.fillRect(x, 30, 200, 200);
+            g.fillRect((int) (x * grootte), (int) (30 * grootte), (int) (200 * grootte), (int) (200 * grootte));
         }
     }
 
@@ -79,7 +79,7 @@ public class BPPDrawPanel extends JPanel {
             if (id == 5) {
                 x = 860;
             }
-            g.fillRect(x, 30, 200, 150);
+            g.fillRect((int) (x * grootte), (int) (30 * grootte), (int) (200 * grootte), (int) (150 * grootte));
         }
     }
 
@@ -101,7 +101,7 @@ public class BPPDrawPanel extends JPanel {
             if (id == 5) {
                 x = 860;
             }
-            g.fillRect(x, 30, 200, 100);
+            g.fillRect((int) (x * grootte), (int) (30 * grootte), (int) (200 * grootte), (int) (100 * grootte));
         }
     }
 
@@ -147,90 +147,63 @@ public class BPPDrawPanel extends JPanel {
             }
 
             if (a != null) {
-                y = 550;
+                y = (int) (550 * grootte);
                 a.getProductBoxArray().forEach((productA) -> {
 
                     g.setColor(productA.getColor());
 
                     if (productA.getSize() == 40) {
-
-                        g.fillRect(140, (y - 200), 200, 200);
-                        y -= 200;
-
+                        g.fillRect((int) (140 * grootte), (int) (y - (200 * grootte)), (int) (200 * grootte), (int) (200 * grootte));
+                        y -= (int) (200 * grootte);
                     }
-
                     if (productA.getSize() == 30) {
-
-                        g.fillRect(140, (y - 150), 200, 150);
-                        y -= 150;
-
+                        g.fillRect((int) (140 * grootte), (int) (y - (150 * grootte)), (int) (200 * grootte), (int) (150 * grootte));
+                        y -= (int) (150 * grootte);
                     }
-
                     if (productA.getSize() == 20) {
-
-                        g.fillRect(140, (y - 100), 200, 100);
-                        y -= 100;
-
+                        g.fillRect((int) (140 * grootte), (int) (y - (100 * grootte)), (int) (200 * grootte), (int) (100 * grootte));
+                        y -= (int) (100 * grootte);
                     }
-
                 });
             }
             if (b != null) {
-                y = 550;
+                y = (int) (550 * grootte);
                 b.getProductBoxArray().forEach((productB) -> {
 
                     g.setColor(productB.getColor());
 
                     if (productB.getSize() == 40) {
-
-                        g.fillRect(440, (y - 200), 200, 200);
-                        y -= 200;
-
+                        g.fillRect((int) (440 * grootte), (int) (y - (200 * grootte)), (int) (200 * grootte), (int) (200 * grootte));
+                        y -= (int) (200 * grootte);
                     }
-
                     if (productB.getSize() == 30) {
-
-                        g.fillRect(440, (y - 150), 200, 150);
-                        y -= 150;
-
+                        g.fillRect((int) (440 * grootte), (int) (y - (150 * grootte)), (int) (200 * grootte), (int) (150 * grootte));
+                        y -= (int) (150 * grootte);
                     }
-
                     if (productB.getSize() == 20) {
-
-                        g.fillRect(440, (y - 100), 200, 100);
-                        y -= 100;
-
+                        g.fillRect((int) (440 * grootte), (int) (y - (100 * grootte)), (int) (200 * grootte), (int) (100 * grootte));
+                        y -= (int) (100 * grootte);
                     }
-
                 });
             }
             if (c != null) {
-                y = 550;
+                y = (int) (550 * grootte);
                 c.getProductBoxArray().forEach((productC) -> {
 
                     g.setColor(productC.getColor());
 
                     if (productC.getSize() == 40) {
-
-                        g.fillRect(740, (y - 200), 200, 200);
-                        y -= 200;
-
+                        g.fillRect((int) (740 * grootte), (int) (y - (200 * grootte)), (int) (200 * grootte), (int) (200 * grootte));
+                        y -= (int) (200 * grootte);
                     }
-
                     if (productC.getSize() == 30) {
-
-                        g.fillRect(740, (y - 150), 200, 150);
-                        y -= 150;
-
+                        g.fillRect((int) (740 * grootte), (int) (y - (150 * grootte)), (int) (200 * grootte), (int) (150 * grootte));
+                        y -= (int) (150 * grootte);
                     }
-
                     if (productC.getSize() == 20) {
-
-                        g.fillRect(740, (y - 100), 200, 100);
-                        y -= 100;
-
+                        g.fillRect((int) (740 * grootte), (int) (y - (100 * grootte)), (int) (200 * grootte), (int) (100 * grootte));
+                        y -= (int) (100 * grootte);
                     }
-
                 });
             }
         }
@@ -242,27 +215,18 @@ public class BPPDrawPanel extends JPanel {
         //box 1
         g2.setColor(Color.black);
 
-        g2.drawLine(
-                135, 250, 135, 550);
-        g2.drawLine(
-                345, 552, 135, 552);
-        g2.drawLine(
-                345, 250, 345, 550);
+        g2.drawLine((int) (135 * grootte), (int) (250 * grootte), (int) (135 * grootte), (int) (550 * grootte));
+        g2.drawLine((int) (345 * grootte), (int) (552 * grootte), (int) (135 * grootte), (int) (552 * grootte));
+        g2.drawLine((int) (345 * grootte), (int) (250 * grootte), (int) (345 * grootte), (int) (550 * grootte));
 
         //box 2
-        g2.drawLine(
-                435, 250, 435, 550);
-        g2.drawLine(
-                645, 552, 435, 552);
-        g2.drawLine(
-                645, 250, 645, 550);
+        g2.drawLine((int) (435 * grootte), (int) (250 * grootte), (int) (435 * grootte), (int) (550 * grootte));
+        g2.drawLine((int) (645 * grootte), (int) (552 * grootte), (int) (435 * grootte), (int) (552 * grootte));
+        g2.drawLine((int) (645 * grootte), (int) (250 * grootte), (int) (645 * grootte), (int) (550 * grootte));
 
         //box 3
-        g2.drawLine(
-                735, 250, 735, 550);
-        g2.drawLine(
-                945, 552, 735, 552);
-        g2.drawLine(
-                945, 250, 945, 550);
+        g2.drawLine((int) (735 * grootte), (int) (250 * grootte), (int) (735 * grootte), (int) (550 * grootte));
+        g2.drawLine((int) (945 * grootte), (int) (552 * grootte), (int) (735 * grootte), (int) (552 * grootte));
+        g2.drawLine((int) (945 * grootte), (int) (250 * grootte), (int) (945 * grootte), (int) (550 * grootte));
     }
 }
