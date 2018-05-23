@@ -8,7 +8,7 @@ public class main {
 
         //SerialConnection frame = new SerialConnection();
         
-        RobotController NewJFrame = new RobotController();
+        RobotControllerJpanel NewJFrame = new RobotControllerJpanel();
         
     }
 }

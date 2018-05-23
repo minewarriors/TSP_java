@@ -49,6 +49,7 @@ public class RobotController extends javax.swing.JFrame {
         jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(0, 102, 255));
 
         btnConnect.setBackground(new java.awt.Color(51, 255, 0));
         btnConnect.setText("connect");
