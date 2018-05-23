@@ -47,8 +47,6 @@ public class TSPWindow extends JFrame implements ActionListener {
     ArrayList<Product> paintRoute = new ArrayList<Product>();
     private EigenMethode eigenMethode = new EigenMethode();
     Order order;
-    TimerTask timerTask = new MyTimerTask();
-    Timer timer = new Timer(true);
 
     public TSPWindow(Driver driver) {
         //Window settings
@@ -124,22 +122,18 @@ public class TSPWindow extends JFrame implements ActionListener {
                     driver.printDuration(startInstant);
 
                     //Route voor simulator painting
-                    bruteforce.getShortestRoutes().forEach(x -> {
-                        paintRoute.clear();
-                        System.out.println("Painting Started");
-                        x.getProducts().forEach(y -> {
-                            paintRoute.add(y);
-                            dp.setPaintingroute(paintRoute);
-                            repaint();
-                        });
-                        timer.schedule(timerTask, 0, 10 * 1000);
+                    paintRoute.clear();
+                    double random = 0;
+                    int randomList = bruteforce.getShortestRoutes().size();
+                    random = randomList * Math.random();
+                    int routeRandom = (int) Math.round(random);
+                    System.out.println(random);
+                    bruteforce.getShortestRoutes().get(routeRandom).getProducts().forEach(x -> {
+                        paintRoute.add(x);
+                        repaint();
                     });
-//                    bruteforce.getShortestRoutes().get(0).getProducts().forEach(x -> {
-//                        paintRoute.add(x);
-//                        repaint();
-//                    });
-//                    dp.setPaintingroute(paintRoute);
-//                    System.out.println("Op je muil met  deze Array " + paintRoute);
+                    dp.setPaintingroute(paintRoute);
+                    System.out.println("Op je muil met  deze Array " + paintRoute);
 
                 }
                 if ("Eigen Algoritme".equals(Algoritm)) {

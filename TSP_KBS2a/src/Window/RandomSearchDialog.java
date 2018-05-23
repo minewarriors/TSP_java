@@ -83,7 +83,12 @@ public class RandomSearchDialog extends JDialog implements ActionListener {
 
                         //Route voor simulator painting
                         tsp.paintRoute.clear();
-                        wlbp.getShortestRoutes().get(0).getProducts().forEach(x -> {
+                        double random = 0;
+                        int randomList = wlbp.getShortestRoutes().size();
+                        random = randomList * Math.random();
+                        int routeRandom = (int) Math.round(random);
+                        System.out.println(random);
+                        wlbp.getShortestRoutes().get(routeRandom).getProducts().forEach(x -> {
                             tsp.paintRoute.add(x);
                         });
                         tsp.dp.setPaintingroute(tsp.paintRoute);
