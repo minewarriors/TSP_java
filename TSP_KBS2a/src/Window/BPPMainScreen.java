@@ -239,7 +239,6 @@ public class BPPMainScreen extends JFrame implements ActionListener {
                         }
                     }
                     dp.setOrder(order);
-                    order.toString();
                 } else {
                     System.out.println("Open command cancelled by user." + "\n");
                 }
