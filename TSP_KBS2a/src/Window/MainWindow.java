@@ -15,8 +15,9 @@ public class MainWindow extends JFrame implements ActionListener {
     private JButton JBBPP;
     private JButton JBStorage;
     private TSPWindow tsp;
+    private BPPMainScreen bpp;
 
-    public MainWindow(TSPWindow tsp) {
+    public MainWindow(TSPWindow tsp, BPPMainScreen bpp) {
         //Window settings
         setSize(1080, 720);
         setTitle("Retrieval & Storage System");
@@ -26,6 +27,7 @@ public class MainWindow extends JFrame implements ActionListener {
 
         //declairing other windows and pictures
         this.tsp = tsp;
+        this.bpp = bpp;
 
         //Declaring Labels
         JLTitle = new JLabel("Storage and Retrieval System");
@@ -82,4 +84,3 @@ public class MainWindow extends JFrame implements ActionListener {
         }
     }
 }
-

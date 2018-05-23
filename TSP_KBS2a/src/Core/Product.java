@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Core;
 
 import java.awt.Color;
 
-/**
- *
- * @author jelle
- */
 public class Product {
 
     private int productId;
@@ -28,15 +19,7 @@ public class Product {
         this.x = x;
         this.y = y;
         this.color = color;
-
-        // resize if out of limits
-        if (size > 40) {
-            this.size = 40;
-        } else if (size < 20) {
-            this.size = 20;
-        } else {
-            this.size = size;
-        }
+        this.size = size;
     }
 
     public int getProductId() {
@@ -61,7 +44,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product " + productId;
+        return "id:" + productId + " X:" + x + " Y:" + y + " C:" + color + " S:" + size;
     }
 
     //afstand berekenen tussen producten
