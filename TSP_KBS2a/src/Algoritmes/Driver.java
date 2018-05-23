@@ -5,8 +5,10 @@
  */
 package Algoritmes;
 
+import Window.BPPMainScreen;
 import Core.Product;
 import Window.MainWindow;
+import Window.RobotWindow;
 import Window.TSPWindow;
 import java.time.Duration;
 import java.time.Instant;
@@ -40,7 +42,9 @@ public class Driver {
     public static void main(String[] args) {
         Driver driver = new Driver();
         TSPWindow TSP = new TSPWindow(driver);
-        MainWindow Menu = new MainWindow(TSP);
+        BPPMainScreen BPP = new BPPMainScreen();
+        RobotWindow rc = new RobotWindow();
+        MainWindow Menu = new MainWindow(TSP, BPP, rc);
     }
 
     //print hoelang het process heeft geduurt
