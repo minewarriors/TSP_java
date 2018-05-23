@@ -1,6 +1,8 @@
 package BPP;
 
-import static BPP.BPPInterface.boxSize;
+import Core.RandomOrder;
+import Core.Box;
+import static Core.BPPInterface.boxSize;
 import static BPPAlgorithms.Algorithms.BestFitDecreasing;
 import static BPPAlgorithms.Algorithms.OwnMethod;
 import static BPPAlgorithms.Algorithms.firstFit;

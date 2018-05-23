@@ -1,4 +1,4 @@
-package BPP;
+package Core;
 
 import java.util.ArrayList;
 

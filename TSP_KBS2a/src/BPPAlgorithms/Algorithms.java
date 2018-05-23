@@ -1,7 +1,7 @@
 package BPPAlgorithms;
 
-import static BPP.BPPInterface.boxSize;
-import BPP.Box;
+import static Core.BPPInterface.boxSize;
+import Core.Box;
 import BPP.DrawPanel;
 import BPP.OrderInterface;
 import BPP.Product;

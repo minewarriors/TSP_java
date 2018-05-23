@@ -1,4 +1,4 @@
-package BPP;
+package Core;
 /**
  *
  * @author Christiaan

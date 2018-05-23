@@ -1,6 +1,6 @@
 package BPP;
 
-import static BPP.BPPInterface.boxSize;
+import static Core.BPPInterface.boxSize;
 import static BPPAlgorithms.Algorithms.BestFitDecreasing;
 import static BPPAlgorithms.Algorithms.firstFit;
 import java.awt.BorderLayout;
@@ -45,9 +45,9 @@ public class BPPMainScreen extends JFrame implements ActionListener {
 
     JComboBox algorithmList = new JComboBox();
     Order order = new Order();
-    BPP.Box A = new BPP.Box(boxSize);
-    BPP.Box B = new BPP.Box(boxSize);
-    BPP.Box C = new BPP.Box(boxSize);
+    Core.Box A = new Core.Box(boxSize);
+    Core.Box B = new Core.Box(boxSize);
+    Core.Box C = new Core.Box(boxSize);
     DrawPanel dp = new DrawPanel(A, B, C);
 
     public BPPMainScreen() {

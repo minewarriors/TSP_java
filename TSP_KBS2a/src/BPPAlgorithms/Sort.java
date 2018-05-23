@@ -4,7 +4,7 @@ package BPPAlgorithms;
  *
  * @author Christiaan
  */
-import BPP.Box;
+import Core.Box;
 import BPP.Product;
 import java.util.*;
 

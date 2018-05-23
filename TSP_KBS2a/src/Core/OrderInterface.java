@@ -1,6 +1,7 @@
 
-package BPP;
+package Core;
 
+import BPP.*;
 import java.awt.Color;
 import java.util.ArrayList;
 
