@@ -44,7 +44,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return "id:" + productId + " X:" + x + " Y:" + y + " C:" + color + " S:" + size;
+        return "product" + productId;
     }
 
     //afstand berekenen tussen producten
