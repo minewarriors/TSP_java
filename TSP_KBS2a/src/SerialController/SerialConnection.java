@@ -21,7 +21,7 @@ public class SerialConnection extends JFrame implements ActionListener {
 
     private static final long serialVersionUID = 1L;
     private SerialPort comPort;
-    private final String comPortName = "COM4";
+    private final String comPortName = "COM3";
     private final int baudRate = 9600;
     static PrintWriter outPut;
     private final JPanel contentPane;
@@ -31,7 +31,7 @@ public class SerialConnection extends JFrame implements ActionListener {
     JButton btStart = new JButton("Start");
     JButton btEStop = new JButton("Emergency Stop");
     JLabel lblStatus = new JLabel("Status:");
-    topBar topBar1 = new topBar();
+    PictureCheck topBar1 = new PictureCheck();
     
     public SerialConnection() {
         setTitle("Serial Communication");
@@ -116,7 +116,7 @@ public class SerialConnection extends JFrame implements ActionListener {
                 if (selectedOption == JOptionPane.YES_OPTION) {
                     System.out.println("Status: Running...");
                     lblStatus.setText("Status: Running...");
-                    outPut.print("1-1-B\r\n");
+                    outPut.print("5-5-3\r\n");
                     outPut.flush();
                 } else {
                     lblStatus.setText("Status: closed");
