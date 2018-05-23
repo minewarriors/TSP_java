@@ -54,8 +54,6 @@ public class BPPMainScreen extends JFrame implements ActionListener {
     BPPDrawPanel dp = new BPPDrawPanel(A, B, C);
 
     public BPPMainScreen() {
-        System.out.println("111");
-
         setTitle("BPP");
         setSize(1080, 800);
         setLayout(new BorderLayout());

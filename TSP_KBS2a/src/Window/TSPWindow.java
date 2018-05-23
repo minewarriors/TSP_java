@@ -58,7 +58,6 @@ public class TSPWindow extends JFrame implements ActionListener {
         setResizable(false);
 
         this.driver = driver;
-        System.out.println("PAUPERDING WERK NOU EENS");
         // contruct and add drawPanel
         dp = new DrawPanel();
         this.add(dp);

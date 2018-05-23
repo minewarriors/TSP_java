@@ -13,11 +13,12 @@ public class MainWindow extends JFrame implements ActionListener {
     private JLabel JLTitle;
     private JButton JBTSP;
     private JButton JBBPP;
-    private JButton JBStorage;
+    private JButton JBRC;
     private TSPWindow tsp;
     private BPPMainScreen bpp;
+    private RobotWindow rc;
 
-    public MainWindow(TSPWindow tsp, BPPMainScreen bpp) {
+    public MainWindow(TSPWindow tsp, BPPMainScreen bpp, RobotWindow rc) {
         //Window settings
         setSize(1080, 720);
         setTitle("Retrieval & Storage System");
@@ -28,6 +29,7 @@ public class MainWindow extends JFrame implements ActionListener {
         //declairing other windows and pictures
         this.tsp = tsp;
         this.bpp = bpp;
+        this.rc = rc;
 
         //Declaring Labels
         JLTitle = new JLabel("Storage and Retrieval System");
@@ -46,7 +48,7 @@ public class MainWindow extends JFrame implements ActionListener {
         //Declaring buttons
         JBTSP = new JButton("TSP Menu");
         JBBPP = new JButton("BPP Menu");
-        JBStorage = new JButton("Storage refilling Menu");
+        JBRC = new JButton("Robot Controller");
 
         //Designing Buttons
         JBTSP.setForeground(Color.BLACK);
@@ -59,21 +61,21 @@ public class MainWindow extends JFrame implements ActionListener {
         JBBPP.setFont(new Font("Serif", Font.PLAIN, 30));
         JBBPP.setOpaque(true);
 
-        JBStorage.setForeground(Color.BLACK);
-        JBStorage.setPreferredSize(new Dimension(805, 40));
-        JBStorage.setFont(new Font("Serif", Font.PLAIN, 30));
-        JBStorage.setOpaque(true);
+        JBRC.setForeground(Color.BLACK);
+        JBRC.setPreferredSize(new Dimension(805, 40));
+        JBRC.setFont(new Font("Serif", Font.PLAIN, 30));
+        JBRC.setOpaque(true);
 
         //Add buttons and labels
         add(JLTitle);
         add(JBBPP);
         add(JBTSP);
-        add(JBStorage);
+        add(JBRC);
 
         // add to actionListener
         JBBPP.addActionListener(this);
         JBTSP.addActionListener(this);
-        JBStorage.addActionListener(this);
+        JBRC.addActionListener(this);
         setVisible(true);
     }
 
@@ -84,6 +86,9 @@ public class MainWindow extends JFrame implements ActionListener {
         }
         if (ae.getSource() == JBBPP) {
             bpp.setVisible(true);
+        }
+        if (ae.getSource() == JBRC) {
+            rc.setVisible(true);
         }
     }
 }
