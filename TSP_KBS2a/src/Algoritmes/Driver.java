@@ -13,8 +13,6 @@ import Window.TSPWindow;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
-import java.util.TimerTask;
-import java.util.Timer;
 
 /**
  *
