@@ -1,4 +1,4 @@
-package BPP;
+package Window;
 
 import Core.Box;
 import static Core.BPPInterface.boxSize;
@@ -12,7 +12,7 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 
-public class DrawPanel extends JPanel {
+public class BPPDrawPanel extends JPanel {
 
     private Order order;
     private Box a;
@@ -22,7 +22,7 @@ public class DrawPanel extends JPanel {
     private ArrayList<Product> orderList;
     private boolean check = true;
 
-    public DrawPanel(Box boxA, Box boxB, Box boxC) {
+    public BPPDrawPanel(Box boxA, Box boxB, Box boxC) {
         this.a = boxA;
         this.b = boxB;
         this.c = boxC;

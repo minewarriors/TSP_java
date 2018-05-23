@@ -1,7 +1,6 @@
 package Window;
 
 import static Core.BPPInterface.boxSize;
-import BPP.DrawPanel;
 import Core.Order;
 import Core.Product;
 
@@ -52,7 +51,7 @@ public class BPPMainScreen extends JFrame implements ActionListener {
     Core.Box A = new Core.Box(boxSize);
     Core.Box B = new Core.Box(boxSize);
     Core.Box C = new Core.Box(boxSize);
-    DrawPanel dp = new DrawPanel(A, B, C);
+    BPPDrawPanel dp = new BPPDrawPanel(A, B, C);
 
     public BPPMainScreen() {
         System.out.println("111");
