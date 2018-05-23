@@ -38,10 +38,8 @@ public class PictureCheck extends JPanel{
 
         if (connected) {
             g.drawImage(ConnectedPicture, 0, 0, 50, 50, null);
-            System.out.println("ConnectedPicture");
         } else {
             g.drawImage(DisconnectedPicture, 0, 0, 50, 50, null);
-            System.out.println("DisconnectedPicture");
         }  
     }
 
