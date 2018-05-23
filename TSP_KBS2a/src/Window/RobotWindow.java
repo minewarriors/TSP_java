@@ -146,7 +146,7 @@ public class RobotWindow extends JFrame implements ActionListener {
         left3.add(jlAddProduct);
         left3.add(Box.createHorizontalStrut(30));
         tspAlgorithmList.addItem("Bruteforce");
-        tspAlgorithmList.addItem("Bellman");
+        tspAlgorithmList.addItem("Hill Climbing");
         tspAlgorithmList.addItem("Willikeurig Beperkt");
         tspAlgorithmList.addItem("Own Algorithm");
         tspAlgorithmList.addActionListener(this);
@@ -246,7 +246,7 @@ public class RobotWindow extends JFrame implements ActionListener {
                     System.out.println("Op je muil met  deze Array " + paintRoute);
 
                 }
-                if ("Eigen Algoritme".equals(tspAlgorithm)) {
+                if ("Own Algorithm".equals(tspAlgorithm)) {
                     ArrayList<Product> producten = new ArrayList<Product>();
                     producten.addAll(driver.getIntialRoute());
                     driver.printShortestRoute(eigenMethode.FindShortestRoute(producten));
