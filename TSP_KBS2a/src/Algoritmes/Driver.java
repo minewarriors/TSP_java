@@ -5,6 +5,7 @@
  */
 package Algoritmes;
 
+import Window.BPPMainScreen;
 import Core.Product;
 import Window.MainWindow;
 import Window.TSPWindow;
@@ -40,7 +41,8 @@ public class Driver {
     public static void main(String[] args) {
         Driver driver = new Driver();
         TSPWindow TSP = new TSPWindow(driver);
-        MainWindow Menu = new MainWindow(TSP);
+        BPPMainScreen BPP = new BPPMainScreen();
+        MainWindow Menu = new MainWindow(TSP, BPP);
     }
 
     //print hoelang het process heeft geduurt

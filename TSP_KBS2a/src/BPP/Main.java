@@ -1,5 +1,6 @@
 package BPP;
 
+import Window.BPPMainScreen;
 import static BPP.BPPInterface.boxSize;
 import static BPPAlgorithms.Algorithms.BestFitDecreasing;
 import static BPPAlgorithms.Algorithms.OwnMethod;

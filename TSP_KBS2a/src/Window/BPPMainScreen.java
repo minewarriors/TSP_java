@@ -1,5 +1,8 @@
-package BPP;
+package Window;
 
+import BPP.DrawPanel;
+import BPP.Order;
+import BPP.Product;
 import static BPP.BPPInterface.boxSize;
 import static BPPAlgorithms.Algorithms.BestFitDecreasing;
 import static BPPAlgorithms.Algorithms.firstFit;
