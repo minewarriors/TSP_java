@@ -1,13 +1,8 @@
 package BPP;
 
-<<<<<<< HEAD
-import Core.RandomOrder;
 import Core.Box;
 import static Core.BPPInterface.boxSize;
-=======
 import Window.BPPMainScreen;
-import static BPP.BPPInterface.boxSize;
->>>>>>> ddcea411d6905227ac07ff07faaad47013fbe853
 import static BPPAlgorithms.Algorithms.BestFitDecreasing;
 import static BPPAlgorithms.Algorithms.OwnMethod;
 import static BPPAlgorithms.Algorithms.firstFit;
@@ -17,6 +12,8 @@ public class Main {
     public static void main(String[] args) {
 
         BPPMainScreen headscreen = new BPPMainScreen();
+        
+        /*
         RandomOrder b2 = new RandomOrder();
         b2.print();
 
@@ -48,6 +45,8 @@ public class Main {
         f.getProductBoxArray().forEach((a) -> {
             System.out.println(a);
         });
+
+*/
 
     }
 }

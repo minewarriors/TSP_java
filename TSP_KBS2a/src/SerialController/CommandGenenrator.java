@@ -1,6 +1,7 @@
 package SerialController;
 
 import Core.Box;
+import Core.Product;
 import java.util.ArrayList;
 
 

@@ -5,7 +5,7 @@ package BPPAlgorithms;
  * @author Christiaan
  */
 import Core.Box;
-import BPP.Product;
+import Core.Product;
 import java.util.*;
 
 public class Sort {

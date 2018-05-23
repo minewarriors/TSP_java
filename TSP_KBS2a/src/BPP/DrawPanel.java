@@ -2,6 +2,8 @@ package BPP;
 
 import Core.Box;
 import static Core.BPPInterface.boxSize;
+import Core.Order;
+import Core.Product;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;

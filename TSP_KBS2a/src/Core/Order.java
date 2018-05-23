@@ -51,8 +51,4 @@ public class Order{
             System.out.println(x);
         });
     }
-
-    public void addToOrder(BPP.Product p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

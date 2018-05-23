@@ -1,13 +1,10 @@
 package Window;
 
-<<<<<<< HEAD:TSP_KBS2a/src/BPP/BPPMainScreen.java
 import static Core.BPPInterface.boxSize;
-=======
 import BPP.DrawPanel;
-import BPP.Order;
-import BPP.Product;
-import static BPP.BPPInterface.boxSize;
->>>>>>> ddcea411d6905227ac07ff07faaad47013fbe853:TSP_KBS2a/src/Window/BPPMainScreen.java
+import Core.Order;
+import Core.Product;
+
 import static BPPAlgorithms.Algorithms.BestFitDecreasing;
 import static BPPAlgorithms.Algorithms.firstFit;
 import java.awt.BorderLayout;
