@@ -41,7 +41,7 @@ public class TSPWindow extends JFrame implements ActionListener {
     private JLabel jlAlgoritm, jl, jlUploadXML;
     private final JFileChooser fc;
     DrawPanel dp;
-    private String[] jComboboxOptions = {"Bruteforce", "Bellman", "Willikeurig Beperkt", "Eigen Algoritme"};
+    private String[] jComboboxOptions = {"Bruteforce", "Hill Climbing", "Willikeurig Beperkt", "Eigen Algoritme"};
     private Driver driver;
     private JComboBox algoritmList;
     ArrayList<Product> paintRoute = new ArrayList<Product>();
@@ -54,7 +54,9 @@ public class TSPWindow extends JFrame implements ActionListener {
         setSize(1080, 720);
         setLayout(new FlowLayout());
         setResizable(false);
-
+        
+        System.out.println("asdfga");
+        
         this.driver = driver;
         // contruct and add drawPanel
         dp = new DrawPanel();
@@ -102,6 +104,14 @@ public class TSPWindow extends JFrame implements ActionListener {
         if (e.getSource() == jbStart) {
             if (this.order != null) {
                 String Algoritm = (String) algoritmList.getSelectedItem();
+                Route currentRoute = new Route(driver.getIntialRoute());
+                if ("Hill Climbing".equals(Algoritm)) {
+                    HillCliming hillClimbing = new HillCliming();
+                    
+                    
+                    System.out.println(currentRoute+" |     "+currentRoute.calculateTotalDistance());
+                    hillClimbing.findShortestRoute(currentRoute);
+                }
                 if ("Willikeurig Beperkt".equals(Algoritm)) {
                     RandomSearchDialog rsd = new RandomSearchDialog(this);
 
@@ -111,7 +121,6 @@ public class TSPWindow extends JFrame implements ActionListener {
                     Instant startInstant = Instant.now();
                     BruteForce bruteforce = new BruteForce();
 
-                    Route currentRoute = new Route(driver.getIntialRoute());
 
                     if (driver.VERBOSE_FLAG) {
                         driver.printHeading("Route", "Distance | Shortest Distance | Permutation #");

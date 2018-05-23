@@ -19,23 +19,24 @@ public class HillCliming {
         Route adjecentRoute;
         int counter = 0;
         String compareRoutes = null;
-        while (counter<maxima) {
+        System.out.println("HERE STARTS WHILE LOOP");
+        while (counter < maxima) {
             adjecentRoute = obtainAdjecentRoute(new Route(currentRoute));
-            if (adjecentRoute.calculateTotalDistance() <= currentRoute.calculateTotalDistance()) {
-                compareRoutes = "<= (proceed";
-                counter = 0;
+            if (adjecentRoute.calculateTotalDistance() < currentRoute.calculateTotalDistance()) {
+                compareRoutes = "<= (proceed)";
                 currentRoute = new Route(adjecentRoute);
+                System.out.println(currentRoute + " |      " + currentRoute.calculateTotalDistance() + "    |    " + compareRoutes);
+                counter = 0;
             } else {
-                compareRoutes = "> (stay) iteration # "+counter;
-                System.out.println(" |      ");
+                compareRoutes = "> (stay) iteration # " + counter++;
+                System.out.println(adjecentRoute + " |      " + currentRoute.calculateTotalDistance() + "    |    " + compareRoutes);
             }
             if (counter == maxima) {
-                System.out.println("        | potential maximum");
-                System.out.println("        | " + compareRoutes);
+                System.out.println(currentRoute + "        | potential maximum");
+                System.out.println(currentRoute + "        | " + compareRoutes);
             }
-            counter++;
         }
-        return null;
+        return currentRoute;
     }
 
     public Route obtainAdjecentRoute(Route route) {
@@ -49,7 +50,7 @@ public class HillCliming {
         Product p2 = route.getProducts().get(x2);
         route.getProducts().set(x1, p2);
         route.getProducts().set(x2, p1);
-        
+
         return route;
     }
 
