@@ -82,5 +82,8 @@ public class MainWindow extends JFrame implements ActionListener {
         if (ae.getSource() == JBTSP) {
             tsp.setVisible(true);
         }
+        if (ae.getSource() == JBBPP) {
+            bpp.setVisible(true);
+        }
     }
 }

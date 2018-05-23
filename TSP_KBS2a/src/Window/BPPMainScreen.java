@@ -60,7 +60,6 @@ public class BPPMainScreen extends JFrame implements ActionListener {
         setSize(1080, 800);
         setLayout(new BorderLayout());
         setResizable(false);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         FileNameExtensionFilter xmlFilter = new FileNameExtensionFilter("XML Files", "xml");
         fc = new JFileChooser();
@@ -143,7 +142,6 @@ public class BPPMainScreen extends JFrame implements ActionListener {
 
         add(panel1, BorderLayout.WEST);
         add(panel2, BorderLayout.EAST);
-        setVisible(true);
     }
 
     public void actionPerformed(ActionEvent e) {
