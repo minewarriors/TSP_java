@@ -38,11 +38,11 @@ public class TSPWindow extends JFrame implements ActionListener {
     private JButton jbStart, stop, jbUploadXML;
     private JLabel jlAlgoritm, jl, jlUploadXML;
     private final JFileChooser fc;
-    private DrawPanel dp;
+    DrawPanel dp;
     private String[] jComboboxOptions = {"Bruteforce", "Bellman", "Willikeurig Beperkt", "Eigen Algoritme"};
     private Driver driver;
     private JComboBox algoritmList;
-    private ArrayList<Product> paintroute = new ArrayList<Product>();
+    ArrayList<Product> paintRoute = new ArrayList<Product>();
     private EigenMethode eigenMethode = new EigenMethode();
     Order order;
 
@@ -54,7 +54,7 @@ public class TSPWindow extends JFrame implements ActionListener {
         setResizable(false);
 
         this.driver = driver;
-        System.out.println("StartUp");
+        System.out.println("PAUPERDING WERK NOU EENS");
         // contruct and add drawPanel
         dp = new DrawPanel();
         this.add(dp);
@@ -122,12 +122,12 @@ public class TSPWindow extends JFrame implements ActionListener {
                     driver.printDuration(startInstant);
 
                     //Route voor simulator painting
-                    paintroute.clear();
+                    paintRoute.clear();
                     bruteforce.getShortestRoutes().get(0).getProducts().forEach(x -> {
-                        paintroute.add(x);
+                        paintRoute.add(x);
                     });
-                    dp.setPaintingroute(paintroute);
-                    System.out.println("Op je muil met  deze Array " + paintroute);
+                    dp.setPaintingroute(paintRoute);
+                    System.out.println("Op je muil met  deze Array " + paintRoute);
                     repaint();
 
                 }
@@ -135,12 +135,12 @@ public class TSPWindow extends JFrame implements ActionListener {
                     ArrayList<Product> producten = new ArrayList<Product>();
                     producten.addAll(driver.getIntialRoute());
                     driver.printShortestRoute(eigenMethode.FindShortestRoute(producten));
-                    paintroute.clear();
+                    paintRoute.clear();
                     eigenMethode.getShortestRouteProducts().forEach(x -> {
-                        paintroute.add(x);
+                        paintRoute.add(x);
                     });
-                    dp.setPaintingroute(paintroute);
-                    System.out.println("Op je muil met  deze Array " + paintroute);
+                    dp.setPaintingroute(paintRoute);
+                    System.out.println("Op je muil met  deze Array " + paintRoute);
                     repaint();
                 }
             } else {
@@ -218,7 +218,11 @@ public class TSPWindow extends JFrame implements ActionListener {
     }
 
     public ArrayList<Product> getPaintroute() {
-        return paintroute;
+        return paintRoute;
+    }
+
+    public void setPaintroute(ArrayList<Product> paintRoute) {
+        this.paintRoute = paintRoute;
     }
 
 }
