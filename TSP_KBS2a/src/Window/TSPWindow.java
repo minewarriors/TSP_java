@@ -32,6 +32,8 @@ import java.lang.reflect.Field;
 import java.time.Instant;
 import java.util.ArrayList;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class TSPWindow extends JFrame implements ActionListener {
 
@@ -45,6 +47,8 @@ public class TSPWindow extends JFrame implements ActionListener {
     ArrayList<Product> paintRoute = new ArrayList<Product>();
     private EigenMethode eigenMethode = new EigenMethode();
     Order order;
+    TimerTask timerTask = new MyTimerTask();
+    Timer timer = new Timer(true);
 
     public TSPWindow(Driver driver) {
         //Window settings
@@ -90,7 +94,6 @@ public class TSPWindow extends JFrame implements ActionListener {
         jbUploadXML.addActionListener(this);
         jbStart.addActionListener(this);
         stop.addActionListener(this);
-
     }
 
     public Driver getDriver() {
@@ -122,13 +125,22 @@ public class TSPWindow extends JFrame implements ActionListener {
                     driver.printDuration(startInstant);
 
                     //Route voor simulator painting
-                    paintRoute.clear();
-                    bruteforce.getShortestRoutes().get(0).getProducts().forEach(x -> {
-                        paintRoute.add(x);
+                    bruteforce.getShortestRoutes().forEach(x -> {
+                        paintRoute.clear();
+                        System.out.println("Painting Started");
+                        x.getProducts().forEach(y -> {
+                            paintRoute.add(y);
+                            dp.setPaintingroute(paintRoute);
+                            repaint();
+                        });
+                        timer.schedule(timerTask, 0, 10 * 1000);
                     });
-                    dp.setPaintingroute(paintRoute);
-                    System.out.println("Op je muil met  deze Array " + paintRoute);
-                    repaint();
+//                    bruteforce.getShortestRoutes().get(0).getProducts().forEach(x -> {
+//                        paintRoute.add(x);
+//                        repaint();
+//                    });
+//                    dp.setPaintingroute(paintRoute);
+//                    System.out.println("Op je muil met  deze Array " + paintRoute);
 
                 }
                 if ("Eigen Algoritme".equals(Algoritm)) {
@@ -145,6 +157,7 @@ public class TSPWindow extends JFrame implements ActionListener {
                 }
             } else {
                 System.out.println("EERST XML INLADEN!");
+                paintRoute.clear();
                 repaint();
             }
 
