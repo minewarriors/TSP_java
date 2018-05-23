@@ -25,8 +25,9 @@ public class RobotWindow extends JFrame implements ActionListener {
 
     public RobotWindow() {
         setTitle("Robot Controller");
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
-        setUndecorated(true);
+//        setExtendedState(JFrame.MAXIMIZED_BOTH);
+//        setUndecorated(true);
+        setSize(1920, 1080);
         setLayout(new BorderLayout());
         setResizable(false);
 
