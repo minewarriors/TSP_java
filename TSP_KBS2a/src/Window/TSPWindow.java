@@ -55,7 +55,7 @@ public class TSPWindow extends JFrame implements ActionListener {
         setLayout(new FlowLayout());
         setResizable(false);
         
-        System.out.println("asdfga");
+        System.out.println("ugthh");
         
         this.driver = driver;
         // contruct and add drawPanel

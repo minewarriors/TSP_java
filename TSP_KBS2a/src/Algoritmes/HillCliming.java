@@ -11,7 +11,7 @@ import Core.Product;
  *
  * @author jelle
  */
-public class HillCliming {
+    public class HillCliming {
 
     public static final int maxima = 100;
 

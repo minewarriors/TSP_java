@@ -93,6 +93,7 @@ public class RobotRSDialog extends JDialog implements ActionListener {
                         });
                         rw.tspDP.setPaintingroute(rw.paintRoute);
                         rw.repaint();
+                        dispose();
                     }
                 }
             } catch (NumberFormatException ex) {
