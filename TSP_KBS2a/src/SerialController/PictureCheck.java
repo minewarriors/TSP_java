@@ -9,9 +9,9 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-public class PictureCheck extends JPanel{
+public class PictureCheck extends JPanel {
 
-    private boolean connected;
+    private int connected = 2;
 
     private BufferedImage ConnectedPicture, DisconnectedPicture;
 
@@ -26,25 +26,30 @@ public class PictureCheck extends JPanel{
         }
     }
 
-    public void setConnected(boolean connected) {
+    public void setConnected(int connected) {
         this.connected = connected;
     }
-    
 
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-         //setBackground(Color.white);
+        //setBackground(Color.white);
 
-        if (connected) {
+        if (connected == 1) {
             g.drawImage(ConnectedPicture, 0, 0, 50, 50, null);
-        } else {
+        } else if (connected == 2) {
             g.drawImage(DisconnectedPicture, 0, 0, 50, 50, null);
-        }  
+        } else if (connected == 3) {
+            g.drawImage(DisconnectedPicture, 0, 0, 50, 50, null);
+        }
     }
 
     public boolean GetConnected() {
-        return connected;
+        if (connected == 1) {
+            return true;
+        } else {
+            return false;
+        }
     }
-    
+
 }

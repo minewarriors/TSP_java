@@ -46,6 +46,8 @@ public class Driver {
         RobotWindow rc = new RobotWindow();
         MainWindow Menu = new MainWindow(TSP, BPP, rc);
     }
+    
+    
 
     //print hoelang het process heeft geduurt
     public void printDuration(Instant startInstant) {
