@@ -43,7 +43,7 @@ public class DrawPanel extends JPanel {
             }
             x = x - 90;
             y = y - 40;
-            g.fillRect(x, y, 180, 80);
+            g.fillRect(x, ((y * -1) + 520), 180, 80);
         }
     }
 
@@ -62,7 +62,7 @@ public class DrawPanel extends JPanel {
             x = x - 60;
             y = y - 26;
 
-            g.fillRect(x, y, 120, 52);
+            g.fillRect(x, ((y * -1) + 548), 120, 52);
         }
     }
 
@@ -81,7 +81,7 @@ public class DrawPanel extends JPanel {
             x = x - 40;
             y = y - 20;
 
-            g.fillRect(x, y, 80, 40);
+            g.fillRect(x, ((y * -1) + 560), 80, 40);
         }
     }
 

@@ -60,4 +60,12 @@ public class Product {
         //wortel trekken voor afstand tussen coördinaten
         return Math.sqrt((powerOfX + powerOfY));
     }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
 }

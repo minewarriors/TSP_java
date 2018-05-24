@@ -3,32 +3,32 @@
 <order>
     <package id="1">
         <size>40</size>
-        <color>Red</color>
-        <x>2</x>
+        <color>Pink</color>
+        <x>1</x>
         <y>3</y>
     </package>
     <package id="2">
         <size>30</size>
-        <color>Blue</color>
-        <x>2</x>
+        <color>Pink</color>
+        <x>5</x>
         <y>1</y>
     </package>
     <package id="3">
-        <size>20</size>
+        <size>40</size>
         <color>Green</color>
-        <x>4</x>
-        <y>3</y>
+        <x>3</x>
+        <y>2</y>
     </package>
     <package id="4">
-        <size>30</size>
-        <color>Pink</color>
+        <size>20</size>
+        <color>Yellow</color>
         <x>5</x>
-        <y>4</y>
+        <y>1</y>
     </package>
     <package id="5">
-        <size>40</size>
+        <size>30</size>
         <color>Yellow</color>
-        <x>3</x>
-        <y>1</y>
+        <x>2</x>
+        <y>5</y>
     </package>
 </order>

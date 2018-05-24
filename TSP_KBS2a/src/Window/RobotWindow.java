@@ -28,7 +28,6 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -43,17 +42,9 @@ import org.w3c.dom.NodeList;
  */
 public class RobotWindow extends JFrame implements ActionListener {
 
-    private JLabel jlXML;
-    private JButton jbUploadXML;
-    private JLabel jlNumberTimes;
-    private JTextField jtfNumber;
-    private JButton jbCalculate;
-    private JLabel jlAlgorithm;
-    private JButton jbReset;
-    private JLabel jlAddProduct;
-    private JTextField jtfSize;
-    private JButton jbAddProduct;
-    private JButton jbAddRandom;
+    private JLabel jlXML, jlBPPAlgorithm, jlTSPAlgorithm;
+    private JButton jbUploadXML, jbCalculate, jbReset, jbShutdown;
+
     private final JFileChooser fc;
     private EigenMethode eigenMethode = new EigenMethode();
 
@@ -86,7 +77,6 @@ public class RobotWindow extends JFrame implements ActionListener {
         JPanel panel = new JPanel();
         JPanel panel1 = new JPanel();
         JPanel panel2 = new JPanel();
-        JPanel panel3 = new JPanel();
         panel.setLayout(new BorderLayout());
 
         panel.add(tspDP, BorderLayout.WEST);
@@ -96,9 +86,7 @@ public class RobotWindow extends JFrame implements ActionListener {
         Box left1 = Box.createHorizontalBox();
         Box left2 = Box.createHorizontalBox();
         Box left3 = Box.createHorizontalBox();
-        Box right1 = Box.createHorizontalBox();
-        Box right2 = Box.createHorizontalBox();
-        Box right3 = Box.createHorizontalBox();
+        Box left4 = Box.createHorizontalBox();
 
         jlXML = new JLabel("Upload XML file:");
         left1.add(jlXML);
@@ -107,19 +95,13 @@ public class RobotWindow extends JFrame implements ActionListener {
         jbUploadXML.addActionListener(this);
         left1.add(jbUploadXML);
 
-        jlNumberTimes = new JLabel("Number of times:");
-        right1.add(jlNumberTimes);
-        right1.add(Box.createHorizontalStrut(30));
-        jtfNumber = new JTextField(5);
-        right1.add(jtfNumber);
-
         jbCalculate = new JButton("Calculate");
         jbCalculate.addActionListener(this);
-        right2.add(jbCalculate);
+        left4.add(jbCalculate);
 
         left2.add(Box.createHorizontalStrut(30));
-        jlAlgorithm = new JLabel("BPP Algorithm:");
-        left2.add(jlAlgorithm);
+        jlBPPAlgorithm = new JLabel("BPP Algorithm:");
+        left2.add(jlBPPAlgorithm);
         left2.add(Box.createHorizontalStrut(30));
         bppAlgorithmList.addItem("First Fit");
         bppAlgorithmList.addItem("Best-fit Decreasing");
@@ -130,11 +112,14 @@ public class RobotWindow extends JFrame implements ActionListener {
 
         jbReset = new JButton("Reset");
         jbReset.addActionListener(this);
-        right3.add(jbReset);
+        left4.add(jbReset);
+
+        jbShutdown = new JButton("Shutdown");
+        jbShutdown.addActionListener(this);
 
         left3.add(Box.createHorizontalStrut(30));
-        jlAddProduct = new JLabel("TSP Algorithm");
-        left3.add(jlAddProduct);
+        jlTSPAlgorithm = new JLabel("TSP Algorithm");
+        left3.add(jlTSPAlgorithm);
         left3.add(Box.createHorizontalStrut(30));
         tspAlgorithmList.addItem("Bruteforce");
         tspAlgorithmList.addItem("Hill Climbing");
@@ -149,21 +134,14 @@ public class RobotWindow extends JFrame implements ActionListener {
         leftComplete.add(left2);
         leftComplete.add(Box.createVerticalStrut(30));
         leftComplete.add(left3);
+        leftComplete.add(Box.createVerticalStrut(30));
+        leftComplete.add(left4);
         panel1.add(leftComplete);
 
-        Box rightComplete = Box.createVerticalBox();
-        rightComplete.add(right1);
-        rightComplete.add(Box.createVerticalStrut(30));
-        rightComplete.add(right2);
-        rightComplete.add(Box.createVerticalStrut(30));
-        rightComplete.add(right3);
-        panel2.add(rightComplete);
-
-        panel3.add(rc);
+        panel2.add(rc);
 
         add(panel1, BorderLayout.WEST);
         add(panel2, BorderLayout.EAST);
-        add(panel3, BorderLayout.CENTER);
     }
 
     public Driver getDriver() {
