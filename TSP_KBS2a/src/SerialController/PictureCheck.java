@@ -19,8 +19,8 @@ public class PictureCheck extends JPanel {
 
         this.setPreferredSize(new Dimension(50, 50));
         try {
-            ConnectedPicture = ImageIO.read(new File("C:\\Users\\Christiaan\\Desktop\\TSP_java\\TSP_KBS2a\\src\\SerialController\\ok.jpg"));
-            DisconnectedPicture = ImageIO.read(new File("C:\\Users\\Christiaan\\Desktop\\TSP_java\\TSP_KBS2a\\src\\SerialController\\Fail.jpg"));
+            ConnectedPicture = ImageIO.read(new File("C:\\Users\\Bart_\\Desktop\\TSP_java\\TSP_KBS2a\\src\\SerialController\\ok.png"));
+            DisconnectedPicture = ImageIO.read(new File("C:\\Users\\Bart_\\Desktop\\TSP_java\\TSP_KBS2a\\src\\SerialController\\fail.png"));
         } catch (IOException ex) {
             System.out.println("Plaatje niet gevonden.");
         }
