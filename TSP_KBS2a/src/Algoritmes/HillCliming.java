@@ -6,16 +6,19 @@
 package Algoritmes;
 
 import Core.Product;
+import java.util.ArrayList;
 
 /**
  *
  * @author jelle
  */
-    public class HillCliming {
+public class HillCliming {
+
+    private ArrayList<Product> shortestRoute = new ArrayList<Product>();
 
     public static final int maxima = 100;
 
-    public Route findShortestRoute(Route currentRoute) {
+    public void findShortestRoute(Route currentRoute) {
         Route adjecentRoute;
         int counter = 0;
         String compareRoutes = null;
@@ -36,7 +39,10 @@ import Core.Product;
                 System.out.println(currentRoute + "        | " + compareRoutes);
             }
         }
-        return currentRoute;
+
+        currentRoute.getProducts().stream().forEach(x -> {
+            shortestRoute.add(x);
+        });
     }
 
     public Route obtainAdjecentRoute(Route route) {
@@ -52,6 +58,10 @@ import Core.Product;
         route.getProducts().set(x2, p1);
 
         return route;
+    }
+
+    public ArrayList<Product> getShortestRoute() {
+        return shortestRoute;
     }
 
 }
