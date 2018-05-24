@@ -165,13 +165,9 @@ public class RobotWindow extends JFrame implements ActionListener {
         add(panel2, BorderLayout.EAST);
         add(panel3, BorderLayout.CENTER);
     }
-<<<<<<< HEAD
-    
-=======
     public Driver getDriver() {
         return driver;
     }
->>>>>>> ef73ad74c3d4dd58dd5bd6799ca3eddc0973768b
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == jbStart) {

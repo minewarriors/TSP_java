@@ -1,7 +1,5 @@
 package SerialController;
 
-import Window.RobotWindow;
-import Window.TSPWindow;
 import com.fazecast.jSerialComm.SerialPort;
 import java.io.PrintWriter;
 import javax.swing.JOptionPane;
