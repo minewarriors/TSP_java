@@ -1,7 +1,11 @@
 package SerialController;
 
+import Core.Box;
+import Core.Product;
+import static SerialController.CommandGenenrator.generateCommandArray;
 import com.fazecast.jSerialComm.SerialPort;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,10 +20,18 @@ public class RobotControllerJpanel extends javax.swing.JPanel {
     private final int baudRate = 9600;
     static PrintWriter outPut;
     private boolean connected = false;
-    DataLogger DataLogger1 = new DataLogger();
+    private Box doosA;
+    private Box doosB;
+    private Box doosC;
+    ArrayList<Product> TSProute = new ArrayList<>();
+    ArrayList<String> commands = new ArrayList<>();
 
-    public RobotControllerJpanel() {
+    public RobotControllerJpanel(ArrayList<Product> TSProute, Box a, Box b, Box c) {
         initComponents();
+        this.TSProute = TSProute;
+        doosA = a;
+        doosB = b;
+        doosC = c;
     }
 
     public void updateMonitor() {
@@ -27,7 +39,7 @@ public class RobotControllerJpanel extends javax.swing.JPanel {
         jTextAreaMonitor1.selectAll();
         jTextAreaMonitor1.replaceSelection("");
 
-        for (String s : DataLogger1.getData()) {
+        for (String s : DataLogger.getData()) {
             jTextAreaMonitor1.append(s + "\n"); // New line at the end
         }
     }
@@ -186,7 +198,7 @@ public class RobotControllerJpanel extends javax.swing.JPanel {
             comPortName = "COM10";
         }
         System.out.println(comPortName);
-        DataLogger1.addData("Selected : " + comPortName);
+        DataLogger.addData("Selected : " + comPortName);
         updateMonitor();
         repaint();
     }//GEN-LAST:event_jComboBox1ActionPerformed
@@ -195,7 +207,7 @@ public class RobotControllerJpanel extends javax.swing.JPanel {
         if (!connected) {
             comPort = SerialPort.getCommPort(comPortName);
             comPort.setBaudRate(baudRate);
-            DataLogger1.addData("Trying to connect...");
+            DataLogger.addData("Trying to connect...");
             updateMonitor();
             repaint();
             //If the port is not closed, open the USB port.
@@ -208,17 +220,17 @@ public class RobotControllerJpanel extends javax.swing.JPanel {
                 }
             }
             if (comPort.isOpen() == true) {
-                DataLogger1.addData("Connection to the sorting robot is successful.");
+                DataLogger.addData("Connection to the sorting robot is successful.");
                 connected = true;
                 pictureCheck1.setConnected(1);
             } else {
-                DataLogger1.addData("Error opening port.");
+                DataLogger.addData("Error opening port.");
                 connected = false;
                 pictureCheck1.setConnected(2);
             }
 
         } else {
-            DataLogger1.addData("The robot is already connected.");
+            DataLogger.addData("The robot is already connected.");
         }
         updateMonitor();
         repaint();
@@ -228,10 +240,12 @@ public class RobotControllerJpanel extends javax.swing.JPanel {
         if (connected) {
             if (comPort.isOpen() == true) {
                 comPort.closePort();
-                DataLogger1.addData("Disconnected from sorting robot.");
+                DataLogger.addData("Disconnected from sorting robot.");
                 connected = false;
                 pictureCheck1.setConnected(2);
             }
+        } else {
+            DataLogger.addData("The sorting robot is aready disconnected.");
         }
         updateMonitor();
         repaint();
@@ -245,33 +259,42 @@ public class RobotControllerJpanel extends javax.swing.JPanel {
                         "Choose",
                         JOptionPane.YES_NO_OPTION);
                 if (selectedOption == JOptionPane.YES_OPTION) {
-                    DataLogger1.addData("Status: Running...");
-                    outPut.print("5-5-3\r\n");
-                    outPut.flush();
-                    DataLogger1.addData("Command send to robot: " + "5-5-3\r\n");
-                } else {
+                    DataLogger.addData("Status: Running...");
+
+                    commands = generateCommandArray(TSProute, doosA, doosB, doosC);
+
+                    if (commands.size() > 0) {
+                        for (String commandString : commands) {
+                            outPut.print(commandString);
+                            outPut.flush();
+                            DataLogger.addData("Command send to robot: " + commandString);
+                        }
+                    } else {
+                        DataLogger.addData("please calculate first");
+                    }
+
                 }
-            } else {
-                DataLogger1.addData("Sorting robot isn't connected");
             }
-            updateMonitor();
-            repaint();
+        } else {
+            DataLogger.addData("Sorting robot isn't connected");
         }
+        updateMonitor();
+        repaint();
     }//GEN-LAST:event_btStartActionPerformed
 
     private void btEStopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEStopActionPerformed
         if (connected) {
             if (comPort.isOpen() == true) {
-                DataLogger1.addData("Status: STOP");
+                DataLogger.addData("Status: STOP");
                 outPut.print("Stop\r\n");
                 outPut.flush();
-                DataLogger1.addData("Command send to robot: " + "Stop\r\n");
-            } else {
-                DataLogger1.addData("Sorting robot isn't connected");
+                DataLogger.addData("Command send to robot: " + "Stop\r\n");
             }
-            updateMonitor();
-            repaint();
+        } else {
+            DataLogger.addData("Sorting robot isn't connected");
         }
+        updateMonitor();
+        repaint();
     }//GEN-LAST:event_btEStopActionPerformed
 
 

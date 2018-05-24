@@ -8,20 +8,20 @@ import java.util.ArrayList;
  * @author Christiaan
  */
 public class DataLogger {
-    ArrayList<String> data = new ArrayList<>();
+   private static ArrayList<String> data = new ArrayList<>();
 
-    public DataLogger() {
-        data.add("Welcome to the control pannel.");
-    }
+    //public DataLogger() {
+  //      data.add("Welcome to the control pannel.");
+   // }
     
     
 
-    public ArrayList<String> getData() {
+    public static ArrayList<String> getData() {
         return data;
     }
 
-    public void addData(String text) {
-        this.data.add(text);
+    public static void addData(String text) {
+        DataLogger.data.add(text);
     }
     
     

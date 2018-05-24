@@ -58,7 +58,7 @@ public class RobotWindow extends JFrame implements ActionListener {
     private EigenMethode eigenMethode = new EigenMethode();
     
     Driver driver = new Driver();
-    ArrayList<Product> paintRoute = new ArrayList<Product>();
+    ArrayList<Product> paintRoute = new ArrayList<>();
     
     JComboBox bppAlgorithmList = new JComboBox();
     JComboBox tspAlgorithmList = new JComboBox();
@@ -67,7 +67,7 @@ public class RobotWindow extends JFrame implements ActionListener {
     Core.Box B = new Core.Box(boxSize);
     Core.Box C = new Core.Box(boxSize);
 
-    RobotControllerJpanel rc = new RobotControllerJpanel();
+    RobotControllerJpanel rc = new RobotControllerJpanel(paintRoute, A ,B ,C);
     BPPDrawPanel bppDP = new BPPDrawPanel(A, B, C);
     DrawPanel tspDP = new DrawPanel();
 
