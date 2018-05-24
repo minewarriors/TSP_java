@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
@@ -19,8 +20,8 @@ public class PictureCheck extends JPanel {
 
         this.setPreferredSize(new Dimension(50, 50));
         try {
-            ConnectedPicture = ImageIO.read(new File("C:\\Users\\Bart_\\Desktop\\TSP_java\\TSP_KBS2a\\src\\SerialController\\ok.png"));
-            DisconnectedPicture = ImageIO.read(new File("C:\\Users\\Bart_\\Desktop\\TSP_java\\TSP_KBS2a\\src\\SerialController\\fail.png"));
+            ConnectedPicture = ImageIO.read(getClass().getResource("ok.png"));
+            DisconnectedPicture = ImageIO.read(getClass().getResource("fail.png"));
         } catch (IOException ex) {
             System.out.println("Plaatje niet gevonden.");
         }
