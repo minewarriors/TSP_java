@@ -93,6 +93,7 @@ public class RandomSearchDialog extends JDialog implements ActionListener {
                         });
                         tsp.dp.setPaintingroute(tsp.paintRoute);
                         tsp.repaint();
+                        dispose();
                     }
                 }
             } catch (NumberFormatException ex) {

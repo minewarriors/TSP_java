@@ -23,6 +23,9 @@ public class WillekeurigBeperkt {
     }
 
     public ArrayList<Route> permutateProducts(int permutationMaximum, Route currentRoute, Route shortestRoute) {
+        if (permutationMaximum < 0 ) {
+            permutationMaximum = Math.abs(permutationMaximum);
+        }
         for (int temp = 0; temp < permutationMaximum; temp++) {
             ArrayList<Product> tempProductArray = currentRoute.getProducts();
             Collections.shuffle(tempProductArray);
@@ -40,7 +43,8 @@ public class WillekeurigBeperkt {
         }
         return shortestRoutes;
     }
-
+    
+    
     public int calculateDistance(Route route) {
         int arraySize = route.getProducts().size();
         ArrayList<Product> products = route.getProducts();
