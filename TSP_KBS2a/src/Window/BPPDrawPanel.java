@@ -210,11 +210,10 @@ public class BPPDrawPanel extends JPanel {
 
         Graphics2D g2 = (Graphics2D) g;
 
-        g2.setStroke(
-                new BasicStroke(5));
-        //box 1
+        g2.setStroke(new BasicStroke(5));
         g2.setColor(Color.black);
 
+        //box 1
         g2.drawLine((int) (135 * grootte), (int) (250 * grootte), (int) (135 * grootte), (int) (550 * grootte));
         g2.drawLine((int) (345 * grootte), (int) (552 * grootte), (int) (135 * grootte), (int) (552 * grootte));
         g2.drawLine((int) (345 * grootte), (int) (250 * grootte), (int) (345 * grootte), (int) (550 * grootte));

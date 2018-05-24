@@ -77,6 +77,7 @@ public class RobotWindow extends JFrame implements ActionListener {
         JPanel panel = new JPanel();
         JPanel panel1 = new JPanel();
         JPanel panel2 = new JPanel();
+        JPanel panel3 = new JPanel();
         panel.setLayout(new BorderLayout());
 
         panel.add(tspDP, BorderLayout.WEST);
@@ -110,12 +111,14 @@ public class RobotWindow extends JFrame implements ActionListener {
         bppAlgorithmList.addActionListener(this);
         left2.add(bppAlgorithmList);
 
+        left4.add(Box.createHorizontalStrut(30));
         jbReset = new JButton("Reset");
         jbReset.addActionListener(this);
         left4.add(jbReset);
 
         jbShutdown = new JButton("Shutdown");
         jbShutdown.addActionListener(this);
+        panel3.add(jbShutdown);
 
         left3.add(Box.createHorizontalStrut(30));
         jlTSPAlgorithm = new JLabel("TSP Algorithm");
@@ -142,6 +145,7 @@ public class RobotWindow extends JFrame implements ActionListener {
 
         add(panel1, BorderLayout.WEST);
         add(panel2, BorderLayout.EAST);
+        add(panel3, BorderLayout.CENTER);
     }
 
     public Driver getDriver() {
@@ -267,11 +271,19 @@ public class RobotWindow extends JFrame implements ActionListener {
                 C.getProductBoxArray().forEach((a) -> {
                     System.out.println(a);
                 });
+            } else {
+                System.out.println("EERST XML INLADEN!");
+                paintRoute.clear();
+                repaint();
             }
-        } else {
-            System.out.println("EERST XML INLADEN!");
+        }
+        if (e.getSource() == jbReset) {
+            this.order.getOrderPackages().clear();
+            A.getProductBoxArray().clear();
+            B.getProductBoxArray().clear();
+            C.getProductBoxArray().clear();
             paintRoute.clear();
-            repaint();
+            dispose();
         }
         if (e.getSource() == jbUploadXML) {
             try {
@@ -328,6 +340,9 @@ public class RobotWindow extends JFrame implements ActionListener {
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
+        }
+        if (e.getSource() == jbShutdown) {
+            setVisible(false);
         }
         repaint();
     }
