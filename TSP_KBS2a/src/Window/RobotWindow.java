@@ -54,18 +54,12 @@ public class RobotWindow extends JFrame implements ActionListener {
     private JTextField jtfSize;
     private JButton jbAddProduct;
     private JButton jbAddRandom;
-
-    ArrayList<Product> paintRoute = new ArrayList<Product>();
-    private EigenMethode eigenMethode = new EigenMethode();
-
     private final JFileChooser fc;
-
+    private EigenMethode eigenMethode = new EigenMethode();
+    
     Driver driver = new Driver();
-
-    public Driver getDriver() {
-        return driver;
-    }
-
+    ArrayList<Product> paintRoute = new ArrayList<Product>();
+    
     JComboBox bppAlgorithmList = new JComboBox();
     JComboBox tspAlgorithmList = new JComboBox();
     Order order = new Order();
@@ -74,7 +68,6 @@ public class RobotWindow extends JFrame implements ActionListener {
     Core.Box C = new Core.Box(boxSize);
 
     RobotControllerJpanel rc = new RobotControllerJpanel();
-
     BPPDrawPanel bppDP = new BPPDrawPanel(A, B, C);
     DrawPanel tspDP = new DrawPanel();
 
@@ -172,7 +165,13 @@ public class RobotWindow extends JFrame implements ActionListener {
         add(panel2, BorderLayout.EAST);
         add(panel3, BorderLayout.CENTER);
     }
+<<<<<<< HEAD
     
+=======
+    public Driver getDriver() {
+        return driver;
+    }
+>>>>>>> ef73ad74c3d4dd58dd5bd6799ca3eddc0973768b
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == jbStart) {
@@ -216,6 +215,10 @@ public class RobotWindow extends JFrame implements ActionListener {
 
                     System.out.println(currentRoute + " |     " + currentRoute.calculateTotalDistance());
                     hillClimbing.findShortestRoute(currentRoute);
+                }
+                if ("Willikeurig Beperkt".equals(tspAlgorithm)) {
+                    RobotRSDialog rsd = new RobotRSDialog(this);
+
                 }
                 if ("Bruteforce".equals(tspAlgorithm)) {
 
