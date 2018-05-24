@@ -47,19 +47,19 @@ public class RobotWindow extends JFrame implements ActionListener {
     private JButton jbUploadXML;
     private JLabel jlNumberTimes;
     private JTextField jtfNumber;
-    private JButton jbStart;
+    private JButton jbCalculate;
     private JLabel jlAlgorithm;
-    private JButton jbStop;
+    private JButton jbReset;
     private JLabel jlAddProduct;
     private JTextField jtfSize;
     private JButton jbAddProduct;
     private JButton jbAddRandom;
     private final JFileChooser fc;
     private EigenMethode eigenMethode = new EigenMethode();
-    
+
     Driver driver = new Driver();
     ArrayList<Product> paintRoute = new ArrayList<>();
-    
+
     JComboBox bppAlgorithmList = new JComboBox();
     JComboBox tspAlgorithmList = new JComboBox();
     Order order = new Order();
@@ -67,7 +67,7 @@ public class RobotWindow extends JFrame implements ActionListener {
     Core.Box B = new Core.Box(boxSize);
     Core.Box C = new Core.Box(boxSize);
 
-    RobotControllerJpanel rc = new RobotControllerJpanel(paintRoute, A ,B ,C);
+    RobotControllerJpanel rc = new RobotControllerJpanel(paintRoute, A, B, C);
     BPPDrawPanel bppDP = new BPPDrawPanel(A, B, C);
     DrawPanel tspDP = new DrawPanel();
 
@@ -113,9 +113,9 @@ public class RobotWindow extends JFrame implements ActionListener {
         jtfNumber = new JTextField(5);
         right1.add(jtfNumber);
 
-        jbStart = new JButton("Start");
-        jbStart.addActionListener(this);
-        right2.add(jbStart);
+        jbCalculate = new JButton("Calculate");
+        jbCalculate.addActionListener(this);
+        right2.add(jbCalculate);
 
         left2.add(Box.createHorizontalStrut(30));
         jlAlgorithm = new JLabel("BPP Algorithm:");
@@ -128,9 +128,9 @@ public class RobotWindow extends JFrame implements ActionListener {
         bppAlgorithmList.addActionListener(this);
         left2.add(bppAlgorithmList);
 
-        jbStop = new JButton("Stop");
-        jbStop.addActionListener(this);
-        right3.add(jbStop);
+        jbReset = new JButton("Reset");
+        jbReset.addActionListener(this);
+        right3.add(jbReset);
 
         left3.add(Box.createHorizontalStrut(30));
         jlAddProduct = new JLabel("TSP Algorithm");
@@ -165,12 +165,13 @@ public class RobotWindow extends JFrame implements ActionListener {
         add(panel2, BorderLayout.EAST);
         add(panel3, BorderLayout.CENTER);
     }
+
     public Driver getDriver() {
         return driver;
     }
 
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == jbStart) {
+        if (e.getSource() == jbCalculate) {
             if (this.order != null) {
 
                 //haalt informatie op uit de combo box
@@ -211,6 +212,18 @@ public class RobotWindow extends JFrame implements ActionListener {
 
                     System.out.println(currentRoute + " |     " + currentRoute.calculateTotalDistance());
                     hillClimbing.findShortestRoute(currentRoute);
+                    System.out.println(hillClimbing.getShortestRoute());
+
+                    paintRoute.clear();
+
+                    hillClimbing.getShortestRoute().forEach(x -> {
+                        paintRoute.add(x);
+                    });
+                    tspDP.setPaintingroute(paintRoute);
+
+                    repaint();
+                    System.out.println("Dit is de paint route" + paintRoute);
+
                 }
                 if ("Willikeurig Beperkt".equals(tspAlgorithm)) {
                     RobotRSDialog rsd = new RobotRSDialog(this);
