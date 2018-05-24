@@ -1,6 +1,7 @@
-
 package SerialController;
 
+import Window.RobotWindow;
+import Window.TSPWindow;
 import com.fazecast.jSerialComm.SerialPort;
 import java.io.PrintWriter;
 import javax.swing.JOptionPane;
@@ -18,21 +19,21 @@ public class RobotControllerJpanel extends javax.swing.JPanel {
     static PrintWriter outPut;
     private boolean connected = false;
     DataLogger DataLogger1 = new DataLogger();
-    
+
     public RobotControllerJpanel() {
         initComponents();
     }
 
     public void updateMonitor() {
 
-        jTextAreaMonitor.selectAll();
-        jTextAreaMonitor.replaceSelection("");
+        jTextAreaMonitor1.selectAll();
+        jTextAreaMonitor1.replaceSelection("");
 
         for (String s : DataLogger1.getData()) {
-            jTextAreaMonitor.append(s + "\n"); // New line at the end
+            jTextAreaMonitor1.append(s + "\n"); // New line at the end
         }
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -211,11 +212,11 @@ public class RobotControllerJpanel extends javax.swing.JPanel {
             if (comPort.isOpen() == true) {
                 DataLogger1.addData("Connection to the sorting robot is successful.");
                 connected = true;
-                pictureCheck1.setConnected(true);
+                pictureCheck1.setConnected(1);
             } else {
                 DataLogger1.addData("Error opening port.");
                 connected = false;
-                pictureCheck1.setConnected(false);
+                pictureCheck1.setConnected(2);
             }
 
         } else {
@@ -231,7 +232,7 @@ public class RobotControllerJpanel extends javax.swing.JPanel {
                 comPort.closePort();
                 DataLogger1.addData("Disconnected from sorting robot.");
                 connected = false;
-                pictureCheck1.setConnected(false);
+                pictureCheck1.setConnected(2);
             }
         }
         updateMonitor();
@@ -242,9 +243,9 @@ public class RobotControllerJpanel extends javax.swing.JPanel {
         if (connected) {
             if (comPort.isOpen() == true) {
                 int selectedOption = JOptionPane.showConfirmDialog(null,
-                    "Are you sure you want to start the sorting robot?",
-                    "Choose",
-                    JOptionPane.YES_NO_OPTION);
+                        "Are you sure you want to start the sorting robot?",
+                        "Choose",
+                        JOptionPane.YES_NO_OPTION);
                 if (selectedOption == JOptionPane.YES_OPTION) {
                     DataLogger1.addData("Status: Running...");
                     outPut.print("5-5-3\r\n");
@@ -256,6 +257,7 @@ public class RobotControllerJpanel extends javax.swing.JPanel {
                 DataLogger1.addData("Sorting robot isn't connected");
             }
             updateMonitor();
+            repaint();
         }
     }//GEN-LAST:event_btStartActionPerformed
 
@@ -270,6 +272,7 @@ public class RobotControllerJpanel extends javax.swing.JPanel {
                 DataLogger1.addData("Sorting robot isn't connected");
             }
             updateMonitor();
+            repaint();
         }
     }//GEN-LAST:event_btEStopActionPerformed
 

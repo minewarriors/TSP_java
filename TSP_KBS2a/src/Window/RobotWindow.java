@@ -10,12 +10,10 @@ import static BPPAlgorithms.Algorithms.firstFit;
 import static Core.BPPInterface.boxSize;
 import Core.Order;
 import Core.Product;
-import SerialController.RobotController;
 import SerialController.RobotControllerJpanel;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import static java.awt.Color.BLACK;
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -174,6 +172,7 @@ public class RobotWindow extends JFrame implements ActionListener {
         add(panel2, BorderLayout.EAST);
         add(panel3, BorderLayout.CENTER);
     }
+    
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == jbStart) {

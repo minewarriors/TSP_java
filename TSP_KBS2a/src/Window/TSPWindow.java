@@ -94,6 +94,7 @@ public class TSPWindow extends JFrame implements ActionListener {
         jbStart.addActionListener(this);
         stop.addActionListener(this);
     }
+    
 
     public Driver getDriver() {
         return this.driver;
