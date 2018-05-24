@@ -31,6 +31,8 @@ import static java.lang.Integer.parseInt;
 import java.lang.reflect.Field;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -149,9 +151,9 @@ public class TSPWindow extends JFrame implements ActionListener {
                     System.out.println(random);
                     bruteforce.getShortestRoutes().get(routeRandom).getProducts().forEach(x -> {
                         paintRoute.add(x);
-                        repaint();
                     });
                     dp.setPaintingroute(paintRoute);
+                    repaint();
                     System.out.println("Op je muil met  deze Array " + paintRoute);
 
                 }

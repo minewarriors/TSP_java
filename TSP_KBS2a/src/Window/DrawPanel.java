@@ -173,6 +173,6 @@ public class DrawPanel extends JPanel {
         } else {
             y = 100;
         }
-        return y;
+        return (y * -1) + 600;
     }
 }

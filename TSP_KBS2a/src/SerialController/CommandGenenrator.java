@@ -32,13 +32,11 @@ public abstract class CommandGenenrator {
                 }
             }
             if (ProductFoundIn != null) {
-                output = (x.getX() + "-" + ((x.getY()*-1)+6) + "-" + ProductFoundIn + "\r\n");
+                output = (x.getX() + "-" + x.getY() + "-" + ProductFoundIn + "\r\n");
                 CommandArray.add(output);
             }
         }
         return CommandArray;
     }
-    
-    
-    
+
 }
