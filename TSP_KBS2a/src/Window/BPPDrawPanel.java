@@ -22,6 +22,7 @@ public class BPPDrawPanel extends JPanel {
     private boolean check = true;
     private double grootte = 0.75;
 
+    //contructor om de inhoud van de boxen mee op te halen
     public BPPDrawPanel(Box boxA, Box boxB, Box boxC) {
         this.a = boxA;
         this.b = boxB;
@@ -82,11 +83,10 @@ public class BPPDrawPanel extends JPanel {
         super.paintComponent(g);
         if (order != null) {
 
-            //kijken welke methode aangeroepen moet worden op grootte
             for (Product p : orderList) {
 
                 check = true;
-
+                //kijkt of de pakketten er al zijn, anders moeten ze nog in de rij worden getekent
                 a.getProductBoxArray().forEach((product) -> {
                     if (product == p) {
                         check = false;
@@ -103,6 +103,7 @@ public class BPPDrawPanel extends JPanel {
                     }
                 });
 
+                //kijken welke methode aangeroepen moet worden op grootte
                 if (check) {
                     int id = p.getProductId();
 
@@ -119,6 +120,7 @@ public class BPPDrawPanel extends JPanel {
                 }
             }
 
+            //de volgende if's zorgen ervoor dat de pakketten uit de berekende array's worden gehaald en daarna in de juiste box en plaats worden getekent
             if (a != null) {
                 y = (int) (550 * grootte);
                 a.getProductBoxArray().forEach((productA) -> {
@@ -181,6 +183,7 @@ public class BPPDrawPanel extends JPanel {
             }
         }
 
+        //hier worden de boxes getekent met een dikke lijn
         Graphics2D g2 = (Graphics2D) g;
 
         g2.setStroke(new BasicStroke(5));
