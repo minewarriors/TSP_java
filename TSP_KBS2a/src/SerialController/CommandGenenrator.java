@@ -36,6 +36,7 @@ public abstract class CommandGenenrator {
                 CommandArray.add(output);
             }
         }
+        CommandArray.add("1-1-1-9\r\n");
         return CommandArray;
     }
 

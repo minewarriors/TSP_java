@@ -108,7 +108,7 @@ public class RobotControllerJpanel extends javax.swing.JPanel {
             }
         });
 
-        btEStop.setText("Stop");
+        btEStop.setText("Recalibrate");
         btEStop.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btEStopActionPerformed(evt);
@@ -155,7 +155,7 @@ public class RobotControllerJpanel extends javax.swing.JPanel {
                                 .addComponent(btnDisconnect)))
                         .addGap(22, 22, 22)
                         .addComponent(btStart, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(28, 28, 28)
                         .addComponent(btEStop, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
@@ -282,8 +282,8 @@ public class RobotControllerJpanel extends javax.swing.JPanel {
         if (connected) {
             if (comPort.isOpen() == true) {
                 DataLogger.addData("Status: STOP");
-                outPut.print("Stop\r\n");
-                outPut.flush();
+                 outPut.print("1.1.1.9\r\n");
+                 outPut.flush();
                 DataLogger.addData("Command send to robot: " + "Stop\r\n");
             }
         } else {
