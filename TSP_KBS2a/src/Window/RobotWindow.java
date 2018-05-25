@@ -278,11 +278,9 @@ public class RobotWindow extends JFrame implements ActionListener {
             }
         }
         if (e.getSource() == jbReset) {
-            this.order.getOrderPackages().clear();
             A.getProductBoxArray().clear();
             B.getProductBoxArray().clear();
             C.getProductBoxArray().clear();
-            driver.clearIntialRoute();
             paintRoute.clear();
             repaint();
         }

@@ -40,68 +40,41 @@ public class BPPDrawPanel extends JPanel {
 
     //volgende methodes zorgen ervoor dat pakketten in een rij worden getekent op volgorde van id
     public void drawBigProduct(Graphics g, int id) {
+        int x = 0;
         if (id > 0) {
-            int x = 0;
-            if (id == 1) {
-                x = 12;
+            if (id <= 5) {
+                x = -200 + (id * 212);
+                g.fillRect((int) (x * grootte), (int) (30 * grootte), (int) (200 * grootte), (int) (200 * grootte));
+            } else {
+                x = -1260 + (id * 212);
+                g.fillRect((int) (x * grootte), (int) (580 * grootte), (int) (200 * grootte), (int) (200 * grootte));
             }
-            if (id == 2) {
-                x = 224;
-            }
-            if (id == 3) {
-                x = 436;
-            }
-            if (id == 4) {
-                x = 648;
-            }
-            if (id == 5) {
-                x = 860;
-            }
-            g.fillRect((int) (x * grootte), (int) (30 * grootte), (int) (200 * grootte), (int) (200 * grootte));
         }
     }
 
     public void drawMediumProduct(Graphics g, int id) {
+        int x = 0;
         if (id > 0) {
-            int x = 0;
-            if (id == 1) {
-                x = 12;
+            if (id <= 5) {
+                x = -200 + (id * 212);
+                g.fillRect((int) (x * grootte), (int) (30 * grootte), (int) (200 * grootte), (int) (150 * grootte));
+            } else {
+                x = -1260 + (id * 212);
+                g.fillRect((int) (x * grootte), (int) (580 * grootte), (int) (200 * grootte), (int) (150 * grootte));
             }
-            if (id == 2) {
-                x = 224;
-            }
-            if (id == 3) {
-                x = 436;
-            }
-            if (id == 4) {
-                x = 648;
-            }
-            if (id == 5) {
-                x = 860;
-            }
-            g.fillRect((int) (x * grootte), (int) (30 * grootte), (int) (200 * grootte), (int) (150 * grootte));
         }
     }
 
     public void drawSmallProduct(Graphics g, int id) {
+        int x = 0;
         if (id > 0) {
-            int x = 0;
-            if (id == 1) {
-                x = 12;
+            if (id <= 5) {
+                x = -200 + (id * 212);
+                g.fillRect((int) (x * grootte), (int) (30 * grootte), (int) (200 * grootte), (int) (100 * grootte));
+            } else {
+                x = -1260 + (id * 212);
+                g.fillRect((int) (x * grootte), (int) (580 * grootte), (int) (200 * grootte), (int) (100 * grootte));
             }
-            if (id == 2) {
-                x = 224;
-            }
-            if (id == 3) {
-                x = 436;
-            }
-            if (id == 4) {
-                x = 648;
-            }
-            if (id == 5) {
-                x = 860;
-            }
-            g.fillRect((int) (x * grootte), (int) (30 * grootte), (int) (200 * grootte), (int) (100 * grootte));
         }
     }
 
