@@ -11,6 +11,8 @@ public abstract class CommandGenenrator {
         ArrayList<String> CommandArray = new ArrayList<>();
         String ProductFoundIn = null;
         String output;
+        
+        CommandArray.add("3-3-2\r\n");
 
         for (Product x : tspOutput) {
 

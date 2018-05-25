@@ -125,7 +125,48 @@ public abstract class Algorithms {
         A.clearBox();
         B.clearBox();
         C.clearBox();
-        return false;
+
+        ArrayList<Product> sortedArray = sortProductsInOrderBySize(order.getOrderPackages(), true);
+        ArrayList<Product> arrayA = new ArrayList<>();
+        ArrayList<Product> arrayB = new ArrayList<>();
+        ArrayList<Product> leftOverArray = new ArrayList<>();
+
+        System.out.print("fill box A - ");
+        sortedArray.forEach((x) -> {
+            if (A.AddProduct(x, true)) {
+                System.out.print("add ");
+            } else {
+                arrayA.add(x);
+                System.out.print("denied ");
+            }
+        });
+        System.out.println();
+        System.out.print("fill box B - ");
+        arrayA.forEach((x) -> {
+            if (B.AddProduct(x, true)) {
+                System.out.print("add ");
+            } else {
+                arrayB.add(x);
+                System.out.print("denied ");
+            }
+        });
+        System.out.println();
+        System.out.print("fill box C - ");
+        arrayB.forEach((x) -> {
+            if (C.AddProduct(x, true)) {
+                System.out.print("add ");
+            } else {
+                leftOverArray.add(x);
+                System.out.print("denied ");
+            }
+        });
+        System.out.println();
+
+        leftOverArray.forEach((x) -> {
+            System.out.println("Let op! --- " + x + " --- Kan niet worden toegevoegd. Want er zijn te weinig kisten");
+        });
+
+        return leftOverArray.size() <= 0;
     }
 
     public static boolean OwnMethod(Order order, Box A, Box B, Box C) {
