@@ -6,10 +6,12 @@ import Algoritmes.EigenMethode;
 import Algoritmes.HillCliming;
 import Algoritmes.Route;
 import static BPPAlgorithms.Algorithms.BestFitDecreasing;
+import static BPPAlgorithms.Algorithms.OwnMethod;
 import static BPPAlgorithms.Algorithms.firstFit;
 import static Core.BPPInterface.boxSize;
 import Core.Order;
 import Core.Product;
+import SerialController.DataLogger;
 import SerialController.RobotControllerJpanel;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -77,7 +79,6 @@ public class RobotWindow extends JFrame implements ActionListener {
         JPanel panel = new JPanel();
         JPanel panel1 = new JPanel();
         JPanel panel2 = new JPanel();
-        JPanel panel3 = new JPanel();
         panel.setLayout(new BorderLayout());
 
         panel.add(tspDP, BorderLayout.WEST);
@@ -88,6 +89,7 @@ public class RobotWindow extends JFrame implements ActionListener {
         Box left2 = Box.createHorizontalBox();
         Box left3 = Box.createHorizontalBox();
         Box left4 = Box.createHorizontalBox();
+        Box left5 = Box.createHorizontalBox();
 
         jlXML = new JLabel("Upload XML file:");
         left1.add(jlXML);
@@ -118,7 +120,7 @@ public class RobotWindow extends JFrame implements ActionListener {
 
         jbShutdown = new JButton("Shutdown");
         jbShutdown.addActionListener(this);
-        panel3.add(jbShutdown);
+        left5.add(jbShutdown);
 
         left3.add(Box.createHorizontalStrut(30));
         jlTSPAlgorithm = new JLabel("TSP Algorithm");
@@ -139,13 +141,14 @@ public class RobotWindow extends JFrame implements ActionListener {
         leftComplete.add(left3);
         leftComplete.add(Box.createVerticalStrut(30));
         leftComplete.add(left4);
+        leftComplete.add(Box.createVerticalStrut(100));
+        leftComplete.add(left5);
         panel1.add(leftComplete);
 
         panel2.add(rc);
 
-        add(panel1, BorderLayout.WEST);
-        add(panel2, BorderLayout.EAST);
-        add(panel3, BorderLayout.CENTER);
+        add(panel1, BorderLayout.CENTER);
+        add(panel2, BorderLayout.WEST);
     }
 
     public Driver getDriver() {
@@ -188,7 +191,20 @@ public class RobotWindow extends JFrame implements ActionListener {
                     }
                 }
 
-                //TSP Algoritmes!!
+                //het Own Method algoritme wordt opgehaald
+                if ("Own Method".equals(bppAlgorithm)) {
+                    if (this.order != null) {
+                        if (OwnMethod(this.order, A, B, C)) {
+                            System.out.println("---- Succes ----");
+                        } else {
+                            System.out.println("---- Te weinig ruimte ----");
+                        }
+                    } else {
+                        System.out.println("Er is geen order toegevoegd!!! \n");
+                    }
+                }
+
+                //TSP Algoritmes
                 if ("Hill Climbing".equals(tspAlgorithm)) {
                     HillCliming hillClimbing = new HillCliming();
 
@@ -231,12 +247,13 @@ public class RobotWindow extends JFrame implements ActionListener {
                     random = randomList * Math.random();
                     int routeRandom = (int) Math.round(random);
                     System.out.println(random);
-                    bruteforce.getShortestRoutes().get(routeRandom).getProducts().forEach(x -> {
-                        paintRoute.add(x);
-                        repaint();
-                    });
+                    if (bruteforce.getShortestRoutes().size() > 0) {
+                        bruteforce.getShortestRoutes().get(routeRandom).getProducts().forEach(x -> {
+                            paintRoute.add(x);
+                            repaint();
+                        });
+                    }
                     tspDP.setPaintingroute(paintRoute);
-                    System.out.println("Op je muil met  deze Array " + paintRoute);
 
                 }
                 if ("Own Algorithm".equals(tspAlgorithm)) {
@@ -248,31 +265,33 @@ public class RobotWindow extends JFrame implements ActionListener {
                         paintRoute.add(x);
                     });
                     tspDP.setPaintingroute(paintRoute);
-                    System.out.println("Op je muil met  deze Array " + paintRoute);
                     repaint();
                 }
 
                 this.order.print();
-
-                System.out.println("box A");
+                //Hier worden de boxen met daarin de producten geprint.
+                DataLogger.addData("box A");
 
                 A.getProductBoxArray().forEach((a) -> {
                     System.out.println(a);
                 });
 
-                System.out.println("box B");
+                DataLogger.addData("box B");
 
                 B.getProductBoxArray().forEach((a) -> {
                     System.out.println(a);
                 });
 
-                System.out.println("box C");
+                DataLogger.addData("box C");
 
                 C.getProductBoxArray().forEach((a) -> {
                     System.out.println(a);
+
+                    rc.updateMonitor();
                 });
             } else {
-                System.out.println("EERST XML INLADEN!");
+                DataLogger.addData("EERST XML INLADEN!");
+                rc.updateMonitor();
                 paintRoute.clear();
                 repaint();
             }

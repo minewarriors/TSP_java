@@ -5,6 +5,7 @@ import Core.Order;
 import Core.Product;
 
 import static BPPAlgorithms.Algorithms.BestFitDecreasing;
+import static BPPAlgorithms.Algorithms.OwnMethod;
 import static BPPAlgorithms.Algorithms.firstFit;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -160,10 +161,22 @@ public class BPPMainScreen extends JFrame implements ActionListener {
                 }
             }
 
-            //het First Fit algoritme wordt opgehaald
+            //het Best-fit Decreasing algoritme wordt opgehaald
             if ("Best-fit Decreasing".equals(algorithm)) {
                 if (this.order != null) {
                     if (BestFitDecreasing(this.order, A, B, C)) {
+                        System.out.println("---- Succes ----");
+                    } else {
+                        System.out.println("---- Te weinig ruimte ----");
+                    }
+                } else {
+                    System.out.println("Er is geen order toegevoegd!!! \n");
+                }
+            }
+            //het Own Method algoritme wordt opgehaald
+            if ("Own Method".equals(algorithm)) {
+                if (this.order != null) {
+                    if (OwnMethod(this.order, A, B, C)) {
                         System.out.println("---- Succes ----");
                     } else {
                         System.out.println("---- Te weinig ruimte ----");
