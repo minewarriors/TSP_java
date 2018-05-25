@@ -275,7 +275,7 @@ public class RobotWindow extends JFrame implements ActionListener {
                     double random = 0;
                     int randomList = bruteforce.getShortestRoutes().size();
                     random = randomList * Math.random();
-                    int routeRandom = (int) Math.round(random);
+                    int routeRandom = (int) Math.round(random) - 1;
                     System.out.println(random);
                     if (bruteforce.getShortestRoutes().size() > 0) {
                         bruteforce.getShortestRoutes().get(routeRandom).getProducts().forEach(x -> {
@@ -299,27 +299,28 @@ public class RobotWindow extends JFrame implements ActionListener {
                     tspDP.setPaintingroute(paintRoute);
                     repaint();
                 }
+                DataLogger.addData("Dit is de route" + paintRoute);
+                rc.updateMonitor();
 
                 this.order.print();
                 //Hier worden de boxen met daarin de producten geprint.
-                DataLogger.addData("box A");
+                System.out.println("box A:");
 
                 A.getProductBoxArray().forEach((a) -> {
                     System.out.println(a);
                 });
 
-                DataLogger.addData("box B");
+                System.out.println("box B:");
 
                 B.getProductBoxArray().forEach((a) -> {
                     System.out.println(a);
                 });
 
-                DataLogger.addData("box C");
+                System.out.println("box C:");
 
                 C.getProductBoxArray().forEach((a) -> {
                     System.out.println(a);
 
-                    rc.updateMonitor();
                 });
             } else {
                 //Als er geen xml is ingeladen wordt er een melding aan de datalogger toegevoegd
@@ -345,6 +346,10 @@ public class RobotWindow extends JFrame implements ActionListener {
 
                 if (returnVal == JFileChooser.APPROVE_OPTION) {
                     driver.clearIntialRoute();
+                    A.getProductBoxArray().clear();
+                    B.getProductBoxArray().clear();
+                    C.getProductBoxArray().clear();
+                    paintRoute.clear();
                     this.order.getOrderPackages().clear();
                     File file = fc.getSelectedFile();
                     xmlFile = new File(file.getAbsolutePath());
