@@ -11,7 +11,8 @@ import java.util.ArrayList;
  *
  * @author jelle
  */
-public class Order{
+public class Order {
+
     private ArrayList<Product> orderPackages;
     private ArrayList<String> order;
 
@@ -23,6 +24,7 @@ public class Order{
     public void addToOrder(String id) {
         order.add(id);
     }
+
     public void addToOrder(Product p) {
         orderPackages.add(p);
     }
@@ -34,8 +36,6 @@ public class Order{
     public ArrayList<String> getOrder() {
         return order;
     }
-    
-    
 
     @Override
     public String toString() {

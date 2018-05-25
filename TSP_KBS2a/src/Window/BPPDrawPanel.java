@@ -28,7 +28,7 @@ public class BPPDrawPanel extends JPanel {
         this.b = boxB;
         this.c = boxC;
         this.order = null;
-        this.setPreferredSize(new Dimension((int) (1120 * grootte), (int) (600 * grootte)));
+        this.setPreferredSize(new Dimension((int) (1120 * grootte), (int) (800 * grootte)));
         setBackground(Color.WHITE);
 
     }

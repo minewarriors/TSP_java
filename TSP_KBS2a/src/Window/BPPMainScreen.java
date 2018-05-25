@@ -48,7 +48,7 @@ public class BPPMainScreen extends JFrame implements ActionListener {
 
     public BPPMainScreen() {
         setTitle("BPP");
-        setSize((int) (1080 * 0.75), (int) (850 * 0.75));
+        setSize((int) (1080 * 0.75), (int) (1000 * 0.75));
         setLayout(new BorderLayout());
         setResizable(false);
 
@@ -196,6 +196,8 @@ public class BPPMainScreen extends JFrame implements ActionListener {
                 int returnVal = fc.showOpenDialog(BPPMainScreen.this);
 
                 if (returnVal == JFileChooser.APPROVE_OPTION) {
+
+                    this.order.getOrderPackages().clear();
                     File file = fc.getSelectedFile();
                     xmlFile = new File(file.getAbsolutePath());
 

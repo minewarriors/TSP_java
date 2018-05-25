@@ -184,6 +184,8 @@ public class TSPWindow extends JFrame implements ActionListener {
 
                 //on click filechooser APPROVE
                 if (returnVal == JFileChooser.APPROVE_OPTION) {
+
+                    driver.clearIntialRoute();
                     File file = fc.getSelectedFile();
                     xmlFile = new File(file.getAbsolutePath());
                     Order order = new Order();
