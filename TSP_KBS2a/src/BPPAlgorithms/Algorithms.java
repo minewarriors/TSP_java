@@ -1,17 +1,18 @@
 package BPPAlgorithms;
 
-import static Core.BPPInterface.boxSize;
-import Core.Box;
-import Core.Product;
+import static BPP.BPPInterface.boxSize;
+import BPP.Box;
+import BPP.DrawPanel;
+import BPP.OrderInterface;
+import BPP.Product;
 import static BPPAlgorithms.Sort.sortBoxesInOrderByFreeSpace;
 import static BPPAlgorithms.Sort.sortProductsInOrderBySize;
-import Core.Order;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
 public abstract class Algorithms {
 
-    public static boolean firstFit(Order order, Box A, Box B, Box C) {
+    public static boolean firstFit(OrderInterface order, Box A, Box B, Box C) {
 
         A.clearBox();
         B.clearBox();
@@ -60,7 +61,7 @@ public abstract class Algorithms {
         return leftOverArray.size() <= 0;
     }
 
-    public static boolean BestFitDecreasing(Order order, Box A, Box B, Box C) {
+    public static boolean BestFitDecreasing(OrderInterface order, Box A, Box B, Box C) {
 
         A.clearBox();
         B.clearBox();
@@ -121,14 +122,55 @@ public abstract class Algorithms {
 
     }
 
-    public static boolean BinCompletion(Order order, Box A, Box B, Box C) {
+    public static boolean BinCompletion(OrderInterface order, Box A, Box B, Box C) {
         A.clearBox();
         B.clearBox();
         C.clearBox();
-        return false;
+
+        ArrayList<Product> sortedArray = sortProductsInOrderBySize(order.getOrderPackages(), true);
+        ArrayList<Product> arrayA = new ArrayList<>();
+        ArrayList<Product> arrayB = new ArrayList<>();
+        ArrayList<Product> leftOverArray = new ArrayList<>();
+
+        System.out.print("fill box A - ");
+        sortedArray.forEach((x) -> {
+            if (A.AddProduct(x, true)) {
+                System.out.print("add ");
+            } else {
+                arrayA.add(x);
+                System.out.print("denied ");
+            }
+        });
+        System.out.println();
+        System.out.print("fill box B - ");
+        arrayA.forEach((x) -> {
+            if (B.AddProduct(x, true)) {
+                System.out.print("add ");
+            } else {
+                arrayB.add(x);
+                System.out.print("denied ");
+            }
+        });
+        System.out.println();
+        System.out.print("fill box C - ");
+        arrayB.forEach((x) -> {
+            if (C.AddProduct(x, true)) {
+                System.out.print("add ");
+            } else {
+                leftOverArray.add(x);
+                System.out.print("denied ");
+            }
+        });
+        System.out.println();
+
+        leftOverArray.forEach((x) -> {
+            System.out.println("Let op! --- " + x + " --- Kan niet worden toegevoegd. Want er zijn te weinig kisten");
+        });
+
+        return leftOverArray.size() <= 0;
     }
 
-    public static boolean OwnMethod(Order order, Box A, Box B, Box C) {
+    public static boolean OwnMethod(OrderInterface order, Box A, Box B, Box C) {
 
         A.clearBox();
         B.clearBox();
