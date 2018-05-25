@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<order>
+    <package id="1">
+        <size>40</size>
+        <color>Red</color>
+        <x>2</x>
+        <y>3</y>
+    </package>
+    <package id="2">
+        <size>30</size>
+        <color>Blue</color>
+        <x>3</x>
+        <y>1</y>
+    </package>
+    <package id="3">
+        <size>20</size>
+        <color>Green</color>
+        <x>4</x>
+        <y>3</y>
+    </package>
+    <package id="4">
+        <size>30</size>
+        <color>Pink</color>
+        <x>5</x>
+        <y>4</y>
+    </package>
+    <package id="5">
+        <size>40</size>
+        <color>Yellow</color>
+        <x>1</x>
+        <y>4</y>
+    </package>
+    <package id="6">
+        <size>20</size>
+        <color>Orange</color>
+        <x>3</x>
+        <y>4</y>
+    </package>
+        <package id="7">
+        <size>20</size>
+        <color>Red</color>
+        <x>3</x>
+        <y>5</y>
+    </package>
+</order>

@@ -282,8 +282,9 @@ public class RobotWindow extends JFrame implements ActionListener {
             A.getProductBoxArray().clear();
             B.getProductBoxArray().clear();
             C.getProductBoxArray().clear();
+            driver.clearIntialRoute();
             paintRoute.clear();
-            dispose();
+            repaint();
         }
         if (e.getSource() == jbUploadXML) {
             try {
@@ -291,6 +292,8 @@ public class RobotWindow extends JFrame implements ActionListener {
                 int returnVal = fc.showOpenDialog(RobotWindow.this);
 
                 if (returnVal == JFileChooser.APPROVE_OPTION) {
+                    driver.clearIntialRoute();
+                    this.order.getOrderPackages().clear();
                     File file = fc.getSelectedFile();
                     xmlFile = new File(file.getAbsolutePath());
 
@@ -342,6 +345,13 @@ public class RobotWindow extends JFrame implements ActionListener {
             }
         }
         if (e.getSource() == jbShutdown) {
+            this.order.getOrderPackages().clear();
+            A.getProductBoxArray().clear();
+            B.getProductBoxArray().clear();
+            C.getProductBoxArray().clear();
+            driver.clearIntialRoute();
+            paintRoute.clear();
+            repaint();
             setVisible(false);
         }
         repaint();
