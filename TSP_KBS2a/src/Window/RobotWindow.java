@@ -6,6 +6,7 @@ import Algoritmes.EigenMethode;
 import Algoritmes.HillCliming;
 import Algoritmes.Route;
 import static BPPAlgorithms.Algorithms.BestFitDecreasing;
+import static BPPAlgorithms.Algorithms.BinCompletion;
 import static BPPAlgorithms.Algorithms.OwnMethod;
 import static BPPAlgorithms.Algorithms.firstFit;
 import static Core.BPPInterface.boxSize;
@@ -193,6 +194,19 @@ public class RobotWindow extends JFrame implements ActionListener {
                 if ("Best-fit Decreasing".equals(bppAlgorithm)) {
                     if (this.order != null) {
                         if (BestFitDecreasing(this.order, A, B, C)) {
+                            System.out.println("---- Succes ----");
+                        } else {
+                            System.out.println("---- Te weinig ruimte ----");
+                        }
+                    } else {
+                        System.out.println("Er is geen order toegevoegd!!! \n");
+                    }
+                }
+
+                //het Bin Completion algoritme wordt opgehaald
+                if ("Bin Completion".equals(bppAlgorithm)) {
+                    if (this.order != null) {
+                        if (BinCompletion(this.order, A, B, C)) {
                             System.out.println("---- Succes ----");
                         } else {
                             System.out.println("---- Te weinig ruimte ----");
