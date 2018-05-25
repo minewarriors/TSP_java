@@ -52,8 +52,6 @@ public class TSPWindow extends JFrame implements ActionListener {
         setLayout(new FlowLayout());
         setResizable(false);
 
-        System.out.println("ugthh");
-
         this.driver = driver;
         // contruct and add drawPanel
         dp = new DrawPanel();
@@ -184,6 +182,8 @@ public class TSPWindow extends JFrame implements ActionListener {
 
                 //start inladen xml
                 if (returnVal == JFileChooser.APPROVE_OPTION) {
+
+                    driver.clearIntialRoute();
                     File file = fc.getSelectedFile();
                     xmlFile = new File(file.getAbsolutePath());
                     Order order = new Order();

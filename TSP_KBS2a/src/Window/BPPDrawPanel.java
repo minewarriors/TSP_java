@@ -22,12 +22,13 @@ public class BPPDrawPanel extends JPanel {
     private boolean check = true;
     private double grootte = 0.75;
 
+    //contructor om de inhoud van de boxen mee op te halen
     public BPPDrawPanel(Box boxA, Box boxB, Box boxC) {
         this.a = boxA;
         this.b = boxB;
         this.c = boxC;
         this.order = null;
-        this.setPreferredSize(new Dimension((int) (1120 * grootte), (int) (600 * grootte)));
+        this.setPreferredSize(new Dimension((int) (1120 * grootte), (int) (800 * grootte)));
         setBackground(Color.WHITE);
 
     }
@@ -40,68 +41,41 @@ public class BPPDrawPanel extends JPanel {
 
     //volgende methodes zorgen ervoor dat pakketten in een rij worden getekent op volgorde van id
     public void drawBigProduct(Graphics g, int id) {
+        int x = 0;
         if (id > 0) {
-            int x = 0;
-            if (id == 1) {
-                x = 12;
+            if (id <= 5) {
+                x = -200 + (id * 212);
+                g.fillRect((int) (x * grootte), (int) (30 * grootte), (int) (200 * grootte), (int) (200 * grootte));
+            } else {
+                x = -1260 + (id * 212);
+                g.fillRect((int) (x * grootte), (int) (580 * grootte), (int) (200 * grootte), (int) (200 * grootte));
             }
-            if (id == 2) {
-                x = 224;
-            }
-            if (id == 3) {
-                x = 436;
-            }
-            if (id == 4) {
-                x = 648;
-            }
-            if (id == 5) {
-                x = 860;
-            }
-            g.fillRect((int) (x * grootte), (int) (30 * grootte), (int) (200 * grootte), (int) (200 * grootte));
         }
     }
 
     public void drawMediumProduct(Graphics g, int id) {
+        int x = 0;
         if (id > 0) {
-            int x = 0;
-            if (id == 1) {
-                x = 12;
+            if (id <= 5) {
+                x = -200 + (id * 212);
+                g.fillRect((int) (x * grootte), (int) (30 * grootte), (int) (200 * grootte), (int) (150 * grootte));
+            } else {
+                x = -1260 + (id * 212);
+                g.fillRect((int) (x * grootte), (int) (580 * grootte), (int) (200 * grootte), (int) (150 * grootte));
             }
-            if (id == 2) {
-                x = 224;
-            }
-            if (id == 3) {
-                x = 436;
-            }
-            if (id == 4) {
-                x = 648;
-            }
-            if (id == 5) {
-                x = 860;
-            }
-            g.fillRect((int) (x * grootte), (int) (30 * grootte), (int) (200 * grootte), (int) (150 * grootte));
         }
     }
 
     public void drawSmallProduct(Graphics g, int id) {
+        int x = 0;
         if (id > 0) {
-            int x = 0;
-            if (id == 1) {
-                x = 12;
+            if (id <= 5) {
+                x = -200 + (id * 212);
+                g.fillRect((int) (x * grootte), (int) (30 * grootte), (int) (200 * grootte), (int) (100 * grootte));
+            } else {
+                x = -1260 + (id * 212);
+                g.fillRect((int) (x * grootte), (int) (580 * grootte), (int) (200 * grootte), (int) (100 * grootte));
             }
-            if (id == 2) {
-                x = 224;
-            }
-            if (id == 3) {
-                x = 436;
-            }
-            if (id == 4) {
-                x = 648;
-            }
-            if (id == 5) {
-                x = 860;
-            }
-            g.fillRect((int) (x * grootte), (int) (30 * grootte), (int) (200 * grootte), (int) (100 * grootte));
         }
     }
 
@@ -109,11 +83,10 @@ public class BPPDrawPanel extends JPanel {
         super.paintComponent(g);
         if (order != null) {
 
-            //kijken welke methode aangeroepen moet worden op grootte
             for (Product p : orderList) {
 
                 check = true;
-
+                //kijkt of de pakketten er al zijn, anders moeten ze nog in de rij worden getekent
                 a.getProductBoxArray().forEach((product) -> {
                     if (product == p) {
                         check = false;
@@ -130,6 +103,7 @@ public class BPPDrawPanel extends JPanel {
                     }
                 });
 
+                //kijken welke methode aangeroepen moet worden op grootte
                 if (check) {
                     int id = p.getProductId();
 
@@ -146,6 +120,7 @@ public class BPPDrawPanel extends JPanel {
                 }
             }
 
+            //de volgende if's zorgen ervoor dat de pakketten uit de berekende array's worden gehaald en daarna in de juiste box en plaats worden getekent
             if (a != null) {
                 y = (int) (550 * grootte);
                 a.getProductBoxArray().forEach((productA) -> {
@@ -208,6 +183,7 @@ public class BPPDrawPanel extends JPanel {
             }
         }
 
+        //hier worden de boxes getekent met een dikke lijn
         Graphics2D g2 = (Graphics2D) g;
 
         g2.setStroke(new BasicStroke(5));

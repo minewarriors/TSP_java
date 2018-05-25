@@ -5,6 +5,8 @@ import Core.Order;
 import Core.Product;
 
 import static BPPAlgorithms.Algorithms.BestFitDecreasing;
+import static BPPAlgorithms.Algorithms.BinCompletion;
+import static BPPAlgorithms.Algorithms.OwnMethod;
 import static BPPAlgorithms.Algorithms.firstFit;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -32,17 +34,8 @@ import org.w3c.dom.NodeList;
 
 public class BPPMainScreen extends JFrame implements ActionListener {
 
-    private JLabel jlXML;
-    private JButton jbUploadXML;
-    private JLabel jlNumberTimes;
-    private JTextField jtfNumber;
-    private JButton jbStart;
-    private JLabel jlAlgorithm;
-    private JButton jbStop;
-    private JLabel jlAddProduct;
-    private JTextField jtfSize;
-    private JButton jbAddProduct;
-    private JButton jbAddRandom;
+    private JLabel jlXML, jlAlgorithm;
+    private JButton jbUploadXML, jbStart, jbReset;
 
     private final JFileChooser fc;
 
@@ -55,7 +48,7 @@ public class BPPMainScreen extends JFrame implements ActionListener {
 
     public BPPMainScreen() {
         setTitle("BPP");
-        setSize((int) (1080 * 0.75), (int) (850 * 0.75));
+        setSize((int) (1080 * 0.75), (int) (1000 * 0.75));
         setLayout(new BorderLayout());
         setResizable(false);
 
@@ -70,10 +63,8 @@ public class BPPMainScreen extends JFrame implements ActionListener {
         JPanel panel2 = new JPanel();
         Box left1 = Box.createHorizontalBox();
         Box left2 = Box.createHorizontalBox();
-        Box left3 = Box.createHorizontalBox();
         Box right1 = Box.createHorizontalBox();
         Box right2 = Box.createHorizontalBox();
-        Box right3 = Box.createHorizontalBox();
 
         jlXML = new JLabel("Upload XML file:");
         left1.add(jlXML);
@@ -82,15 +73,9 @@ public class BPPMainScreen extends JFrame implements ActionListener {
         jbUploadXML.addActionListener(this);
         left1.add(jbUploadXML);
 
-        jlNumberTimes = new JLabel("Number of times:");
-        right1.add(jlNumberTimes);
-        right1.add(Box.createHorizontalStrut((int) (30 * 0.75)));
-        jtfNumber = new JTextField(5);
-        right1.add(jtfNumber);
-
         jbStart = new JButton("Start");
         jbStart.addActionListener(this);
-        right2.add(jbStart);
+        right1.add(jbStart);
 
         left2.add(Box.createHorizontalStrut((int) (30 * 0.75)));
         jlAlgorithm = new JLabel("BPP Algorithm:");
@@ -103,43 +88,24 @@ public class BPPMainScreen extends JFrame implements ActionListener {
         algorithmList.addActionListener(this);
         left2.add(algorithmList);
 
-        jbStop = new JButton("Stop");
-        jbStop.addActionListener(this);
-        right3.add(jbStop);
-
-        left3.add(Box.createHorizontalStrut((int) (30 * 0.75)));
-        jlAddProduct = new JLabel("Add product:");
-        left3.add(jlAddProduct);
-        left3.add(Box.createHorizontalStrut((int) (30 * 0.75)));
-        jtfSize = new JTextField(5);
-        left3.add(jtfSize);
-        left3.add(Box.createHorizontalStrut((int) (30 * 0.75)));
-        jbAddProduct = new JButton("Add");
-        jbAddProduct.addActionListener(this);
-        left3.add(jbAddProduct);
-        left3.add(Box.createHorizontalStrut((int) (30 * 0.75)));
-        jbAddRandom = new JButton("Add random");
-        jbAddRandom.addActionListener(this);
-        left3.add(jbAddRandom);
+        jbReset = new JButton("Reset");
+        jbReset.addActionListener(this);
+        right2.add(jbReset);
 
         Box leftComplete = Box.createVerticalBox();
         leftComplete.add(left1);
         leftComplete.add(Box.createVerticalStrut((int) (30 * 0.75)));
         leftComplete.add(left2);
-        leftComplete.add(Box.createVerticalStrut((int) (30 * 0.75)));
-        leftComplete.add(left3);
         panel1.add(leftComplete);
 
         Box rightComplete = Box.createVerticalBox();
         rightComplete.add(right1);
         rightComplete.add(Box.createVerticalStrut((int) (30 * 0.75)));
         rightComplete.add(right2);
-        rightComplete.add(Box.createVerticalStrut((int) (30 * 0.75)));
-        rightComplete.add(right3);
         panel2.add(rightComplete);
 
         add(panel1, BorderLayout.WEST);
-        add(panel2, BorderLayout.EAST);
+        add(panel2, BorderLayout.CENTER);
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -160,10 +126,36 @@ public class BPPMainScreen extends JFrame implements ActionListener {
                 }
             }
 
-            //het First Fit algoritme wordt opgehaald
+            //het Best-fit Decreasing algoritme wordt opgehaald
             if ("Best-fit Decreasing".equals(algorithm)) {
                 if (this.order != null) {
                     if (BestFitDecreasing(this.order, A, B, C)) {
+                        System.out.println("---- Succes ----");
+                    } else {
+                        System.out.println("---- Te weinig ruimte ----");
+                    }
+                } else {
+                    System.out.println("Er is geen order toegevoegd!!! \n");
+                }
+            }
+
+            //het Bin Completion algoritme wordt opgehaald
+            if ("Bin Completion".equals(algorithm)) {
+                if (this.order != null) {
+                    if (BinCompletion(this.order, A, B, C)) {
+                        System.out.println("---- Succes ----");
+                    } else {
+                        System.out.println("---- Te weinig ruimte ----");
+                    }
+                } else {
+                    System.out.println("Er is geen order toegevoegd!!! \n");
+                }
+            }
+
+            //het Own Method algoritme wordt opgehaald
+            if ("Own Method".equals(algorithm)) {
+                if (this.order != null) {
+                    if (OwnMethod(this.order, A, B, C)) {
                         System.out.println("---- Succes ----");
                     } else {
                         System.out.println("---- Te weinig ruimte ----");
@@ -192,12 +184,20 @@ public class BPPMainScreen extends JFrame implements ActionListener {
                 System.out.println(a);
             });
         }
+        if (e.getSource() == jbReset) {
+            A.getProductBoxArray().clear();
+            B.getProductBoxArray().clear();
+            C.getProductBoxArray().clear();
+            repaint();
+        }
         if (e.getSource() == jbUploadXML) {
             try {
                 File xmlFile;
                 int returnVal = fc.showOpenDialog(BPPMainScreen.this);
 
                 if (returnVal == JFileChooser.APPROVE_OPTION) {
+
+                    this.order.getOrderPackages().clear();
                     File file = fc.getSelectedFile();
                     xmlFile = new File(file.getAbsolutePath());
 

@@ -282,8 +282,8 @@ public class RobotControllerJpanel extends javax.swing.JPanel {
         if (connected) {
             if (comPort.isOpen() == true) {
                 DataLogger.addData("Status: STOP");
-                 outPut.print("1.1.1.9\r\n");
-                 outPut.flush();
+                outPut.print("1.1.1.9\r\n");
+                outPut.flush();
                 DataLogger.addData("Command send to robot: " + "Stop\r\n");
             }
         } else {
@@ -292,7 +292,6 @@ public class RobotControllerJpanel extends javax.swing.JPanel {
         updateMonitor();
         repaint();
     }//GEN-LAST:event_btEStopActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btEStop;
