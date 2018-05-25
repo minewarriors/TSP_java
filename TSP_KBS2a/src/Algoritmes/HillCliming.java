@@ -8,10 +8,6 @@ package Algoritmes;
 import Core.Product;
 import java.util.ArrayList;
 
-/**
- *
- * @author jelle
- */
 public class HillCliming {
 
     private ArrayList<Product> shortestRoute = new ArrayList<Product>();

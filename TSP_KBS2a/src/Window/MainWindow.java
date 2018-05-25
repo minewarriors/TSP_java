@@ -4,12 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-/**
- *
- * @author jelle
- */
 public class MainWindow extends JFrame implements ActionListener {
-
     private JLabel JLTitle;
     private JButton JBTSP;
     private JButton JBBPP;

@@ -1,20 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Algoritmes;
 
 import Core.Product;
 import java.util.ArrayList;
 import java.util.Collections;
 
-/**
- *
- * @author jelle
- */
 public class WillekeurigBeperkt {
-
     static int permutationNumber = 1;
     private ArrayList<Route> shortestRoutes = new ArrayList<>();
 
@@ -23,18 +13,20 @@ public class WillekeurigBeperkt {
     }
 
     public ArrayList<Route> permutateProducts(int permutationMaximum, Route currentRoute, Route shortestRoute) {
+        // negatieve invoer positief maken
         if (permutationMaximum < 0 ) {
             permutationMaximum = Math.abs(permutationMaximum);
         }
         for (int temp = 0; temp < permutationMaximum; temp++) {
+            // verschuiven van 2 objecten in arraylist
             ArrayList<Product> tempProductArray = currentRoute.getProducts();
             Collections.shuffle(tempProductArray);
             Route r = new Route(tempProductArray);
-
+            // alle permutaties printen
             if (Driver.VERBOSE_FLAG) {
                 System.out.println(currentRoute + " |   " + getTotalDistance(currentRoute) + "   |   " + getTotalDistance(shortestRoute) + permutationNumber++);
             }
-
+            // vergelijken oude en nieuwe route
             if ((int) calculateTotalDistance(r) <= (int) calculateTotalDistance(shortestRoute)) {
                 shortestRoute.getProducts().clear();
                 shortestRoute.getProducts().addAll(currentRoute.getProducts());
@@ -77,6 +69,7 @@ public class WillekeurigBeperkt {
     }
 
     public String getTotalDistance(Route route) {
+        // berekenen totale afstand van een route
         String returnValue = Integer.toString(calculateTotalDistance(route));
         if (returnValue.length() == 4) {
             returnValue = " " + returnValue;

@@ -6,7 +6,6 @@
 package Window;
 
 import Algoritmes.*;
-import Core.*;
 import Algoritmes.BruteForce;
 import Algoritmes.Driver;
 import Algoritmes.EigenMethode;
@@ -31,16 +30,12 @@ import static java.lang.Integer.parseInt;
 import java.lang.reflect.Field;
 import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class TSPWindow extends JFrame implements ActionListener {
 
     private JButton jbStart, stop, jbUploadXML;
-    private JLabel jlAlgoritm, jl, jlUploadXML;
+    private JLabel jlAlgoritm, jlUploadXML;
     private final JFileChooser fc;
     DrawPanel dp;
     private String[] jComboboxOptions = {"Bruteforce", "Hill Climbing", "Willikeurig Beperkt", "Eigen Algoritme"};
@@ -107,6 +102,7 @@ public class TSPWindow extends JFrame implements ActionListener {
             if (this.order != null) {
                 String Algoritm = (String) algoritmList.getSelectedItem();
                 Route currentRoute = new Route(driver.getIntialRoute());
+                // start hillclimbing algoritme
                 if ("Hill Climbing".equals(Algoritm)) {
                     HillCliming hillClimbing = new HillCliming();
 
@@ -114,31 +110,32 @@ public class TSPWindow extends JFrame implements ActionListener {
                     hillClimbing.findShortestRoute(currentRoute);
                     System.out.println(hillClimbing.getShortestRoute());
 
+                    // tekenen hillclimbing route
                     paintRoute.clear();
-
                     hillClimbing.getShortestRoute().forEach(x -> {
                         paintRoute.add(x);
                     });
                     dp.setPaintingroute(paintRoute);
-
                     repaint();
-                    System.out.println("Dit is de paint route" + paintRoute);
-
                 }
+                // start willekeurig beperkt algoritme
                 if ("Willikeurig Beperkt".equals(Algoritm)) {
+                    // de rest wordt in het dialoog afgewerkt
                     RandomSearchDialog rsd = new RandomSearchDialog(this);
 
                 }
+                // start bruteforce algoritme
                 if ("Bruteforce".equals(Algoritm)) {
-
+                    
                     Instant startInstant = Instant.now();
                     BruteForce bruteforce = new BruteForce();
-
+                    // priten alle permutaties
                     if (driver.VERBOSE_FLAG) {
                         driver.printHeading("Route", "Distance | Shortest Distance | Permutation #");
                     } else {
                         System.out.println("Permutation in progress ...");
                     }
+                    // printen resultaten
                     driver.printResults(bruteforce, bruteforce.permutateProducten(0, currentRoute, new Route(currentRoute)));
                     driver.printDuration(startInstant);
 
@@ -154,19 +151,20 @@ public class TSPWindow extends JFrame implements ActionListener {
                     });
                     dp.setPaintingroute(paintRoute);
                     repaint();
-                    System.out.println("Op je muil met  deze Array " + paintRoute);
 
                 }
+                // start eigen algoritme
                 if ("Eigen Algoritme".equals(Algoritm)) {
                     ArrayList<Product> producten = new ArrayList<Product>();
                     producten.addAll(driver.getIntialRoute());
                     driver.printShortestRoute(eigenMethode.FindShortestRoute(producten));
+                    
+                    //tekenen gevonden route
                     paintRoute.clear();
                     eigenMethode.getShortestRouteProducts().forEach(x -> {
                         paintRoute.add(x);
                     });
                     dp.setPaintingroute(paintRoute);
-                    System.out.println("Op je muil met  deze Array " + paintRoute);
                     repaint();
                 }
             } else {
@@ -180,20 +178,20 @@ public class TSPWindow extends JFrame implements ActionListener {
         if (e.getSource()
                 == jbUploadXML) {
             try {
-                // variables
+                // variabelen
                 File xmlFile;
                 int returnVal = fc.showOpenDialog(TSPWindow.this);
 
-                //on click filechooser APPROVE
+                //start inladen xml
                 if (returnVal == JFileChooser.APPROVE_OPTION) {
                     File file = fc.getSelectedFile();
                     xmlFile = new File(file.getAbsolutePath());
                     Order order = new Order();
 
-                    //Clear previous order
+                    //weghalen oude route
                     driver.clearIntialRoute();
 
-                    // loading XML file
+                    // laden XML file
                     DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
                     DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
                     Document doc = dBuilder.parse(xmlFile);
@@ -210,13 +208,13 @@ public class TSPWindow extends JFrame implements ActionListener {
                         if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
                             Element eElement = (Element) nNode;
-                            // converting String types
+                            // Strings omzetten naar juiste datatype
                             int id = parseInt(eElement.getAttribute("id"));
                             int x = parseInt(eElement.getElementsByTagName("x").item(0).getTextContent());
                             int y = parseInt(eElement.getElementsByTagName("y").item(0).getTextContent());
                             int size = parseInt(eElement.getElementsByTagName("size").item(0).getTextContent());
 
-                            // Use reflection to access the static member of the Color class
+                            // Gebruik reflectie om toegang te krijgen tot het statische lid van de klasse Color
                             Color color;
                             String tempColor = (eElement.getElementsByTagName("color").item(0).getTextContent()).toLowerCase();
                             try {

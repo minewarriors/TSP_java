@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Algoritmes;
 
 import Window.BPPMainScreen;
@@ -14,10 +9,6 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
 
-/**
- *
- * @author jelle
- */
 public class Driver {
 
     public final static boolean VERBOSE_FLAG = true;
@@ -88,9 +79,7 @@ public class Driver {
     //maakt de kolommen netjes als permutatie van aantal producten veranderd
     public void printHeading(String headingcolumn1, String remainingHeadingColumns) {
         int productNamesLength = 0;
-//        for (int x = 0; x < intialRoute.size(); x++) {
-//            productNamesLength += intialRoute.get().getProductId().length();
-//        }
+        
         int arrayLength = productNamesLength + intialRoute.size() * 2;
         int partialLength = (arrayLength - headingcolumn1.length()) / 2;
         for (int x = 0; x < partialLength; x++) {
@@ -103,12 +92,8 @@ public class Driver {
         if ((arrayLength % 2) == 0) {
             System.out.println(" ");
         }
-        System.out.println(" | " + remainingHeadingColumns);
+        System.out.println(" | " + remainingHeadingColumns+"\n");
         productNamesLength += remainingHeadingColumns.length() + 3;
-//        for (int x = 0; x < productNamesLength + intialRoute.size() * 2; x++) {
-//            System.out.println("-");
-//        }
-        System.out.println("");
     }
 
     public void printShortestRoute(Route shortestroute) {

@@ -106,6 +106,7 @@ public class DrawPanel extends JPanel {
                 }
             }
         }
+        // tekenen magazijn grid
         g.setColor(Color.BLACK);
         // outlines
         g.drawLine(40, 50, 1040, 50);
@@ -124,17 +125,21 @@ public class DrawPanel extends JPanel {
         g.drawLine(440, 50, 440, 550);
         g.drawLine(640, 50, 640, 550);
         g.drawLine(840, 50, 840, 550);
-
+        
+        // route tekenen
         if (paintingRoute != null) {
             int previousX = 0;
             int previousY = 0;
-
+            // 
             paintingRoute.stream().forEach(x -> {
+                // teken beginpunt
                 if (paintingRoute.indexOf(x) == 0) {
                     g.setColor(Color.GREEN);
+                    // teken eindpunt
                 } else if (paintingRoute.indexOf(x) == paintingRoute.size() - 1) {
                     g.setColor(Color.MAGENTA);
                 } else {
+                    // teken tussen punten
                     g.setColor(Color.WHITE);
                 }
 
@@ -142,7 +147,8 @@ public class DrawPanel extends JPanel {
                 g.setColor(Color.BLACK);
                 g.drawOval(calculatePixelPositionX(x.getX()) - 15, calculatepixelPositionY(x.getY()) - 15, 30, 30);
             });
-
+            
+            //tekenen lijnen tussen pakketjes
             for (Product x : paintingRoute) {
                 if (paintingRoute.indexOf(x) == 0) {
                     previousX = calculatePixelPositionX(x.getX());
@@ -156,6 +162,7 @@ public class DrawPanel extends JPanel {
         }
     }
 
+    //berekenen x positie
     public int calculatePixelPositionX(int x) {
         if (x > 0) {
             if (x != 1) {
@@ -166,7 +173,8 @@ public class DrawPanel extends JPanel {
         }
         return x;
     }
-
+    
+    // berekenen y positie
     public int calculatepixelPositionY(int y) {
         if (y != 1) {
             y = y * 100;
