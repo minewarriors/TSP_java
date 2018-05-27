@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
  *
  * @author Christiaan
  */
-public class RobotControllerJpanel extends javax.swing.JPanel {
+public class RobotControllerJpanel extends javax.swing.JPanel {   //paneel om een poort te selecteren en te verbinden met de arduino
 
     private static final long serialVersionUID = 1L;
     private SerialPort comPort;

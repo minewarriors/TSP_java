@@ -10,7 +10,12 @@ import java.net.URL;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-public class PictureCheck extends JPanel {
+/**
+ *
+ * @author Christiaan
+ */
+
+public class PictureCheck extends JPanel {  //klasse om het connect plaatje neer te zetten en te veranderen in een not connected plaatje
 
     private int connected = 2;
 

@@ -9,6 +9,11 @@ import Core.Order;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ *
+ * @author Christiaan
+ */
+
 public abstract class Algorithms {
 
     public static boolean firstFit(Order order, Box A, Box B, Box C) {
@@ -131,7 +136,6 @@ public abstract class Algorithms {
         ArrayList<Product> arrayB = new ArrayList<>();
         ArrayList<Product> leftOverArray = new ArrayList<>();
 
-        System.out.print("fill box A - ");
         sortedArray.forEach((x) -> {
             if (A.AddProduct(x, true)) {
                 System.out.print("add ");
@@ -140,8 +144,6 @@ public abstract class Algorithms {
                 System.out.print("denied ");
             }
         });
-        System.out.println();
-        System.out.print("fill box B - ");
         arrayA.forEach((x) -> {
             if (B.AddProduct(x, true)) {
                 System.out.print("add ");
@@ -150,8 +152,6 @@ public abstract class Algorithms {
                 System.out.print("denied ");
             }
         });
-        System.out.println();
-        System.out.print("fill box C - ");
         arrayB.forEach((x) -> {
             if (C.AddProduct(x, true)) {
                 System.out.print("add ");
@@ -160,13 +160,7 @@ public abstract class Algorithms {
                 System.out.print("denied ");
             }
         });
-        System.out.println();
-
-        leftOverArray.forEach((x) -> {
-            System.out.println("Let op! --- " + x + " --- Kan niet worden toegevoegd. Want er zijn te weinig kisten");
-        });
-
-        return leftOverArray.size() <= 0;
+        return leftOverArray.size() <= 0; //return true bij een voltooid resultaat zonder rest producten
     }
 
     public static boolean OwnMethod(Order order, Box A, Box B, Box C) {
@@ -197,7 +191,7 @@ public abstract class Algorithms {
         while (true) {
 
             if (lowerBound > 3) {
-                return false;
+                return false; //return false bij een mislukt resultaat met rest producten
             }
             if (counter <= 10) {
                 ArrayList<Product> orderArray = order.getOrderPackages();
@@ -267,7 +261,7 @@ public abstract class Algorithms {
             System.out.println();
             System.out.println(box);
             if (box <= lowerBound) {
-                return true;
+                return true; //return true bij een voltooid resultaat zonder rest producten
             } else {
                 //lowerBound--;
                 counter++;
@@ -275,14 +269,14 @@ public abstract class Algorithms {
             }
 
             if (counter >= 50) {
-                return false;
+                return false; //return false bij een mislukt resultaat met rest producten
             }
 
             if (counter >= 10) {
                 lowerBound++;
                 counter = 0;
             }
-            return false;
+            return false; //return false bij een mislukt resultaat met rest producten
         }
     }
 }

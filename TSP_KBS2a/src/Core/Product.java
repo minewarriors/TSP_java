@@ -2,6 +2,11 @@ package Core;
 
 import java.awt.Color;
 
+/**
+ *
+ * @author Christiaan & Jelle
+ */
+
 public class Product {
 
     private int productId;

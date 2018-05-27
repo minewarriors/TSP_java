@@ -4,6 +4,11 @@ import Core.Box;
 import Core.Product;
 import java.util.ArrayList;
 
+/**
+ *
+ * @author Christiaan
+ */
+
 public abstract class CommandGenenrator {
 
     public static ArrayList<String> generateCommandArray(ArrayList<Product> tspOutput, Box A, Box B, Box C) {
@@ -12,7 +17,7 @@ public abstract class CommandGenenrator {
         String ProductFoundIn = null;
         String output;
         
-        CommandArray.add("3-3-2\r\n");
+        CommandArray.add("3-3-2\r\n"); //het commando om de robot in het midden te laten beginnen [3.3]
 
         for (Product x : tspOutput) {
 
@@ -34,11 +39,11 @@ public abstract class CommandGenenrator {
                 }
             }
             if (ProductFoundIn != null) {
-                output = (x.getX() + "-" + x.getY() + "-" + ProductFoundIn + "\r\n");
+                output = (x.getX() + "-" + x.getY() + "-" + ProductFoundIn + "\r\n"); //het order zoek en grijp cammando
                 CommandArray.add(output);
             }
         }
-        CommandArray.add("1-1-1-9\r\n");
+        CommandArray.add("1-1-1-9\r\n"); //het stop cammando
         return CommandArray;
     }
 

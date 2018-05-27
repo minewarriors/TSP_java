@@ -8,14 +8,9 @@ import java.util.ArrayList;
  * @author Christiaan
  */
 public class DataLogger {
-   private static ArrayList<String> data = new ArrayList<>();
+   private static ArrayList<String> data = new ArrayList<>();  //data logger om alle informatie ik te printen zowel van het controle paneel als van de algorithmes 
 
-    //public DataLogger() {
-  //      data.add("Welcome to the control pannel.");
-   // }
-    
-    
-
+   
     public static ArrayList<String> getData() {
         return data;
     }
