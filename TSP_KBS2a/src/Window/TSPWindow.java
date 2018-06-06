@@ -78,7 +78,6 @@ public class TSPWindow extends JFrame implements ActionListener {
         jbUploadXML = new JButton("Upload File");
         this.add(jbUploadXML);
 
-        //
         //start & stop buttons
         jbStart = new JButton("Start");
         stop = new JButton("Stop");
@@ -94,6 +93,7 @@ public class TSPWindow extends JFrame implements ActionListener {
         return this.driver;
     }
 
+    //dit is een aanpassing check ff Bram!
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == jbStart) {
@@ -124,7 +124,7 @@ public class TSPWindow extends JFrame implements ActionListener {
                 }
                 // start bruteforce algoritme
                 if ("Bruteforce".equals(Algoritm)) {
-                    
+
                     Instant startInstant = Instant.now();
                     BruteForce bruteforce = new BruteForce();
                     // priten alle permutaties
@@ -156,7 +156,7 @@ public class TSPWindow extends JFrame implements ActionListener {
                     ArrayList<Product> producten = new ArrayList<Product>();
                     producten.addAll(driver.getIntialRoute());
                     driver.printShortestRoute(eigenMethode.FindShortestRoute(producten));
-                    
+
                     //tekenen gevonden route
                     paintRoute.clear();
                     eigenMethode.getShortestRouteProducts().forEach(x -> {
