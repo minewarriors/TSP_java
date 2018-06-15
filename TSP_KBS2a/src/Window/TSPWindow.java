@@ -34,14 +34,9 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class TSPWindow extends JFrame implements ActionListener {
 
-<<<<<<< HEAD
     private JButton jbStart, stop, jbUploadXML, jbUploadManually;
-    private JLabel jlAlgoritm, jlUploadXML;
-=======
-    private JButton jbStart, stop, jbUploadXML;
     private JLabel jlAlgoritm, jlUploadXML, jlAantal;
     private JTextField jtfAantal;
->>>>>>> 3b1cf4a22ea6ce1ed1805f9bd85850f4ff7894b6
     private final JFileChooser fc;
     DrawPanel dp;
     private String[] jComboboxOptions = {"Bruteforce", "Hill Climbing", "Willikeurig Beperkt", "Eigen Algoritme"};
@@ -201,6 +196,9 @@ public class TSPWindow extends JFrame implements ActionListener {
                 repaint();
             }
 
+        }
+        if (e.getSource() == jbUploadManually) {
+            PacketPickerDialog pickerDialog = new PacketPickerDialog();
         }
 
         if (e.getSource()
