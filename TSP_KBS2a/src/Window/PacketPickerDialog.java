@@ -17,44 +17,47 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 
 /**
  *
  * @author Bram ten Brinke
  */
-public class PacketPickerDialog extends JDialog implements ActionListener, MouseListener{
+public class PacketPickerDialog extends JDialog implements ActionListener, MouseListener {
+
     private static int productCounter;
     private static final int rowSize = 84;
     static ArrayList<Product> selectedPackages = new ArrayList<>();
     private JButton jbOk, jbCancel;
-    
-    
-    
+
     public PacketPickerDialog() {
+        setTitle("Packet Picker");
+        setSize(500, 600);
         setLayout(new FlowLayout());
-        setPreferredSize(new Dimension(500, 600));
-        
+
         this.addMouseListener(this);
         setBackground(Color.white);
-        
+
         productCounter = 0;
-        
+
         jbOk = new JButton("confirm");
         jbCancel = new JButton("cancel");
-        
+
         this.add(jbOk);
         this.add(jbCancel);
-        
+
         jbOk.addActionListener(this);
         jbCancel.addActionListener(this);
+
+        setVisible(true);
     }
-    
+
     public void PaintComponent(Graphics g) {
         g.setColor(Color.BLACK);
 
         int lineCounter = 0;
-        int positionLine = 15+(lineCounter*70);
-        while (lineCounter<6) {
+        int positionLine = 15 + (lineCounter * 70);
+        while (lineCounter < 6) {
             g.drawLine(15, positionLine, 435, positionLine);
             g.drawLine(positionLine, 15, positionLine, 435);
             lineCounter++;
@@ -64,23 +67,23 @@ public class PacketPickerDialog extends JDialog implements ActionListener, Mouse
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == jbOk) {
-            
+
         }
         if (e.getSource() == jbOk) {
-            
+
         }
     }
 
-@Override
+    @Override
     public void mouseClicked(MouseEvent me) {
         int xHok = me.getY() / rowSize;
         int yHok = me.getX() / rowSize;
-        
+
         Product p = new Product(productCounter, xHok, yHok, Color.CYAN, 30);
         addDeletePoint(p);
         productCounter++;
     }
-    
+
     public void addDeletePoint(Product product) {
 
         if (selectedPackages.contains(product)) {
