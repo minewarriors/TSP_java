@@ -5,24 +5,50 @@
  */
 package Window;
 
-import java.awt.*;
+import Core.Product;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import javax.swing.JPanel;
+import java.util.ArrayList;
+import javax.swing.JButton;
+import javax.swing.JDialog;
 
 /**
  *
  * @author Bram ten Brinke
  */
-public class PacketPicker extends JPanel implements MouseListener {
-
-    public PacketPicker() {
+public class PacketPickerDialog extends JDialog implements ActionListener, MouseListener{
+    private static int productCounter;
+    private static final int rowSize = 84;
+    static ArrayList<Product> selectedPackages = new ArrayList<>();
+    private JButton jbOk, jbCancel;
+    
+    
+    
+    public PacketPickerDialog() {
         setLayout(new FlowLayout());
-        setPreferredSize(new Dimension(450, 450));
+        setPreferredSize(new Dimension(500, 600));
+        
         this.addMouseListener(this);
         setBackground(Color.white);
+        
+        productCounter = 0;
+        
+        jbOk = new JButton("confirm");
+        jbCancel = new JButton("cancel");
+        
+        this.add(jbOk);
+        this.add(jbCancel);
+        
+        jbOk.addActionListener(this);
+        jbCancel.addActionListener(this);
     }
-
+    
     public void PaintComponent(Graphics g) {
         g.setColor(Color.BLACK);
 
@@ -36,8 +62,35 @@ public class PacketPicker extends JPanel implements MouseListener {
     }
 
     @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == jbOk) {
+            
+        }
+        if (e.getSource() == jbOk) {
+            
+        }
+    }
+
+@Override
     public void mouseClicked(MouseEvent me) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int xHok = me.getY() / rowSize;
+        int yHok = me.getX() / rowSize;
+        
+        Product p = new Product(productCounter, xHok, yHok, Color.CYAN, 30);
+        addDeletePoint(p);
+        productCounter++;
+    }
+    
+    public void addDeletePoint(Product product) {
+
+        if (selectedPackages.contains(product)) {
+            selectedPackages.remove(product);
+
+        } else {
+            selectedPackages.add(product);
+
+        }
+
     }
 
     @Override
@@ -59,5 +112,4 @@ public class PacketPicker extends JPanel implements MouseListener {
     public void mouseExited(MouseEvent me) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
 }
