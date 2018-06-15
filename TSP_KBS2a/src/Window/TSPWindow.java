@@ -112,7 +112,9 @@ public class TSPWindow extends JFrame implements ActionListener {
             if (this.order != null) {
                 try {
                     int input;
-                    if (jtfAantal.getText() != null) {
+                    if (!jtfAantal.getText().equals("")) {
+                        System.out.println(jtfAantal.getText());
+                                
                         input = Integer.parseInt(jtfAantal.getText());
                     } else {
                         input = 1;
@@ -204,7 +206,8 @@ public class TSPWindow extends JFrame implements ActionListener {
 
         }
         if (e.getSource() == jbUploadManually) {
-            PacketPickerDialog pickerDialog = new PacketPickerDialog();
+            System.out.println("FUCK YOU");
+            PacketPicker pickerDialog = new PacketPicker();
         }
 
         if (e.getSource()

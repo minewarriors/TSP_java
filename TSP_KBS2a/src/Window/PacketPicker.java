@@ -16,13 +16,13 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.JButton;
-import javax.swing.JDialog;
+import javax.swing.JPanel;
 
 /**
  *
  * @author Bram ten Brinke
  */
-public class PacketPickerDialog extends JDialog implements ActionListener, MouseListener{
+public class PacketPicker extends JPanel implements ActionListener, MouseListener{
     private static int productCounter;
     private static final int rowSize = 84;
     static ArrayList<Product> selectedPackages = new ArrayList<>();
@@ -30,10 +30,10 @@ public class PacketPickerDialog extends JDialog implements ActionListener, Mouse
     
     
     
-    public PacketPickerDialog() {
+    public PacketPicker() {
         setLayout(new FlowLayout());
-        setPreferredSize(new Dimension(500, 600));
-        
+        setSize(500, 600);
+        this.setVisible(true);
         this.addMouseListener(this);
         setBackground(Color.white);
         
@@ -95,21 +95,17 @@ public class PacketPickerDialog extends JDialog implements ActionListener, Mouse
 
     @Override
     public void mousePressed(MouseEvent me) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void mouseReleased(MouseEvent me) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void mouseEntered(MouseEvent me) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void mouseExited(MouseEvent me) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
