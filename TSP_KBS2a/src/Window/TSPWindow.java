@@ -112,7 +112,7 @@ public class TSPWindow extends JFrame implements ActionListener {
             if (this.order != null) {
                 try {
                     int input;
-                    if (jtfAantal.getText() != null) {
+                    if (!"".equals(jtfAantal.getText())) {
                         input = Integer.parseInt(jtfAantal.getText());
                     } else {
                         input = 1;
