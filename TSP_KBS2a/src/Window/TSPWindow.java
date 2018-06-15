@@ -112,13 +112,15 @@ public class TSPWindow extends JFrame implements ActionListener {
             if (this.order != null) {
                 try {
                     int input;
-                    if (jtfAantal.getText() == null) {
-                        input = 1;
-                    } else {
+                    if (jtfAantal.getText() != null) {
                         input = Integer.parseInt(jtfAantal.getText());
+                    } else {
+                        input = 1;
                     }
+
                     for (int i = 1; i <= input; i++) {
 
+                        System.out.println("ronde " + i);
                         String Algoritm = (String) algoritmList.getSelectedItem();
                         Route currentRoute = new Route(driver.getIntialRoute());
 
