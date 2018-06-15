@@ -34,14 +34,9 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class TSPWindow extends JFrame implements ActionListener {
 
-<<<<<<< HEAD
     private JButton jbStart, stop, jbUploadXML, jbUploadManually;
-    private JLabel jlAlgoritm, jlUploadXML;
-=======
-    private JButton jbStart, stop, jbUploadXML;
     private JLabel jlAlgoritm, jlUploadXML, jlAantal;
     private JTextField jtfAantal;
->>>>>>> 3b1cf4a22ea6ce1ed1805f9bd85850f4ff7894b6
     private final JFileChooser fc;
     DrawPanel dp;
     private String[] jComboboxOptions = {"Bruteforce", "Hill Climbing", "Willikeurig Beperkt", "Eigen Algoritme"};
@@ -94,11 +89,11 @@ public class TSPWindow extends JFrame implements ActionListener {
         jbStart = new JButton("Start");
         stop = new JButton("Stop");
         this.add(jbStart);
-        
+
         //manual upload knop
         jbUploadManually = new JButton("Upload Manually");
         this.add(jbUploadManually);
-        
+
         //add actionListeners
         jbUploadXML.addActionListener(this);
         jbStart.addActionListener(this);
@@ -115,85 +110,89 @@ public class TSPWindow extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == jbStart) {
             if (this.order != null) {
-                if (e.getSource() == jtfAantal) {
-                    try {
-                        int input = Integer.parseInt(jtfAantal.getText());
-                        for (int i = 0; i < input; i++) {
-
-                            String Algoritm = (String) algoritmList.getSelectedItem();
-                            Route currentRoute = new Route(driver.getIntialRoute());
-
-                            // start hillclimbing algoritme
-                            if ("Hill Climbing".equals(Algoritm)) {
-                                HillCliming hillClimbing = new HillCliming();
-
-                                System.out.println(currentRoute + " |     " + currentRoute.calculateTotalDistance());
-                                hillClimbing.findShortestRoute(currentRoute);
-                                System.out.println(hillClimbing.getShortestRoute());
-
-                                // tekenen hillclimbing route
-                                paintRoute.clear();
-                                hillClimbing.getShortestRoute().forEach(x -> {
-                                    paintRoute.add(x);
-                                });
-                                dp.setPaintingroute(paintRoute);
-                                repaint();
-                            }
-
-                            // start willekeurig beperkt algoritme
-                            if ("Willikeurig Beperkt".equals(Algoritm)) {
-                                // de rest wordt in het dialoog afgewerkt
-                                RandomSearchDialog rsd = new RandomSearchDialog(this);
-                                repaint();
-                            }
-
-                            // start bruteforce algoritme
-                            if ("Bruteforce".equals(Algoritm)) {
-
-                                Instant startInstant = Instant.now();
-                                BruteForce bruteforce = new BruteForce();
-                                // priten alle permutaties
-                                if (driver.VERBOSE_FLAG) {
-                                    driver.printHeading("Route", "Distance | Shortest Distance | Permutation #");
-                                } else {
-                                    System.out.println("Permutation in progress ...");
-                                }
-                                // printen resultaten
-                                driver.printResults(bruteforce, bruteforce.permutateProducten(0, currentRoute, new Route(currentRoute)));
-                                driver.printDuration(startInstant);
-
-                                //Route voor simulator painting
-                                paintRoute.clear();
-                                double random = 0;
-                                int randomList = bruteforce.getShortestRoutes().size();
-                                random = randomList * Math.random();
-                                int routeRandom = (int) Math.round(random);
-                                System.out.println(random);
-                                bruteforce.getShortestRoutes().get(routeRandom).getProducts().forEach(x -> {
-                                    paintRoute.add(x);
-                                });
-                                dp.setPaintingroute(paintRoute);
-                                repaint();
-                            }
-
-                            // start eigen algoritme
-                            if ("Eigen Algoritme".equals(Algoritm)) {
-                                ArrayList<Product> producten = new ArrayList<Product>();
-                                producten.addAll(driver.getIntialRoute());
-                                driver.printShortestRoute(eigenMethode.FindShortestRoute(producten));
-
-                                //tekenen gevonden route
-                                paintRoute.clear();
-                                eigenMethode.getShortestRouteProducts().forEach(x -> {
-                                    paintRoute.add(x);
-                                });
-                                dp.setPaintingroute(paintRoute);
-                                repaint();
-                            }
-                        }
-                    } catch (NumberFormatException ne) {
-                        System.out.println("invoer moet een getal zijn!!!");
+                try {
+                    int input;
+                    if (jtfAantal.getText() == null) {
+                        input = 1;
+                    } else {
+                        input = Integer.parseInt(jtfAantal.getText());
                     }
+                    for (int i = 1; i <= input; i++) {
+
+                        String Algoritm = (String) algoritmList.getSelectedItem();
+                        Route currentRoute = new Route(driver.getIntialRoute());
+
+                        // start hillclimbing algoritme
+                        if ("Hill Climbing".equals(Algoritm)) {
+                            HillCliming hillClimbing = new HillCliming();
+
+                            System.out.println(currentRoute + " |     " + currentRoute.calculateTotalDistance());
+                            hillClimbing.findShortestRoute(currentRoute);
+                            System.out.println(hillClimbing.getShortestRoute());
+
+                            // tekenen hillclimbing route
+                            paintRoute.clear();
+                            hillClimbing.getShortestRoute().forEach(x -> {
+                                paintRoute.add(x);
+                            });
+                            dp.setPaintingroute(paintRoute);
+                            repaint();
+                        }
+
+                        // start willekeurig beperkt algoritme
+                        if ("Willikeurig Beperkt".equals(Algoritm)) {
+                            // de rest wordt in het dialoog afgewerkt
+                            RandomSearchDialog rsd = new RandomSearchDialog(this);
+                            repaint();
+                        }
+
+                        // start bruteforce algoritme
+                        if ("Bruteforce".equals(Algoritm)) {
+
+                            Instant startInstant = Instant.now();
+                            BruteForce bruteforce = new BruteForce();
+                            // priten alle permutaties
+                            if (driver.VERBOSE_FLAG) {
+                                driver.printHeading("Route", "Distance | Shortest Distance | Permutation #");
+                            } else {
+                                System.out.println("Permutation in progress ...");
+                            }
+                            // printen resultaten
+                            driver.printResults(bruteforce, bruteforce.permutateProducten(0, currentRoute, new Route(currentRoute)));
+                            driver.printDuration(startInstant);
+
+                            //Route voor simulator painting
+                            paintRoute.clear();
+                            double random = 0;
+                            int randomList = bruteforce.getShortestRoutes().size();
+                            random = randomList * Math.random();
+                            int routeRandom = (int) Math.round(random);
+                            System.out.println(random);
+                            bruteforce.getShortestRoutes().get(routeRandom).getProducts().forEach(x -> {
+                                paintRoute.add(x);
+                            });
+                            dp.setPaintingroute(paintRoute);
+                            repaint();
+                        }
+
+                        // start eigen algoritme
+                        if ("Eigen Algoritme".equals(Algoritm)) {
+                            ArrayList<Product> producten = new ArrayList<Product>();
+                            producten.addAll(driver.getIntialRoute());
+                            driver.printShortestRoute(eigenMethode.FindShortestRoute(producten));
+
+                            //tekenen gevonden route
+                            paintRoute.clear();
+                            eigenMethode.getShortestRouteProducts().forEach(x -> {
+                                paintRoute.add(x);
+                            });
+                            dp.setPaintingroute(paintRoute);
+                            repaint();
+                        }
+                        repaint();
+                    }
+                } catch (NumberFormatException ne) {
+                    System.out.println("invoer moet een getal zijn!!!");
                 }
             } else {
                 System.out.println("EERST XML INLADEN!");
