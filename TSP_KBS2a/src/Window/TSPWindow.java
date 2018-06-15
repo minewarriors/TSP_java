@@ -34,7 +34,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class TSPWindow extends JFrame implements ActionListener {
 
-    private JButton jbStart, stop, jbUploadXML;
+    private JButton jbStart, stop, jbUploadXML, jbUploadManually;
     private JLabel jlAlgoritm, jlUploadXML;
     private final JFileChooser fc;
     DrawPanel dp;
@@ -82,11 +82,16 @@ public class TSPWindow extends JFrame implements ActionListener {
         jbStart = new JButton("Start");
         stop = new JButton("Stop");
         this.add(jbStart);
-
+        
+        //manual upload knop
+        jbUploadManually = new JButton("Upload Manually");
+        this.add(jbUploadManually);
+        
         //add actionListeners
         jbUploadXML.addActionListener(this);
         jbStart.addActionListener(this);
         stop.addActionListener(this);
+        jbUploadManually.addActionListener(this);
     }
 
     public Driver getDriver() {
@@ -175,71 +180,76 @@ public class TSPWindow extends JFrame implements ActionListener {
 
         if (e.getSource()
                 == jbUploadXML) {
-            try {
-                // variabelen
-                File xmlFile;
-                int returnVal = fc.showOpenDialog(TSPWindow.this);
-
-                //start inladen xml
-                if (returnVal == JFileChooser.APPROVE_OPTION) {
-
-                    driver.clearIntialRoute();
-                    File file = fc.getSelectedFile();
-                    xmlFile = new File(file.getAbsolutePath());
-                    Order order = new Order();
-
-                    //weghalen oude route
-                    driver.clearIntialRoute();
-
-                    // laden XML file
-                    DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-                    DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-                    Document doc = dBuilder.parse(xmlFile);
-
-                    // List elements with "package" tag || Remember a Node is an element
-                    NodeList nList = doc.getElementsByTagName("package");
-
-                    // go through NodeList
-                    for (int temp = 0; temp < nList.getLength(); temp++) {
-
-                        Node nNode = nList.item(temp);
-
-                        // if NodeType is the same as ElementNode
-                        if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-
-                            Element eElement = (Element) nNode;
-                            // Strings omzetten naar juiste datatype
-                            int id = parseInt(eElement.getAttribute("id"));
-                            int x = parseInt(eElement.getElementsByTagName("x").item(0).getTextContent());
-                            int y = parseInt(eElement.getElementsByTagName("y").item(0).getTextContent());
-                            int size = parseInt(eElement.getElementsByTagName("size").item(0).getTextContent());
-
-                            // Gebruik reflectie om toegang te krijgen tot het statische lid van de klasse Color
-                            Color color;
-                            String tempColor = (eElement.getElementsByTagName("color").item(0).getTextContent()).toLowerCase();
-                            try {
-                                Field field = Class.forName("java.awt.Color").getField(tempColor);
-                                color = (Color) field.get(null);
-                            } catch (Exception ex) {
-                                color = BLACK;
-                            }
-
-                            // create new Products and add them to an ArrayList
-                            Product a = new Product(id, x, y, color, size);
-                            order.addToOrder(a);
-                            dp.setOrder(order);
-                            driver.addToIntialRoute(a);
-                        }
-                    }
-                    this.order = order;
-                } else {
-                    System.out.println("Open command cancelled by user." + "\n");
-                }
-
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
+            uploadXML();
         }
+    }
+
+    public void uploadXML() {
+        try {
+            // variabelen
+            File xmlFile;
+            int returnVal = fc.showOpenDialog(TSPWindow.this);
+
+            //start inladen xml
+            if (returnVal == JFileChooser.APPROVE_OPTION) {
+
+                driver.clearIntialRoute();
+                File file = fc.getSelectedFile();
+                xmlFile = new File(file.getAbsolutePath());
+                Order order = new Order();
+
+                //weghalen oude route
+                driver.clearIntialRoute();
+
+                // laden XML file
+                DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+                DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+                Document doc = dBuilder.parse(xmlFile);
+
+                // List elements with "package" tag || Remember a Node is an element
+                NodeList nList = doc.getElementsByTagName("package");
+
+                // go through NodeList
+                for (int temp = 0; temp < nList.getLength(); temp++) {
+
+                    Node nNode = nList.item(temp);
+
+                    // if NodeType is the same as ElementNode
+                    if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+
+                        Element eElement = (Element) nNode;
+                        // Strings omzetten naar juiste datatype
+                        int id = parseInt(eElement.getAttribute("id"));
+                        int x = parseInt(eElement.getElementsByTagName("x").item(0).getTextContent());
+                        int y = parseInt(eElement.getElementsByTagName("y").item(0).getTextContent());
+                        int size = parseInt(eElement.getElementsByTagName("size").item(0).getTextContent());
+
+                        // Gebruik reflectie om toegang te krijgen tot het statische lid van de klasse Color
+                        Color color;
+                        String tempColor = (eElement.getElementsByTagName("color").item(0).getTextContent()).toLowerCase();
+                        try {
+                            Field field = Class.forName("java.awt.Color").getField(tempColor);
+                            color = (Color) field.get(null);
+                        } catch (Exception ex) {
+                            color = BLACK;
+                        }
+
+                        // create new Products and add them to an ArrayList
+                        Product a = new Product(id, x, y, color, size);
+                        order.addToOrder(a);
+                        dp.setOrder(order);
+                        driver.addToIntialRoute(a);
+                    }
+                }
+                this.order = order;
+            } else {
+                System.out.println("Open command cancelled by user." + "\n");
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
     }
 
     public ArrayList<Product> getPaintroute() {
