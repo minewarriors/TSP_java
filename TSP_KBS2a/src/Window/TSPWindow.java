@@ -208,6 +208,7 @@ public class TSPWindow extends JFrame implements ActionListener {
         }
         if (e.getSource() == jbUploadManually) {
             pickerDialog.setVisible(true);
+            PacketPicker pickerDialog = new PacketPicker();
         }
 
         if (e.getSource()

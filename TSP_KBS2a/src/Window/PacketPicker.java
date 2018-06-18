@@ -10,75 +10,97 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
 
 /**
  *
  * @author Bram ten Brinke
  */
-public class PacketPicker extends JPanel implements MouseListener {
-
-    private static int productCounter = 1;
-    private static final int panelSize = 450, margin = 15, totalSize = 420 ,boxSize = totalSize/5 ;
-    private ArrayList<Product> selectedPackages = PacketPickerFrame.selectedPackages;
-
-    public PacketPicker(PacketPickerFrame ppd) {
+public class PacketPicker extends JPanel implements ActionListener, MouseListener{
+    private static int productCounter;
+    private static final int rowSize = 84;
+    static ArrayList<Product> selectedPackages = new ArrayList<>();
+    private JButton jbOk, jbCancel;
+    
+    
+    
+    public PacketPicker() {
         setLayout(new FlowLayout());
-        setPreferredSize(new Dimension(panelSize, panelSize));
+        setSize(500, 600);
         this.setVisible(true);
-        this.setBackground(Color.white);
+
+    public PacketPickerDialog() {
+        setTitle("Packet Picker");
+        setSize(500, 600);
+        setLayout(new FlowLayout());
+
         this.addMouseListener(this);
+        setBackground(Color.white);
+
+        productCounter = 0;
+
+        jbOk = new JButton("confirm");
+        jbCancel = new JButton("cancel");
+
+        this.add(jbOk);
+        this.add(jbCancel);
+
+        jbOk.addActionListener(this);
+        jbCancel.addActionListener(this);
+
+        setVisible(true);
     }
 
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        //lijnen tekenen
+    public void PaintComponent(Graphics g) {
         g.setColor(Color.BLACK);
+
         int lineCounter = 0;
+        int positionLine = 15 + (lineCounter * 70);
         while (lineCounter < 6) {
-            int positionLine = margin + (lineCounter * boxSize);
-            g.drawLine(margin, positionLine, totalSize+margin, positionLine);
-            g.drawLine(positionLine, margin, positionLine, totalSize+margin);
+            g.drawLine(15, positionLine, 435, positionLine);
+            g.drawLine(positionLine, 15, positionLine, 435);
             lineCounter++;
         }
-        //pakketjes in vakjes zetten
-        int packageSize = boxSize/2;
-        
-        for (Product p: selectedPackages) {
-            g.setColor(p.getColor());
-            int yPos = margin+(packageSize/2)+(p.getY()*boxSize);
-            int xPos = margin+(packageSize/2)+(p.getX()*boxSize);
-            g.fillRect(xPos, yPos, packageSize, packageSize);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == jbOk) {
+
         }
-        
+        if (e.getSource() == jbOk) {
+
+        }
     }
 
     @Override
     public void mouseClicked(MouseEvent me) {
-        if (me.getY() > margin && me.getY() < totalSize+margin && me.getX() > margin && me.getX() < totalSize+margin) {
-        int yHok = ((me.getY()-margin) / boxSize);
-        int xHok = ((me.getX()-margin) / boxSize);
-            System.out.println("X = "+xHok+" Y = "+yHok);
+        int xHok = me.getY() / rowSize;
+        int yHok = me.getX() / rowSize;
+
         Product p = new Product(productCounter, xHok, yHok, Color.CYAN, 30);
         addDeletePoint(p);
         productCounter++;
-        repaint();
-        }
     }
 
     public void addDeletePoint(Product product) {
-        if (!selectedPackages.isEmpty()) {
-            for (Product p : selectedPackages) {
-                if (product.equals(p)) {
-                    selectedPackages.remove(p);
-                    return;
-                }
-            }
+
+        if (selectedPackages.contains(product)) {
+            selectedPackages.remove(product);
+
+        } else {
+            selectedPackages.add(product);
+
         }
-        selectedPackages.add(product);
+
     }
 
     @Override
