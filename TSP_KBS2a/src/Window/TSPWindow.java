@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Window;
 
 import Algoritmes.*;
@@ -44,7 +39,8 @@ public class TSPWindow extends JFrame implements ActionListener {
     private JComboBox algoritmList;
     ArrayList<Product> paintRoute = new ArrayList<Product>();
     private EigenMethode eigenMethode = new EigenMethode();
-    Order order;
+    PacketPickerFrame pickerDialog = new PacketPickerFrame(this);
+    Order order = new Order();
 
     public TSPWindow(Driver driver) {
         //Window settings
@@ -57,7 +53,7 @@ public class TSPWindow extends JFrame implements ActionListener {
         // contruct and add drawPanel
         dp = new DrawPanel();
         this.add(dp);
-
+        
         // combobox
         algoritmList = new JComboBox(jComboboxOptions);
         algoritmList.addActionListener(this);
@@ -72,7 +68,7 @@ public class TSPWindow extends JFrame implements ActionListener {
         FileNameExtensionFilter filter = new FileNameExtensionFilter(".xml files only", "xml");
         fc.setFileFilter(filter);
         fc.setAcceptAllFileFilterUsed(false);
-
+         
         //XML upload knop & label
         jlUploadXML = new JLabel("Upload XML File:");
         this.add(jlUploadXML);
@@ -101,6 +97,13 @@ public class TSPWindow extends JFrame implements ActionListener {
         jbUploadManually.addActionListener(this);
     }
 
+    public void setOrder(ArrayList<Product> order) {
+        this.order.setOrderPackages(order);
+        dp.setOrder(this.order);
+    }
+    
+    
+ 
     public Driver getDriver() {
         return this.driver;
     }
@@ -117,7 +120,7 @@ public class TSPWindow extends JFrame implements ActionListener {
                     } else {
                         input = 1;
                     }
-
+  
                     for (int i = 1; i <= input; i++) {
 
                         System.out.println("ronde " + i);
@@ -176,7 +179,7 @@ public class TSPWindow extends JFrame implements ActionListener {
                             dp.setPaintingroute(paintRoute);
                             repaint();
                         }
-
+  
                         // start eigen algoritme
                         if ("Eigen Algoritme".equals(Algoritm)) {
                             ArrayList<Product> producten = new ArrayList<Product>();
@@ -204,7 +207,7 @@ public class TSPWindow extends JFrame implements ActionListener {
 
         }
         if (e.getSource() == jbUploadManually) {
-            PacketPickerDialog pickerDialog = new PacketPickerDialog();
+            pickerDialog.setVisible(true);
         }
 
         if (e.getSource()
@@ -225,8 +228,7 @@ public class TSPWindow extends JFrame implements ActionListener {
                 driver.clearIntialRoute();
                 File file = fc.getSelectedFile();
                 xmlFile = new File(file.getAbsolutePath());
-                Order order = new Order();
-
+                this.order.clearLists();
                 //weghalen oude route
                 driver.clearIntialRoute();
 

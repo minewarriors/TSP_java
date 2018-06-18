@@ -13,11 +13,11 @@ public class Driver {
 
     public final static boolean VERBOSE_FLAG = true;
     private ArrayList<Product> intialRoute;
-
+ 
     public Driver() {
         intialRoute = new ArrayList<Product>();
     }
-
+ 
     public ArrayList<Product> getIntialRoute() {
         return intialRoute;
     }
@@ -25,7 +25,7 @@ public class Driver {
     public void addToIntialRoute(Product product) {
         intialRoute.add(product);
     }
-
+  
     public void clearIntialRoute() {
         intialRoute.clear();
     }

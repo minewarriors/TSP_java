@@ -28,6 +28,14 @@ public class Order {
     public void addToOrder(Product p) {
         orderPackages.add(p);
     }
+    public void clearLists() {
+        orderPackages.clear();
+        order.clear();
+    }
+
+    public void setOrderPackages(ArrayList<Product> orderPackages) {
+        this.orderPackages = orderPackages;
+    }
 
     public ArrayList<Product> getOrderPackages() {
         return orderPackages;

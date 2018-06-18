@@ -27,6 +27,18 @@ public class Product {
         this.size = size;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        final Product other = (Product) obj;
+        if (this.x != other.x) {
+            return false;
+        }
+        if (this.y != other.y) {
+            return false;
+        }
+        return true;
+    }
+
     public int getProductId() {
         return productId;
     }

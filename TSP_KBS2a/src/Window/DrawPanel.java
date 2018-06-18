@@ -9,7 +9,7 @@ import Algoritmes.*;
 
 public class DrawPanel extends JPanel {
 
-    private Order order;
+    private static Order order;
     private ArrayList<Product> paintingRoute;
 
     public void setPaintingroute(ArrayList<Product> paintingRoute) {
